@@ -82,16 +82,14 @@ alongside SWC's core Shell/Git/R/SQL content.
 
 {% include install_instructions/git.html %}
 
-{% if site.flavor == "r" %}
+{% comment %}
+This workshop runs R and Python as parallel tracks (Sep 15-16), not an
+either/or flavor choice, so both install_instructions partials are always
+shown regardless of site.flavor (kept as "r" for the R/Python gapminder
+curriculum type elsewhere in _config.yml).
+{% endcomment %}
 {% include install_instructions/r.html %}
-{% elsif site.flavor == "python" %}
 {% include install_instructions/python.html %}
-{% elsif site.flavor == "FIXME" %}
-{% include install_instructions/r.html %}
-{% include install_instructions/python.html %}
-{% else %}
-{% include warning-flavor.html %}
-{% endif %}
 
 {% comment %}
 SQL (Sep 17) and OpenRefine (Sep 11) are both taught in this workshop, so
