@@ -149,6 +149,7 @@ exclude:
   - vendor/
   - .docker-vendor/
   - CONTEXT.md
+  - HANDOFF.md
   - data/
   - scripts/
 

@@ -80,18 +80,27 @@ resolution across rows, name/email cell parsing, etc).
 
 ## Lessons Being Taught
 
+Per Tim (2026-08-06): Tidy Data, Unix Shell, and Version Control with Git run as
+Software/Data Carpentry lessons for this workshop, not Library Carpentry's own
+lc-* equivalents; OpenRefine and SQL stay Library Carpentry.
+
 | Date | Lesson | URL | Instructor(s) | Helper(s) |
 |---|---|---|---|---|
-| 2026-09-08 | Tidy Data | https://librarycarpentry.org/lc-spreadsheets/ | TBD | — |
-| 2026-09-09 | Unix Shell | https://librarycarpentry.org/lc-shell/ | James Frew | Geoffrey Boushey (avail as instructor if needed) |
-| 2026-09-10 | Version Control with Git | https://librarycarpentry.org/lc-git/ | TBD | — |
-| 2026-09-11 | OpenRefine | https://librarycarpentry.org/lc-open-refine/ | TBD | — |
-| 2026-09-15 | R, day one (Software Carpentry content, not LC's own lc-r) | https://swcarpentry.github.io/r-novice-gapminder/ | Rachel Torres | Geno Sanchez |
-| 2026-09-16 | R, day two (same) | https://swcarpentry.github.io/r-novice-gapminder/ | Rachel Torres | — |
-| 2026-09-17 | SQL | https://librarycarpentry.org/lc-sql/ | Geoffrey Boushey, David Moles | Geno Sanchez |
-| TBD (~week of Sep 21) | Sharing Research Software | — (not an LC curriculum lesson; separate follow-on session) | Tim Dennis, Reid Otsuji | — |
+| 2026-09-08 | Tidy Data (Data Carpentry, ecology flavor) | https://datacarpentry.org/spreadsheet-ecology-lesson/ | TBD | — |
+| 2026-09-09 | Unix Shell (Software Carpentry) | https://swcarpentry.github.io/shell-novice/ | James Frew | Geoffrey Boushey, Jose Niño Muriel |
+| 2026-09-10 | Version Control with Git (Software Carpentry) | https://swcarpentry.github.io/git-novice/ | TBD | — |
+| 2026-09-11 | OpenRefine (Library Carpentry) | https://librarycarpentry.org/lc-open-refine/ | TBD | — |
+| 2026-09-15 | R, day one (Software Carpentry content, not LC's own lc-r) | https://swcarpentry.github.io/r-novice-gapminder/ | Jose Niño Muriel, Rachel Torres | Geno Sanchez, Anindya Ganguly |
+| 2026-09-15 | Python, day one (parallel track to R day one) | https://swcarpentry.github.io/python-novice-gapminder/ | Geoffrey Boushey, Celeste Allaband | — |
+| 2026-09-16 | R, day two (same) | https://swcarpentry.github.io/r-novice-gapminder/ | Jose Niño Muriel, Rachel Torres | Anindya Ganguly |
+| 2026-09-16 | Python, day two (parallel track to R day two) | https://swcarpentry.github.io/python-novice-gapminder/ | Geoffrey Boushey, Celeste Allaband | — |
+| 2026-09-17 | SQL (Library Carpentry) | https://librarycarpentry.org/lc-sql/ | Geoffrey Boushey, David Moles | Geno Sanchez, Kristi Liu |
+| 2026-09-23 | Sharing Research Software — date CONFIRMED | https://ucospo.net/research-software-citable-discoverable/ | Tim Dennis, Reid Otsuji | — |
 
-Gap Sep 12–14: no sessions (weekend + Monday off).
+Gap Sep 12–14: no sessions (weekend + Monday off). "Sharing Research Software" is
+a Carpentries Incubator lesson (UC-OSPO-Network org), not LC/SWC curriculum, taught
+as a follow-on session via UC OSPO Net collaboration. Its confirmed Sep 23 date
+pushed the page-level workshop date range to Sep 8–23 (see `index.md` front matter).
 
 ## Status
 
@@ -109,7 +118,7 @@ Gap Sep 12–14: no sessions (weekend + Monday off).
 - [ ] Carpentries notified (`team@carpentries.org`)
 - [ ] Self-organized workshop form submitted
 - [ ] Repo description + URL metadata set on GitHub
-- [ ] Decide whether "Sharing Research Software" gets its own site once its date firms up, or stays a placeholder row here
+- [x] "Sharing Research Software" date confirmed (2026-09-23) and lesson link added; stays on this site, page-level date range extended to Sep 8–23
 
 ## Template drift since the Spring workshop (assessed 2026-08-05)
 

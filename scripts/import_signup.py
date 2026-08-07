@@ -144,21 +144,38 @@ def format_date(date_raw, confirmed):
     return _date(y, m, d).strftime("%a, %b %-d")
 
 
-# Maps CSV "Workshop Type" text to the official lesson URL. Library Carpentry
-# lessons verified against https://librarycarpentry.org/lessons/ (2026-08-05).
+# Maps CSV "Workshop Type" text to the official lesson URL.
+# Per Tim (2026-08-06): Tidy Data, Unix Shell, and Version Control with Git
+# run as Software/Data Carpentry lessons for this workshop, not Library
+# Carpentry's own lc-* equivalents; OpenRefine and SQL stay Library Carpentry.
+# - Tidy Data -> Data Carpentry's spreadsheets lesson (ecology flavor, per Tim),
+#   verified against https://datacarpentry.org/spreadsheet-ecology-lesson/ (2026-08-06).
+# - Unix Shell / Git -> Software Carpentry's own lessons, verified against
+#   https://swcarpentry.github.io/shell-novice/ and
+#   https://swcarpentry.github.io/git-novice/ (2026-08-06).
+# - OpenRefine / SQL -> Library Carpentry, verified against
+#   https://librarycarpentry.org/lessons/ (2026-08-05).
 # R days teach Software Carpentry's R content (not Library Carpentry's own lc-r),
 # verified against https://github.com/swcarpentry/r-novice-gapminder (2026-08-05).
-# Sessions not in this map (e.g. one-off/non-LC sessions like "Sharing Research
-# Software") render as plain text — add an entry here if the CSV starts using a
-# name that should link out.
+# Python days pair with the same SWC gapminder track, verified against
+# https://swcarpentry.github.io/python-novice-gapminder/ (2026-08-06).
+# "Sharing Research Software" is the UC-OSPO-Network Carpentries Incubator
+# lesson (not LC/SWC curriculum), verified against
+# https://ucospo.net/research-software-citable-discoverable/ (2026-08-06),
+# date confirmed 2026-09-23.
+# Sessions not in this map render as plain text — add an entry here if the
+# CSV starts using a name that should link out.
 LESSON_URLS = {
-    "Tidy Data": "https://librarycarpentry.org/lc-spreadsheets/",
-    "Unix Shell": "https://librarycarpentry.org/lc-shell/",
-    "Version Control with Git": "https://librarycarpentry.org/lc-git/",
+    "Tidy Data": "https://datacarpentry.org/spreadsheet-ecology-lesson/",
+    "Unix Shell": "https://swcarpentry.github.io/shell-novice/",
+    "Version Control with Git": "https://swcarpentry.github.io/git-novice/",
     "OpenRefine": "https://librarycarpentry.org/lc-open-refine/",
     "R, day one": "https://swcarpentry.github.io/r-novice-gapminder/",
     "R, day two": "https://swcarpentry.github.io/r-novice-gapminder/",
+    "Python, day one": "https://swcarpentry.github.io/python-novice-gapminder/",
+    "Python, day two": "https://swcarpentry.github.io/python-novice-gapminder/",
     "SQL": "https://librarycarpentry.org/lc-sql/",
+    "Sharing Research Software": "https://ucospo.net/research-software-citable-discoverable/",
 }
 
 # Freeform annotations shown under a session's name, keyed by the exact CSV
