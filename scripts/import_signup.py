@@ -38,10 +38,17 @@ DEFAULT_CSV = REPO_DIR / "data" / "instructor-signup.csv"
 DEFAULT_SCHEDULE = REPO_DIR / "_includes" / "swc" / "schedule.html"
 DEFAULT_FACTS = REPO_DIR / ".." / ".." / "tools" / "workshop-website-agent" / "workshop-facts.yaml"
 
-DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+DATE_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})\s*(.*)$")
 
 
 EMAIL_RE = re.compile(r"[\w.+-]+@[\w.-]+")
+
+
+def clean_names_multi(cell, email_to_name=None):
+    """Like clean_name, but splits on '|' first so a cell listing several
+    people (e.g. "Tim Dennis/tdennis@... | Leigh Phan | Laura Langdon")
+    yields one (name, note) pair per person instead of mangling them into one."""
+    return [clean_name(part, email_to_name) for part in cell.split("|") if part.strip()]
 
 
 def split_name_email(cell):
@@ -90,11 +97,12 @@ def build_email_to_name(csv_path):
         reader = csv.reader(f)
         next(reader, None)
         for row in reader:
-            for cell in row[2:8]:
-                cell = re.sub(r"\([^)]*\)", "", cell).strip()
-                name, email = split_name_email(cell)
-                if name and email:
-                    mapping[email.lower()] = name
+            for cell in row[2:9]:
+                for part in cell.split("|"):
+                    part = re.sub(r"\([^)]*\)", "", part).strip()
+                    name, email = split_name_email(part)
+                    if name and email:
+                        mapping[email.lower()] = name
     return mapping
 
 
@@ -111,37 +119,41 @@ def parse_rows(csv_path):
             if not lesson or lesson.lower().startswith("etherpad") or lesson.lower().startswith("helper stars"):
                 continue
             cols = row + [""] * (11 - len(row))
-            lead, lead_note = clean_name(cols[2], email_to_name)
-            inst2, inst2_note = clean_name(cols[3], email_to_name)
+            leads = clean_names_multi(cols[2], email_to_name)
+            inst2s = clean_names_multi(cols[3], email_to_name)
             helpers = []
-            for raw in cols[4:7]:
+            helper_names = []
+            for raw in cols[4:9]:
                 name, note = clean_name(raw, email_to_name)
                 if name:
                     helpers.append(display_with_note(name, note))
-            instructors = []
-            for name, note in ((lead, lead_note), (inst2, inst2_note)):
-                if name:
-                    instructors.append(display_with_note(name, note))
+                    helper_names.append(name)
+            instructor_pairs = leads + inst2s
+            instructors = [display_with_note(n, note) for n, note in instructor_pairs if n]
 
-            is_confirmed_date = bool(DATE_RE.match(date_raw))
+            m = DATE_RE.match(date_raw)
+            is_confirmed_date = bool(m)
+            date_note = m.group(2) if m else None
             yield {
-                "date_raw": date_raw,
+                "date_raw": m.group(1) if m else date_raw,
+                "date_note": date_note,
                 "date_confirmed": is_confirmed_date,
                 "lesson": lesson,
                 "instructors": instructors,
                 "helpers": helpers,
-                "instructor_names": [n for n, _ in ((lead, lead_note), (inst2, inst2_note)) if n],
-                "helper_names": [clean_name(r)[0] for r in cols[4:7] if clean_name(r)[0]],
+                "instructor_names": [n for n, _ in instructor_pairs if n],
+                "helper_names": helper_names,
             }
 
 
-def format_date(date_raw, confirmed):
+def format_date(date_raw, confirmed, note=None):
     if not confirmed:
         return f"TBD ({date_raw})" if date_raw else "TBD"
     from datetime import date as _date
 
     y, m, d = (int(x) for x in date_raw.split("-"))
-    return _date(y, m, d).strftime("%a, %b %-d")
+    disp = _date(y, m, d).strftime("%a, %b %-d")
+    return f"{disp} ({note})" if note else disp
 
 
 # Maps CSV "Workshop Type" text to the official lesson URL.
@@ -191,7 +203,7 @@ SESSION_NOTES = {
 def render_schedule_html(sessions):
     rows = []
     for s in sessions:
-        date_disp = format_date(s["date_raw"], s["date_confirmed"])
+        date_disp = format_date(s["date_raw"], s["date_confirmed"], s.get("date_note"))
         instr = ", ".join(s["instructors"]) if s["instructors"] else "TBD"
         help_ = ", ".join(s["helpers"]) if s["helpers"] else "&mdash;"
         url = LESSON_URLS.get(s["lesson"])
