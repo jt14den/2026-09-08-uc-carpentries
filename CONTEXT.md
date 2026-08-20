@@ -95,9 +95,9 @@ lc-* equivalents; OpenRefine and SQL stay Library Carpentry.
 | 2026-09-16 | R, day two (same) | https://swcarpentry.github.io/r-novice-gapminder/ | Jose Niño Muriel, Rachel Torres | Anindya Ganguly |
 | 2026-09-16 | Python, day two (parallel track to R day two) | https://swcarpentry.github.io/python-novice-gapminder/ | Geoffrey Boushey, Celeste Allaband | — |
 | 2026-09-17 | SQL (Library Carpentry) | https://librarycarpentry.org/lc-sql/ | Geoffrey Boushey, David Moles | Geno Sanchez, Kristi Liu |
-| 2026-09-23 | Sharing Research Software — date CONFIRMED | https://ucospo.net/research-software-citable-discoverable/ | Tim Dennis, Reid Otsuji | — |
+| 2026-09-23 | Making Research Software Citable & Discoverable — date CONFIRMED | https://ucospo.net/research-software-citable-discoverable/ | Tim Dennis, Leigh Phan, Laura Langdon, Reid Otsuji, Karla Padilla | Derek Devnich, Jamie Jamison, Kelsey Brown |
 
-Gap Sep 12–14: no sessions (weekend + Monday off). "Sharing Research Software" is
+Gap Sep 12–14: no sessions (weekend + Monday off). "Making Research Software Citable & Discoverable" (renamed from "Sharing Research Software" 2026-08-20 — clearer about what the session covers) is
 a Carpentries Incubator lesson (UC-OSPO-Network org), not LC/SWC curriculum, taught
 as a follow-on session via UC OSPO Net collaboration. Its confirmed Sep 23 date
 pushed the page-level workshop date range to Sep 8–23 (see `index.md` front matter).
@@ -118,7 +118,7 @@ pushed the page-level workshop date range to Sep 8–23 (see `index.md` front ma
 - [ ] Carpentries notified (`team@carpentries.org`)
 - [ ] Self-organized workshop form submitted
 - [ ] Repo description + URL metadata set on GitHub
-- [x] "Sharing Research Software" date confirmed (2026-09-23) and lesson link added; stays on this site, page-level date range extended to Sep 8–23
+- [x] "Making Research Software Citable & Discoverable" (renamed 2026-08-20 from "Sharing Research Software") date confirmed (2026-09-23) and lesson link added; stays on this site, page-level date range extended to Sep 8–23
 
 ## Template drift since the Spring workshop (assessed 2026-08-05)
 

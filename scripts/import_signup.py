@@ -171,7 +171,7 @@ def format_date(date_raw, confirmed, note=None):
 # verified against https://github.com/swcarpentry/r-novice-gapminder (2026-08-05).
 # Python days pair with the same SWC gapminder track, verified against
 # https://swcarpentry.github.io/python-novice-gapminder/ (2026-08-06).
-# "Sharing Research Software" is the UC-OSPO-Network Carpentries Incubator
+# "Making Research Software Citable & Discoverable" is the UC-OSPO-Network Carpentries Incubator
 # lesson (not LC/SWC curriculum), verified against
 # https://ucospo.net/research-software-citable-discoverable/ (2026-08-06),
 # date confirmed 2026-09-23.
@@ -187,7 +187,7 @@ LESSON_URLS = {
     "Python, day one": "https://swcarpentry.github.io/python-novice-gapminder/",
     "Python, day two": "https://swcarpentry.github.io/python-novice-gapminder/",
     "SQL": "https://librarycarpentry.org/lc-sql/",
-    "Sharing Research Software": "https://ucospo.net/research-software-citable-discoverable/",
+    "Making Research Software Citable & Discoverable": "https://ucospo.net/research-software-citable-discoverable/",
 }
 
 # Freeform annotations shown under a session's name, keyed by the exact CSV
@@ -196,7 +196,7 @@ LESSON_URLS = {
 # re-export) — this is for durable provenance/context that should survive
 # re-imports regardless of what the sign-up sheet says that week.
 SESSION_NOTES = {
-    "Sharing Research Software": "via UC OSPO Net collaboration",
+    "Making Research Software Citable & Discoverable": "via UC OSPO Net collaboration",
 }
 
 
