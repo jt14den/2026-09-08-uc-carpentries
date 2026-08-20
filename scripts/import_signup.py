@@ -52,13 +52,20 @@ def clean_names_multi(cell, email_to_name=None):
 
 
 def split_name_email(cell):
-    """'James Frew / frew@ucsb.edu' -> ('James Frew', 'frew@ucsb.edu')."""
+    """'James Frew / frew@ucsb.edu' -> ('James Frew', 'frew@ucsb.edu').
+    Also handles no separator at all, e.g. 'Derek Devnich ddevnich@ucmerced.edu'."""
     parts = re.split(r"[/]", cell, maxsplit=1)
     name = parts[0].strip()
     email = parts[1].strip() if len(parts) > 1 else None
     if email is None and EMAIL_RE.fullmatch(name):
         # cell was just an email with no name, e.g. "frew@ucsb.edu"
         email, name = name, None
+    elif email is None:
+        # no "/" separator — look for a bare email glued onto the name
+        m = EMAIL_RE.search(name)
+        if m:
+            email = m.group(0)
+            name = (name[: m.start()] + name[m.end() :]).strip()
     return (name or None), email
 
 
