@@ -101,13 +101,11 @@ displayed if the 'eventbrite' field in the header is not set.
 <h2 id="general">General Information</h2>
 
 <div class="alert alert-info" role="region" aria-labelledby="registration-info">
-  <p id="registration-info" style="margin-top:0;">
-    <strong>Registration:</strong> Please register in Zoom before attending the workshop.
-  </p>
-  <p style="margin-bottom:0;">
-    <a class="btn btn-primary btn-lg" href="https://ucsb.zoom.us/meeting/register/cdHIBsKlTzyk1-gyzPamag#/registration">
-      Register for the workshop
-    </a>
+  <p id="registration-info" style="margin:0;">
+    <strong>Registration:</strong> This is a series of separate half-day sessions,
+    each 9:00 am to 12:00 pm Pacific, running Sep 8 to 23, 2026. You register once
+    through Zoom and pick the sessions you want. See
+    <a href="#registration">Registration</a> below for details and the sign-up link.
   </p>
 </div>
 
@@ -132,10 +130,14 @@ Edit the general explanatory paragraph below if you want to change the pitch.
             <a href="{{site.swc_site}}">Software Carpentry</a>
              communities of Instructors, Trainers, Maintainers, helpers, and supporters who share a mission to teach foundational computational and data science skills to researchers.
             </p>
-            {% assign intro_file = site.carpentry | append: '/intro.html' %}
-            {% if isOfficial %}
-            {% include {{ intro_file }} %}
-            {% endif %}
+            <p>
+            This series teaches the foundational computing and data skills
+            researchers need: organising data in spreadsheets, working at the
+            command line, version control with Git, data cleaning with OpenRefine,
+            programming with R or Python, and databases with SQL. Sessions are
+            hands-on, and you are welcome to attend as many or as few as are
+            useful to you.
+            </p>
         </div>
     </div>
   </div>
@@ -328,8 +330,8 @@ address.
             Modify or remove the block below if you plan to record the workshop.
             {% endcomment %}
             <p id="recordings">
-            Carpentries workshops are designed to be interactive rather than lecture-based, with lessons that build upon one another.
-            To foster a positive online learning environment, we strongly recommend that participants join in real time.
+            Carpentries sessions are designed to be interactive and hands-on rather than lecture-based.
+            To foster a positive online learning environment, we strongly recommend that participants join each session in real time.
             As a result, workshop recordings are not recommended and may not be available to learners.
             </p>
         </dd>
@@ -436,7 +438,7 @@ SURVEYS - DO NOT EDIT SURVEY LINKS
         <div class="card text-center">
             <div class="card-body">
                 <h5 class="card-title">Pre-Workshop Survey</h5>
-                <p class="card-text">Please fill out this survey <strong>before attending</strong> the workshop.</p>
+                <p class="card-text">Please fill out this survey <strong>before attending</strong> your first session.</p>
                 {% if site.carpentry == "incubator" %}
                 <a href="{{ site.incubator_pre_survey }}">Pre-workshop Survey</a>
                 {% elsif site.incubator_pre_survey %}
@@ -460,7 +462,7 @@ SURVEYS - DO NOT EDIT SURVEY LINKS
         <div class="card text-center">
             <div class="card-body">
                 <h5 class="card-title">Post-Workshop Survey</h5>
-                <p class="card-text">Please fill out this survey <strong>before you leave</strong> the workshop.</p>
+                <p class="card-text">Please fill out this survey <strong>at the end of</strong> the workshop series.</p>
                 {% if site.carpentry == "incubator" %}
                 <a href="{{ site.incubator_post_survey }}">Post-workshop Survey</a>
                 {% elsif site.incubator_post_survey %}
@@ -481,6 +483,33 @@ SURVEYS - DO NOT EDIT SURVEY LINKS
         </div>
     </div>
     </div>
+  </div>
+</div>
+
+
+<div class="card mb-2" id="registration">
+  <h5 class="card-header">Registration</h5>
+  <div class="card-body">
+    <p>
+      This workshop runs as a series of separate half-day sessions from September 8
+      to 23, 2026. Each session is a single morning, 9:00 am to 12:00 pm Pacific.
+      You don't have to come to all of them. Register once, then check off the
+      specific sessions you want to attend: one, a few, or the whole series.
+    </p>
+    <p>
+      On September 15 and 16, the R and Python sessions run at the same time as
+      parallel tracks. Pick one track for those two days.
+    </p>
+    <p>
+      Registration is handled through <strong>Zoom</strong> (hosted by UC Santa
+      Barbara). On the registration page, scroll to <strong>Date &amp; Time</strong>
+      and select the sessions you want. Zoom will email you the link to join.
+    </p>
+    <p style="margin-bottom:0;">
+      <a class="btn btn-primary btn-lg" href="https://ucsb.zoom.us/meeting/register/cdHIBsKlTzyk1-gyzPamag#/registration">
+        Register and choose your sessions
+      </a>
+    </p>
   </div>
 </div>
 
@@ -510,6 +539,13 @@ of code below the Schedule `<h2>` header below with
 <div class="card mb-2">
   <h5 class="card-header">Schedule</h5>
   <div class="card-body">
+    <p>
+      Each row below is a standalone half-day session (9:00 am to 12:00 pm Pacific)
+      with its own topic and instructors. There is no prerequisite chain, so join
+      whichever sessions you need. The R and Python sessions on September 15 and 16
+      run at the same time; choose one. The Sep 4 Installfest is an optional drop-in
+      to help you get software installed before the sessions start.
+    </p>
     {% assign schedule_file = site.carpentry | append: '/schedule.html' %}
     {% if isOfficial %}
     {% include {{ schedule_file }} %}
@@ -547,18 +583,9 @@ please preview your site before committing, and make sure to run
 
 <h2 id="setup">Setup</h2>
 <p>
-  To participate in a
-  {% if site.carpentry == "swc" %}
-  Software Carpentry
-  {% elsif site.carpentry == "dc" %}
-  Data Carpentry
-  {% elsif site.carpentry == "lc" %}
-  Library Carpentry
-  {% elsif site.carpentry == "hpcc" %}
-  High-Performance Computing Carpentry
-  {% endif %}
-  workshop, you will need access to software as described below.
-  In addition, you will need an up-to-date web browser.
+  To take part in this workshop series, you will need access to the software
+  described below. In addition, you will need an up-to-date web browser.
+  You only need the software for the sessions you plan to attend.
 </p>
 <p>
   We maintain a list of common issues that occur during installation as a reference for instructors that may be useful on the

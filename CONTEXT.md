@@ -120,6 +120,31 @@ pushed the page-level workshop date range to Sep 8–23 (see `index.md` front ma
 - [ ] Repo description + URL metadata set on GitHub
 - [x] "Making Research Software Citable & Discoverable" (renamed 2026-08-20 from "Sharing Research Software") date confirmed (2026-09-23) and lesson link added; stays on this site, page-level date range extended to Sep 8–23
 
+## Local template edits (2026-09-01) — "series" framing + de-SWC branding
+
+Colleagues found the single-"workshop" language confusing (it is 10 separate
+half-day sessions over two-plus weeks). Reframed the site as a **series** and
+removed Software Carpentry branding, since the lessons span SWC + Data Carpentry +
+Library Carpentry. `_config.yml` still has `carpentry: swc` — that drives the
+schedule/setup/survey includes and the `import_signup.py` output path, and
+switching to `cp` breaks `isOfficial` and those includes. So the branding was
+overridden at the point of use instead:
+
+- `_config.yml` — title -> "UC Carpentries Workshop Series (Fall 2026)"
+- `index.md` — replaced the top register button with a one-line pointer; added a
+  **Registration** card above the Schedule (register once via Zoom, pick sessions,
+  R/Python are parallel tracks); added a schedule intro line; replaced the
+  SWC-specific intro-card include and the "Software Carpentry workshop" setup line
+  with series wording; "the workshop" -> "the workshop series" in the survey cards
+- `_includes/navbar.html` — swc branch now shows `cp-logo-blue.svg` / The Carpentries
+- `_includes/favicons.html` — swc now uses the `cp` favicon set + "The Carpentries" name
+- `_includes/workshop_calendar.html` — calendar event text now `{{ site.title }}`
+- `scripts/import_signup.py` — `format_date` was rendering `((10-noon))` (double
+  parens) for the Installfest row; now strips wrapping parens from the date note
+
+These four template-file edits are new drift to reconcile on any future
+`carpentries/workshop-template` sync.
+
 ## Template drift since the Spring workshop (assessed 2026-08-05)
 
 `carpentries/workshop-template` moved on between the Spring build (Feb 2026 base,

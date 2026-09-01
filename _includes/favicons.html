@@ -1,7 +1,9 @@
-{% assign favicon_url = relative_root_path | append: '/assets/favicons/' | append: site.carpentry  %}
+{% assign favicon_dir = site.carpentry %}
+{% if site.carpentry == 'swc' %}{% assign favicon_dir = 'cp' %}{% endif %}
+{% assign favicon_url = relative_root_path | append: '/assets/favicons/' | append: favicon_dir  %}
 
 {% if site.carpentry == 'swc' %}
-{% assign carpentry = 'Software Carpentry' %}
+{% assign carpentry = 'The Carpentries' %}
 {% elsif site.carpentry == 'dc' %}
 {% assign carpentry = 'Data Carpentry' %}
 {% elsif site.carpentry == 'lc' %}

@@ -140,7 +140,11 @@ def parse_rows(csv_path):
 
             m = DATE_RE.match(date_raw)
             is_confirmed_date = bool(m)
-            date_note = m.group(2) if m else None
+            date_note = None
+            if m:
+                # CSV sometimes wraps the note in parens, e.g. "2026-09-04 (10-noon)";
+                # strip them so format_date doesn't render "((10-noon))".
+                date_note = m.group(2).strip().strip("()").strip() or None
             yield {
                 "date_raw": m.group(1) if m else date_raw,
                 "date_note": date_note,
