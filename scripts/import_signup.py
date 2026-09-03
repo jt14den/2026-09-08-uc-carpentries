@@ -168,11 +168,12 @@ def format_date(date_raw, confirmed, note=None):
 
 
 # Maps CSV "Workshop Type" text to the official lesson URL.
-# Per Tim (2026-08-06): Tidy Data, Unix Shell, and Version Control with Git
-# run as Software/Data Carpentry lessons for this workshop, not Library
-# Carpentry's own lc-* equivalents; OpenRefine and SQL stay Library Carpentry.
-# - Tidy Data -> Data Carpentry's spreadsheets lesson (ecology flavor, per Tim),
-#   verified against https://datacarpentry.org/spreadsheet-ecology-lesson/ (2026-08-06).
+# Per Tim (2026-08-06): Unix Shell and Version Control with Git run as
+# Software Carpentry lessons for this workshop, not Library Carpentry's own
+# lc-* equivalents; OpenRefine and SQL stay Library Carpentry.
+# - Tidy Data -> Library Carpentry's Spreadsheets lesson, taught in Google Sheets
+#   (per Tim 2026-09-03, superseding the earlier plan to use Data Carpentry's
+#   ecology spreadsheets lesson). Session notes: /tidy-data-notes/.
 # - Unix Shell / Git -> Software Carpentry's own lessons, verified against
 #   https://swcarpentry.github.io/shell-novice/ and
 #   https://swcarpentry.github.io/git-novice/ (2026-08-06).
@@ -189,7 +190,7 @@ def format_date(date_raw, confirmed, note=None):
 # Sessions not in this map render as plain text — add an entry here if the
 # CSV starts using a name that should link out.
 LESSON_URLS = {
-    "Tidy Data": "https://datacarpentry.org/spreadsheet-ecology-lesson/",
+    "Tidy Data": "https://librarycarpentry.github.io/lc-spreadsheets/",
     "Unix Shell": "https://swcarpentry.github.io/shell-novice/",
     "Version Control with Git": "https://swcarpentry.github.io/git-novice/",
     "OpenRefine": "https://librarycarpentry.org/lc-open-refine/",
@@ -210,6 +211,14 @@ SESSION_NOTES = {
     "Making Research Software Citable & Discoverable": "via UC OSPO Net collaboration",
 }
 
+# Internal links shown under a session's name, keyed by the exact CSV
+# "Workshop Type" text. Rendered with {{ relative_root_path }} so the link
+# resolves on the GitHub Pages project site. Add an entry when a session gets
+# its own notes/extras page in this repo.
+SESSION_LINKS = {
+    "Tidy Data": ("Session notes & instructor guide", "/tidy-data-notes/"),
+}
+
 
 def render_schedule_html(sessions):
     rows = []
@@ -222,6 +231,12 @@ def render_schedule_html(sessions):
         note = SESSION_NOTES.get(s["lesson"])
         if note:
             lesson_cell += f'<br><small class="text-muted">{note}</small>'
+        link = SESSION_LINKS.get(s["lesson"])
+        if link:
+            label, path = link
+            lesson_cell += (
+                f'<br><small><a href="{{{{ relative_root_path }}}}{path}">{label}</a></small>'
+            )
         rows.append(
             f"      <tr>\n"
             f"        <td>{date_disp}</td>\n"
