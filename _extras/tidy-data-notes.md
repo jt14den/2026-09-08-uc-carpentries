@@ -15,6 +15,31 @@ for anyone who wants to see how the session is put together or teach it themselv
 
 - Full self-paced lesson: <https://librarycarpentry.github.io/lc-spreadsheets/aio.html>
 - Collaborative notes (Etherpad): <https://pad.carpentries.org/2026-fall-uc-carpentries-tidydate>
+- Practice data (xlsx): [training_attendance_practice.xlsx]({{ relative_root_path }}/files/training_attendance_practice.xlsx)
+
+---
+
+## The practice data
+
+`training_attendance_practice.xlsx` is a teaching build derived from the Library
+Carpentry `training_attendance.xlsx` (fictional records of library training sessions,
+2015&ndash;2017). Your instructor will share it as a Google Sheet with a "make a copy"
+link. Tabs:
+
+- **`2016_messy`** &mdash; two side-by-side tables, merged titles, a `PGR|PDRA|other`
+  column that packs three numbers into one cell, durations written as text
+  (`1.5 hours`), two dates that landed in 1900, cancelled sessions shown only by grey
+  row shading.
+- **`2017_messy`** &mdash; schema drifts from 2016; some dates typed as text
+  (`7/8 Feb`); one date in 1970; two trainers in one cell (`GQ & DF`); a legend row
+  inside the data.
+- **`dates`** &mdash; already close to tidy. `len_hours` mixes hours, minutes, and
+  text; two rows dated 2017 should be 2015; cancelled rows carry `num_attended` 0.
+- **`checkpoint_clean` / `checkpoint_combined` / `checkpoint_dates`** &mdash; answer
+  keys.
+- **`ai_input`** &mdash; a tidy table with a `source_row_id` column, for the AI exercise.
+- **`Notes`** &mdash; kept from the original, an example of metadata living inside the
+  workbook.
 
 ---
 
@@ -24,7 +49,8 @@ A rectangular table processes the same way on every row:
 
 - every **column** is one variable
 - every **row** is one observation
-- each **cell** holds one value *for that column* ("Wood, Julia" is one name)
+- each **cell** holds one value *for that column* (`GQ & DF` in one cell is two people;
+  `45|0|0` in one cell is three counts)
 - treat the source file as **read-only**; work in a named copy
 
 Everything in this session is a version of this rule. Some layouts are built to be read
@@ -110,8 +136,9 @@ a real date, changing locale changes how it is written on screen, not which day 
   preferred format for datasets.
 - `File &rarr; Download &rarr; CSV` exports the **current sheet only**. Five tabs means
   five downloads.
-- A value containing a comma (`Wood, Julia`) is written wrapped in quotes
-  (`"Wood, Julia"`) so the comma is not read as a new column. Sheets does this for you.
+- A value containing a comma (`GQ, DF`) is written wrapped in quotes (`"GQ, DF"`) so the
+  comma is not read as a new column. Sheets does this for you. The deeper problem is two
+  values in one cell at all.
 - CSV does not carry types, formulas, tabs, validation, or your change log. Keep the
   working Google Sheet alongside the CSV, or export the change log as its own file.
 
@@ -135,16 +162,19 @@ a real date, changing locale changes how it is written on screen, not which day 
 
 ## Self-check questions
 
-1. Look at a messy sheet. Name one thing a program would choke on.
+1. Look at `2016_messy`. Name one thing a program would choke on.
 2. In a tidy table, the months of the year should be: (a) twelve columns Jan&ndash;Dec,
    (b) one column called `month`, (c) colour-coded rows. *(Answer: b)*
-3. Turn a messy tab into a tidy table: one table, header in row 1, one value per cell,
-   consistent nulls. Write down your data row count.
-4. Add an `is_real_date` column with `=ISNUMBER()`. Which rows are text? Then add
-   `year` / `month` / `day`. Which rows have the wrong year?
+3. Turn the RDM table in `2016_messy` into a tidy table: one table, header in row 1, one
+   value per cell (split `PGR|PDRA|other`), a real `cancelled` column, consistent nulls.
+   Write down your data row count.
+4. In `2017_messy`, run `=ISNUMBER()` down the RDM Date column. Which rows come back
+   FALSE (stored as text)? Then in `dates`, add `year` with `=YEAR()`. Which two rows
+   have the wrong year? *(the events were in 2015)*
 5. True or false: if a cell shows `2016-03-04`, the file definitely stores March 4 2016.
    *(Answer: false &mdash; it could be text, or a real date with a wrong value)*
-6. Sort the whole table by a duration column, largest to smallest. What junk shows up?
+6. Sort the whole `dates` table by `len_hours`, largest to smallest. What junk shows up
+   at each end?
 7. You sort a table to find outliers. What two things do you do first? *(Answer: select
    the whole table; tick **Data has header row**)*
 8. An AI hands you a clean-looking table. First thing you do before you use it?
@@ -163,17 +193,17 @@ a real date, changing locale changes how it is written on screen, not which day 
 
 ## Run sheet
 
-180 minutes. First keyboard action at minute 8; a curated ~10-row subset rather than a
+180 minutes. First keyboard action at minute 8; a curated slice of the data rather than a
 full year; a real 10-minute buffer at the end.
 
 | Time | Min | Segment | What happens |
 |---|---|---|---|
 | 0:00 | 12 | **Welcome + first hands-on** | Norms. Everyone makes their copy, duplicates the `2016_messy` tab to `2016_clean`, deletes the title/spacer rows. One real edit before minute 10. |
-| 0:12 | 16 | **Why + tidy data** | Name the two things they just did: work in a copy; a rectangular table processes consistently. The rule. One value *per column*. Think-pair-share on the messy tab. |
-| 0:28 | 25 | **Formatting problems** *(the core)* | Demo three fixes (merged cells, colour-as-data, units in cells). Learners finish `2016_clean` in pairs against a `checkpoint_clean` tab. Schema checklist and row count before any combine. |
+| 0:12 | 16 | **Why + tidy data** | Name the two things they just did: work in a copy; a rectangular table processes consistently. The rule. One value *per column*. Think-pair-share on `2016_messy`. |
+| 0:28 | 25 | **Formatting problems** *(the core)* | Demo on the RDM table: unmerge the title, split the packed `PGR\|PDRA\|other` cell into three columns, recode grey-shaded cancelled rows into a `cancelled` column. Learners take the Open-access table (units in `Len`, name drift) against `checkpoint_clean`. Flag the two 1900 dates. |
 | 0:53 | 8 | Break | |
-| 1:01 | 4 | **Combine** | Paste 2017 data rows under 2016. Row-count check: 2016 + 2017 = combined &minus; 1 header. |
-| 1:05 | 25 | **Dates as data** | Three states: real value / text / real-but-wrong. `Format &rarr; Number` to show value vs display. Locale = display and text parsing, not the stored day. `=ISNUMBER` for real-vs-text. `=YEAR` catches a wrong-year bug. |
+| 1:01 | 4 | **Combine** | Show `checkpoint_combined`: 2017 rows cleaned the same way, plus a `year` column. Row-count check: 2016 + 2017 = combined &minus; 1 header. `7/8 Feb` is a judgement call, not a cleanup. |
+| 1:05 | 25 | **Dates as data** | Three states: real value / text / real-but-wrong. `Format &rarr; Number` to show value vs display. Locale = display and text parsing, not the stored day. `=ISNUMBER` on `2017_messy` catches the text dates. `=YEAR` on `dates` catches the 2017&rarr;2015 bug (and the 1900s in `2016_messy`). |
 | 1:30 | 25 | **Quality control** | QA: `Data &rarr; Data validation`, a number range and a dropdown, "Reject the input". QC: sort the whole table with **Data has header row** ticked; `Format &rarr; Conditional formatting &rarr; Color scale`. Zeros are a question for the data dictionary, not an auto-blank. |
 | 1:55 | 8 | Break | |
 | 2:03 | 22 | **Export** | Why CSV. `File &rarr; Download &rarr; CSV` = current sheet only. Date gotcha: CSV keeps the *displayed* string, so format with the full year first. Comma quoting. CSV drops your change log. |
@@ -256,28 +286,30 @@ mid-session.
 
 ### Prep
 
-- Rebuild `training_attendance` as a Google Sheet: a curated ~10-row `2016_messy` tab
-  (not the full year), a short `2017_messy`, a `dates` tab, an `ai_input` tab with a
-  `source_row_id` column, and `checkpoint_clean` / `checkpoint_combined` /
-  `checkpoint_dates` finished tabs.
-- Plant the problems: merged cells, cancelled-as-red-fill, `90 min` in `len_hours`,
-  `min` / `hour` text in `len_hours`, drifted headers, mixed nulls. In `dates`: two
-  real dates that store year 2017 for 2015 events, plus 2&ndash;3 dates stored as text.
-- Make a force-copy link (`.../edit` &rarr; `.../copy`); set the Sheet locale on purpose
-  and record it.
+- `training_attendance_practice.xlsx` (linked at the top of this page) already has the
+  nine tabs and the planted problems. Upload it to Drive, open as a Google Sheet, and
+  make a force-copy link (share link, replace `/edit...` with `/copy`).
+- The planted problems: `2016_messy` has two side-by-side tables, merged titles, the
+  packed `PGR|PDRA|other` column, `1 hour` / `1.5 hours` text durations, two dates in
+  1900, cancelled shown by grey row shading plus one stray `cancelled` note.
+  `2017_messy` has text dates, a 1970 date, `GQ & DF`, a legend row, missing values.
+  `dates` has the two 2017&rarr;2015 values, a mixed `len_hours` column, a `1.5` in
+  `num_registered`, and `0` attendance on cancelled rows.
+- Set the Sheet locale on purpose and record it.
 - Confirm the current Data Validation wording in your own Google account.
-- Run the AI prompt yourself; save one genuine flawed output; record model, date,
+- Run the AI prompt on `ai_input`; save one genuine flawed output; record model, date,
   prompt, and input / output row counts. Decide which AI tool you drive; do not assume
   learners have Gemini in Sheets.
 
 ### The AI segment
 
 Do not rely on a live model failing in an instructive way. Run "Clean this up and make it
-tidy" on the `ai_input` tab before class, save an output that dropped a row or mangled a
-value, and use that as the audit exercise. In class: show the saved output next to
-`ai_input`, state the row counts, and have learners find the missing row by comparing
-`source_row_id` values. Then ask how they would catch it without the row IDs (row counts
-before and after; compare to the raw data). Optional live rerun to show output varies.
+tidy" on the `ai_input` tab before class (12 rows, `source_row_id` 1&ndash;12; rows 5, 7,
+11 have a blank `num_attended`), save an output that dropped a row or mangled a value,
+and use that as the audit exercise. In class: show the saved output next to `ai_input`,
+state the row counts, and have learners find the missing row by comparing `source_row_id`
+values. Then ask how they would catch it without the row IDs (row counts before and
+after; compare to the raw data). Optional live rerun to show output varies.
 
 Takeaway: AI may shift work toward specifying and verifying transformations. It does not
 remove the need to inspect and clean, and it does not count reliably.
