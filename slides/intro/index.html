@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UC Carpentries Workshop Series — Welcome</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css" id="theme">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --uc-blue: #2774AE;
+    --uc-blue-deep: #1D4E79;
+    --uc-gold: #FFD100;
+    --ink: #1A202C;
+    --panel: #F5F7FA;
+    --panel-line: #E2E8F0;
+    --gradbar: linear-gradient(90deg, #2774AE 0%, #4a8fb5 40%, #b9b24e 75%, #FFD100 100%);
+  }
+
+  .reveal {
+    font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+    font-size: 32px;
+    color: var(--ink);
+  }
+  .reveal .slides { text-align: left; }
+  .reveal h1, .reveal h2, .reveal h3 { font-family: "Lato", sans-serif; text-transform: none; letter-spacing: normal; margin: 0; }
+  .reveal p { line-height: 1.35; }
+  .reveal strong { color: var(--ink); font-weight: 900; }
+  .reveal .slides > section { top: 0 !important; height: 720px; }
+  .reveal .slides > section.stack { height: auto; }
+  .content-mid {
+    position: absolute; top: 50%; left: 0; right: 0;
+    transform: translateY(-50%);
+  }
+
+  /* shared top gradient bar */
+  .reveal .slides > section::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -60px; right: -60px;
+    height: 12px;
+    background: var(--gradbar);
+  }
+
+  /* ---- section header (slides 2 & 3) ---- */
+  .slide-head {
+    display: flex; align-items: center; gap: 18px;
+    margin: 0 0 36px;
+  }
+  .slide-head::before {
+    content: ""; width: 10px; height: 46px; background: var(--uc-gold);
+    border-radius: 2px; flex: none;
+  }
+  .slide-head h2 {
+    font-weight: 900; font-size: 46px; color: var(--uc-blue);
+    text-transform: uppercase; letter-spacing: .01em;
+  }
+
+  /* ---- two-panel layout ---- */
+  .panels { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; }
+  .panel {
+    background: var(--panel);
+    border-top: 5px solid var(--uc-blue);
+    border-radius: 10px;
+    padding: 28px 30px 30px;
+  }
+  .panel h3 {
+    font-weight: 900; font-size: 26px; color: var(--uc-blue);
+    text-transform: uppercase; letter-spacing: .03em;
+    margin-bottom: 18px;
+  }
+  .panel ul { list-style: none; margin: 0; padding: 0; }
+  .panel li {
+    position: relative; padding-left: 24px; margin-bottom: 18px;
+    font-size: 23px; line-height: 1.4;
+  }
+  .panel li:last-child { margin-bottom: 0; }
+  .panel li::before {
+    content: ""; position: absolute; left: 0; top: 10px;
+    width: 9px; height: 9px; background: var(--uc-gold); border-radius: 2px;
+  }
+  .panel li b { color: var(--uc-blue-deep); font-weight: 900; }
+
+  /* ---- gold callout ---- */
+  .callout {
+    margin-top: 34px;
+    background: var(--uc-gold);
+    color: var(--ink);
+    font-weight: 900; font-size: 27px;
+    padding: 20px 28px; border-radius: 8px;
+    display: inline-block;
+  }
+
+  /* ---- title slide ---- */
+  .title-slide { height: 100%; }
+  .title-slide .kicker {
+    font-size: 21px; font-weight: 700; color: var(--uc-blue);
+    text-transform: uppercase; letter-spacing: .12em; margin: 16px 0 6px;
+  }
+  .title-slide h1 {
+    font-size: 60px; font-weight: 900; color: var(--uc-blue-deep);
+    line-height: 1.02;
+  }
+  .title-slide .sub {
+    font-size: 21px; font-weight: 700; color: var(--ink); margin-top: 8px;
+  }
+  .title-slide .url {
+    margin-top: 10px; font-size: 19px; font-weight: 700; color: var(--uc-blue-deep);
+    border-bottom: 4px solid var(--uc-gold); padding-bottom: 3px; display: inline-block;
+  }
+  .title-slide .hero {
+    position: absolute; left: 50%; transform: translateX(-50%); bottom: 0;
+    width: 1060px; max-width: 100%;
+    display: block;
+  }
+
+  .reveal .footer {
+    position: absolute; bottom: 14px; right: 0;
+    font-size: 15px; color: #8895a7; font-weight: 700;
+  }
+
+  @media (max-width: 800px) {
+    .panels { grid-template-columns: 1fr; gap: 18px; }
+    .title-slide h1 { font-size: 52px; }
+  }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+  <!-- 1 · TITLE -->
+  <section class="title-slide" data-background-color="#ffffff">
+    <div class="kicker">UC Carpentries Workshop Series · Fall 2026</div>
+    <h1>Welcome!</h1>
+    <p class="sub">We'll begin shortly. Grab the collaborative notes and settle in.</p>
+    <p class="url">www.tim-dennis.com/2026-09-08-uc-carpentries</p>
+    <img class="hero" src="uc-carpentries-hero.png"
+         alt="UC Carpentries. Data and Software Skills. September 8 to 23, 2026. Join learners from across the UC community.">
+    <aside class="notes">
+      Holding slide. Welcome people by name as they arrive. Point them at the Etherpad
+      (linked on the site) and, for a hands-on session, the practice data / "make a copy"
+      link. Remind them every session stands alone: register once, attend any.
+    </aside>
+  </section>
+
+  <!-- 2 · HOW WE LEARN TOGETHER -->
+  <section data-background-color="#ffffff">
+   <div class="content-mid">
+    <div class="slide-head"><h2>How we learn together</h2></div>
+    <div class="panels">
+      <div class="panel">
+        <h3>Our pedagogy</h3>
+        <ul>
+          <li><b>Live coding:</b> we learn by doing together, and mistakes are teaching moments, not detours.</li>
+          <li><b>Mental models:</b> new skills land when we connect them to the work you already do.</li>
+          <li><b>No overload:</b> a few key concepts done well beats racing through everything.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Managing expectations</h3>
+        <ul>
+          <li><b>Practical competence:</b> skills you can use in your role right away, not exhaustive coverage.</li>
+          <li><b>Collaborative pace:</b> we move as a group, and your questions help set the speed.</li>
+          <li><b>Mistakes are expected:</b> coding is troubleshooting and persistence, for all of us.</li>
+        </ul>
+      </div>
+    </div>
+   </div>
+    <aside class="notes">
+      Set the room. Follow along in your own copy. Use the done/stuck signal so helpers
+      know where to go. We deliberately keep scope small; if we skip something, the
+      notes page and the full lesson have it.
+    </aside>
+  </section>
+
+  <!-- 3 · ZOOM TOOLS & SUPPORT -->
+  <section data-background-color="#ffffff">
+   <div class="content-mid">
+    <div class="slide-head"><h2>Zoom tools &amp; support</h2></div>
+    <div class="panels">
+      <div class="panel">
+        <h3>Zoom etiquette</h3>
+        <ul>
+          <li><b>Raise hand</b> for a verbal question</li>
+          <li><b>Chat</b> for technical issues and quick help</li>
+          <li><b>Non-verbal icons</b> for yes / no / slower / faster</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Communication</h3>
+        <ul>
+          <li>Post questions in the <b>Etherpad</b> shared notes so nothing gets lost</li>
+          <li><b>Helpers</b> watch the chat and can jump in one-on-one</li>
+          <li>Typing <b>&ldquo;I'm stuck&rdquo;</b> is a complete sentence</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout">Questions help everyone. You are not interrupting.</div>
+   </div>
+    <aside class="notes">
+      Name your helpers. Show where the reaction icons live in this Zoom build. Reassure
+      people that the chat and Etherpad are the normal way to ask; they don't need to
+      unmute unless they want to.
+    </aside>
+  </section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script>
+  Reveal.initialize({
+    width: 1280,
+    height: 720,
+    margin: 0.06,
+    hash: true,
+    slideNumber: 'c/t',
+    transition: 'fade',
+    plugins: [ RevealNotes ]
+  });
+</script>
+</body>
+</html>
