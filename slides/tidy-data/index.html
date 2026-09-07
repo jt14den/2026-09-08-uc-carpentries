@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tidy Data · UC Carpentries</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css" id="theme">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --uc-blue: #2774AE;
+    --uc-blue-deep: #1D4E79;
+    --uc-gold: #FFD100;
+    --ink: #1A202C;
+    --panel: #F5F7FA;
+    --panel-line: #E2E8F0;
+    --good: #2F855A;
+    --bad: #C53030;
+    --gradbar: linear-gradient(90deg, #2774AE 0%, #4a8fb5 40%, #b9b24e 75%, #FFD100 100%);
+    --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  }
+
+  .reveal { font-family: "Lato", "Helvetica Neue", Arial, sans-serif; font-size: 30px; color: var(--ink); }
+  .reveal .slides { text-align: left; }
+  .reveal h1, .reveal h2, .reveal h3 { font-family: "Lato", sans-serif; text-transform: none; letter-spacing: normal; margin: 0; }
+  .reveal p { line-height: 1.35; }
+  .reveal strong { font-weight: 900; }
+  .reveal code { font-family: var(--mono); font-size: .86em; background: var(--panel); padding: 1px 6px; border-radius: 4px; }
+  .reveal .slides > section { top: 0 !important; height: 720px; }
+  .reveal .slides > section::before {
+    content: ""; position: absolute; top: 0; left: -60px; right: -60px;
+    height: 12px; background: var(--gradbar);
+  }
+  .content-mid { position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%); }
+
+  .slide-head { display: flex; align-items: center; gap: 16px; margin: 0 0 24px; }
+  .slide-head::before { content: ""; width: 10px; height: 44px; background: var(--uc-gold); border-radius: 2px; flex: none; }
+  .slide-head h2 { font-weight: 900; font-size: 42px; color: var(--uc-blue); text-transform: uppercase; letter-spacing: .01em; }
+  .tag { font-size: 15px; font-weight: 700; color: #8895a7; letter-spacing: .12em; text-transform: uppercase; }
+
+  .lead { font-size: 27px; margin-bottom: 20px; max-width: 20em; }
+  .reveal ul.clean { list-style: none; margin: 0; padding: 0; }
+  .reveal ul.clean li { position: relative; padding-left: 26px; margin-bottom: 15px; font-size: 23px; line-height: 1.4; }
+  .reveal ul.clean li::before { content: ""; position: absolute; left: 0; top: 10px; width: 9px; height: 9px; background: var(--uc-gold); border-radius: 2px; }
+  .reveal ul.clean li b { color: var(--uc-blue-deep); font-weight: 900; }
+
+  .callout { margin-top: 24px; background: var(--uc-gold); color: var(--ink); font-weight: 900; font-size: 24px; padding: 16px 24px; border-radius: 8px; display: inline-block; }
+  .note-bad { color: var(--bad); font-weight: 900; }
+  .note-good { color: var(--good); font-weight: 900; }
+  figure { margin: 0; }
+  figcaption { font-size: 17px; color: #647082; margin-top: 8px; }
+
+  /* title slide */
+  .title-slide .kicker { font-size: 20px; font-weight: 700; color: var(--uc-blue); text-transform: uppercase; letter-spacing: .12em; margin-bottom: 10px; }
+  .title-slide h1 { font-size: 74px; font-weight: 900; color: var(--uc-blue-deep); line-height: 1.02; }
+  .title-slide .meta { font-size: 22px; font-weight: 700; margin-top: 16px; }
+  .title-slide .links { margin-top: 22px; font-size: 19px; font-family: var(--mono); }
+  .title-slide .links div { margin-bottom: 6px; }
+  .title-slide .links b { color: var(--uc-blue-deep); }
+
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; align-items: center; }
+  .stack-list { font-size: 22px; }
+
+  /* tidy-table figure (slide 2) */
+  .tidy-fig { position: relative; padding: 26px 74px 30px 0; }
+  table.tidy { border-collapse: collapse; font-family: var(--mono); font-size: 15px; width: 100%; }
+  table.tidy th { background: var(--uc-blue); color: #fff; font-family: "Lato"; font-weight: 700; padding: 7px 10px; text-align: left; }
+  table.tidy td { padding: 6px 10px; border-bottom: 1px solid var(--panel-line); background: #fff; }
+  table.tidy .hl-col { background: rgba(39,116,174,0.10); }
+  table.tidy tr.hl-row td { background: rgba(255,209,0,0.34); }
+  table.tidy tr.hl-row td.hl-col { background: rgba(255,209,0,0.34); }
+  table.tidy td.hl-cell { outline: 2.5px solid var(--bad); outline-offset: -2px; }
+  .tidy-fig .lbl-col, .tidy-fig .lbl-row, .tidy-fig .lbl-cell {
+    font-family: "Lato"; font-weight: 900; font-size: 13px; position: absolute; white-space: nowrap;
+  }
+  .tidy-fig .lbl-col { color: var(--uc-blue-deep); top: 0; left: 33%; }
+  .tidy-fig .lbl-row { color: var(--uc-blue-deep); bottom: 6px; left: 0; }
+  .tidy-fig .lbl-cell { color: var(--bad); top: 44%; right: 0; }
+  .reveal small.src { display: block; margin-top: 22px; font-size: 15px; color: #8895a7; }
+</style>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+  <!-- 1 -->
+  <section class="title-slide" data-background-color="#ffffff">
+    <div class="content-mid">
+      <div class="kicker">UC Carpentries Workshop Series · Fall 2026</div>
+      <h1>Tidy Data</h1>
+      <p class="meta">Tuesday, September 8 · 9:00 am – 12:00 pm PT · Google Sheets</p>
+      <div class="links">
+        <div><b>Notes:</b> tim-dennis.com/2026-09-08-uc-carpentries/tidy-data-notes/</div>
+        <div><b>Etherpad:</b> pad.carpentries.org/2026-fall-uc-carpentries-tidydate</div>
+        <div><b>Practice sheet:</b> instructor will drop a "make a copy" link</div>
+      </div>
+      <small class="src">Based on Library Carpentry, Spreadsheets / Tidy Data for Librarians (CC BY 4.0)</small>
+    </div>
+    <aside class="notes">
+      0:00–0:12. Norms first. Everyone opens the practice sheet, makes their own copy,
+      duplicates the 2016_messy tab to 2016_clean, deletes the title/spacer rows. One real
+      edit before minute 10. Say: every session in the series stands alone.
+    </aside>
+  </section>
+
+  <!-- 2 -->
+  <section data-background-color="#ffffff">
+    <div class="content-mid">
+      <span class="tag">Concept 1</span>
+      <div class="slide-head"><h2>The one rule</h2></div>
+      <div class="two">
+        <div class="stack-list">
+          <p>A rectangular table processes the same way on <em>every</em> row:</p>
+          <ul class="clean">
+            <li>every <b>column</b> is one variable</li>
+            <li>every <b>row</b> is one observation</li>
+            <li>each <b>cell</b> holds one value for that column</li>
+          </ul>
+          <p style="font-size:20px;margin-top:14px;">Some layouts are built to be <em>read</em>.
+          A rectangular table is built to be <em>processed</em>. You can always build a
+          nice view from the table; you cannot reliably process the pretty layout.</p>
+        </div>
+        <figure class="tidy-fig">
+          <div class="lbl-col">column = one&nbsp;variable ↓</div>
+          <table class="tidy">
+            <thead><tr><th>session</th><th class="hl-col">date</th><th>registered</th><th>attended</th></tr></thead>
+            <tbody>
+              <tr><td>RDM intro</td><td class="hl-col">2016-03-04</td><td>18</td><td>12</td></tr>
+              <tr class="hl-row"><td>Open access</td><td class="hl-col hl-cell">2016-03-11</td><td>22</td><td>19</td></tr>
+              <tr><td>Data mgmt</td><td class="hl-col">2016-04-01</td><td>15</td><td>11</td></tr>
+              <tr><td>Metadata</td><td class="hl-col">2016-04-08</td><td>20</td><td>17</td></tr>
+              <tr><td>Licensing</td><td class="hl-col">2016-04-15</td><td>14</td><td>9</td></tr>
+            </tbody>
+          </table>
+          <div class="lbl-row">← row = one observation</div>
+          <div class="lbl-cell">one value per cell</div>
+        </figure>
+      </div>
+    </div>
+    <aside class="notes">
+      0:12–0:28. Name the two things they just did: worked in a copy, and started making a
+      table that processes consistently. Think-pair-share on 2016_messy: what would a
+      program choke on? Keep it to one value per column - don't add a sixth concept later.
+    </aside>
+  </section>
+
+  <!-- 3 -->
+  <section data-background-color="#ffffff">
+    <div class="content-mid">
+      <span class="tag">Concept 2</span>
+      <div class="slide-head"><h2>Work in a copy</h2></div>
+      <ul class="clean" style="font-size:25px;max-width:22em;">
+        <li>Treat the source file as <b>read-only</b>. You never edit the thing you were given.</li>
+        <li>Work in a <b>named</b> copy - <code>2016_clean</code>, not <code>Copy of Sheet1</code>.</li>
+        <li>Duplicating a <em>tab</em> keeps both in the same file: a working copy, not a backup.</li>
+        <li>Version history helps, but the discipline is the point.</li>
+      </ul>
+      <div class="callout">If you can't get back to the raw data, you have no data.</div>
+    </div>
+    <aside class="notes">
+      This is practice P2/C2. They already did it in the warm-up. Reinforce: the raw file
+      is evidence. Renaming the copy on purpose is a habit worth nagging about.
+    </aside>
+  </section>
+
+  <!-- 4 -->
+  <section data-background-color="#ffffff">
+    <div class="content-mid">
+      <span class="tag">Concept 1 · in practice</span>
+      <div class="slide-head"><h2>One value per cell</h2></div>
+      <div class="two">
+        <figure>
+          <svg viewBox="0 0 430 240" width="100%" role="img" aria-label="Splitting packed cells into one column each">
+            <g font-family="IBM Plex Mono" font-size="16">
+              <rect x="0" y="20" width="150" height="40" fill="#F5F7FA" stroke="#C53030" stroke-width="2"/>
+              <text x="16" y="45" fill="#1A202C">GQ &amp; DF</text>
+              <path d="M160 40 H235" stroke="#1D4E79" stroke-width="2" marker-end="url(#a)"/>
+              <rect x="245" y="10" width="175" height="30" fill="#fff" stroke="#E2E8F0"/>
+              <rect x="245" y="40" width="175" height="30" fill="#fff" stroke="#E2E8F0"/>
+              <text x="258" y="30" fill="#1A202C" font-size="13">trainer_1 → GQ</text>
+              <text x="258" y="60" fill="#1A202C" font-size="13">trainer_2 → DF</text>
+
+              <rect x="0" y="150" width="150" height="40" fill="#F5F7FA" stroke="#C53030" stroke-width="2"/>
+              <text x="20" y="175" fill="#1A202C">45|0|0</text>
+              <path d="M160 170 H235" stroke="#1D4E79" stroke-width="2" marker-end="url(#a)"/>
+              <rect x="245" y="126" width="175" height="26" fill="#fff" stroke="#E2E8F0"/>
+              <rect x="245" y="152" width="175" height="26" fill="#fff" stroke="#E2E8F0"/>
+              <rect x="245" y="178" width="175" height="26" fill="#fff" stroke="#E2E8F0"/>
+              <text x="258" y="144" fill="#1A202C" font-size="13">pgr → 45</text>
+              <text x="258" y="170" fill="#1A202C" font-size="13">pdra → 0</text>
+              <text x="258" y="196" fill="#1A202C" font-size="13">other → 0</text>
+            </g>
+            <defs><marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="#1D4E79"/></marker></defs>
+          </svg>
+        </figure>
+        <div class="stack-list">
+          <ul class="clean">
+            <li><code>GQ &amp; DF</code> in one cell is <b>two people</b></li>
+            <li><code>45|0|0</code> in one cell is <b>three counts</b></li>
+            <li>If you'd sum, filter, or group by it, it needs its own column</li>
+          </ul>
+          <p style="font-size:19px;margin-top:14px;">The demo: unmerge the title, split the
+          packed <code>PGR|PDRA|other</code> column, recode the grey "cancelled" rows into a
+          real <code>cancelled</code> column.</p>
+        </div>
+      </div>
+    </div>
+    <aside class="notes">
+      0:28–0:53, the core segment. Demo on the RDM table. Learners then take the
+      Open-access table (units in Len, name drift) against checkpoint_clean. Flag the two
+      1900 dates but don't fix them yet - that's the dates segment.
+    </aside>
+  </section>
+
+  <!-- 5 -->
+  <section data-background-color="#ffffff">
+    <div class="content-mid">
+      <span class="tag">Concept 3</span>
+      <div class="slide-head"><h2>Formatting is not data</h2></div>
+      <div class="two">
+        <figure>
+          <svg viewBox="0 0 430 250" width="100%" role="img" aria-label="A styled layout versus the plain CSV it becomes">
+            <text x="0" y="14" font-family="Lato" font-weight="900" font-size="13" fill="#647082">WHAT YOU SEE</text>
+            <rect x="0" y="22" width="430" height="26" fill="#2774AE"/>
+            <text x="120" y="40" fill="#fff" font-family="Lato" font-weight="700" font-size="13">RDM training - Spring 2016</text>
+            <g font-family="IBM Plex Mono" font-size="12" fill="#1A202C">
+              <rect x="0" y="48" width="430" height="24" fill="#F5F7FA"/>
+              <rect x="0" y="72" width="430" height="22" fill="#fff"/>
+              <rect x="0" y="94" width="430" height="22" fill="#d9d9d9"/>
+              <text x="10" y="64">session        date        reg   att</text>
+              <text x="10" y="87">RDM intro      4 Mar       18    12</text>
+              <text x="10" y="109">Open access    11 Mar   (cancelled - grey)</text>
+            </g>
+            <path d="M200 130 L200 152" stroke="#1D4E79" stroke-width="2" marker-end="url(#b)"/>
+            <text x="0" y="150" font-family="Lato" font-weight="900" font-size="13" fill="#647082">WHAT A CSV KEEPS</text>
+            <g font-family="IBM Plex Mono" font-size="12" fill="#1A202C">
+              <rect x="0" y="158" width="430" height="86" fill="#fff" stroke="#E2E8F0"/>
+              <text x="10" y="178">session,date,reg,att,cancelled</text>
+              <text x="10" y="198">RDM intro,4 Mar,18,12,no</text>
+              <text x="10" y="218">Open access,11 Mar,,,yes</text>
+              <text x="10" y="238" fill="#C53030">title row, colour, merge: gone</text>
+            </g>
+            <defs><marker id="b" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="#1D4E79"/></marker></defs>
+          </svg>
+        </figure>
+        <div class="stack-list">
+          <ul class="clean">
+            <li>Merged titles, colour, spacing, row shading: <b>not data</b></li>
+            <li>Grey-for-cancelled → a real <code>cancelled</code> column</li>
+            <li>None of it survives an export. Encode meaning as a <b>value</b>.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <aside class="notes">
+      Colour-as-data is the classic trap. The cancelled rows in 2016_messy are only marked
+      by grey shading plus one stray note. Ask: how would a script know these are
+      cancelled? It wouldn't.
+    </aside>
+  </section>
+
+  <!-- 6 -->
+  <section data-background-color="#ffffff">
+    <div class="content-mid">
+      <span class="tag">Practice 1</span>
+      <div class="slide-head"><h2>Missing values</h2></div>
+      <ul class="clean" style="font-size:25px;max-width:22em;">
+        <li>Pick <b>one</b> representation per column and use it everywhere</li>
+        <li>Today: a <b>blank</b> cell for genuinely missing; <code>0</code> only for a measured zero</li>
+        <li class="note-bad">Never <code>0</code> for missing. Never <code>-999</code>.</li>
+        <li>Real work: decide what "missing" means here, write it down, then check how the next tool reads it</li>
+      </ul>
+    </div>
+    <aside class="notes">
+      Ties into QC later: cancelled rows carry num_attended 0 in the dates tab. Is that a
+      real zero or a missing value? It's a data-dictionary question, not an auto-blank.
+    </aside>
+  </section>
+
+  <!-- 7 -->
+  <section data-background-color="#ffffff">
+    <div class="content-mid">
+      <span class="tag">Concept 4</span>
+      <div class="slide-head"><h2>A date has three states</h2></div>
+      <p class="lead">All three can look identical in the cell.</p>
+      <figure>
+        <svg viewBox="0 0 900 210" width="100%" role="img" aria-label="Three cells all showing 2016-03-04 with different underlying states">
+          <g font-family="IBM Plex Mono" font-size="20">
+            <rect x="10" y="20" width="270" height="50" fill="#F5F7FA" stroke="#2F855A" stroke-width="2"/>
+            <text x="150" y="52" text-anchor="middle" fill="#1A202C">2016-03-04</text>
+            <rect x="315" y="20" width="270" height="50" fill="#F5F7FA" stroke="#C53030" stroke-width="2"/>
+            <text x="330" y="52" fill="#1A202C">2016-03-04</text>
+            <rect x="620" y="20" width="270" height="50" fill="#F5F7FA" stroke="#DD6B20" stroke-width="2"/>
+            <text x="760" y="52" text-anchor="middle" fill="#1A202C">2016-03-04</text>
+          </g>
+          <g font-family="Lato" font-size="15" fill="#1A202C">
+            <text x="12" y="100" font-weight="900" fill="#2F855A">1 · Real value</text>
+            <text x="12" y="122">stored as a number,</text>
+            <text x="12" y="142">shown through a format.</text>
+            <text x="12" y="168" font-family="IBM Plex Mono" font-size="13">=ISNUMBER → TRUE</text>
+
+            <text x="317" y="100" font-weight="900" fill="#C53030">2 · Text</text>
+            <text x="317" y="122">just characters that</text>
+            <text x="317" y="142">happen to look like a date.</text>
+            <text x="317" y="168" font-family="IBM Plex Mono" font-size="13">=ISNUMBER → FALSE</text>
+
+            <text x="622" y="100" font-weight="900" fill="#DD6B20">3 · Real, wrong</text>
+            <text x="622" y="122">a genuine date value</text>
+            <text x="622" y="142">with the wrong day in it.</text>
+            <text x="622" y="168" font-family="IBM Plex Mono" font-size="13">=ISNUMBER → TRUE</text>
+          </g>
+        </svg>
+      </figure>
+      <p style="font-size:19px;margin-top:6px;"><code>ISNUMBER</code> TRUE means it's a real date, <b>not</b> that the date is correct.</p>
+    </div>
+    <aside class="notes">
+      1:05–1:30. Format → Number to show stored value vs display. =ISNUMBER down the
+      2017_messy date column finds the text dates. =YEAR on the dates tab finds the
+      2017→2015 rows (events were in 2015), and the 1900s in 2016_messy.
+    </aside>
+  </section>
+
+  <!-- 8 -->
+  <section data-background-color="#ffffff">
+    <div class="content-mid">
+      <span class="tag">Concept 4 · locale</span>
+      <div class="slide-head"><h2>Locale sets display, not the day</h2></div>
+      <ul class="clean" style="font-size:24px;max-width:24em;">
+        <li><code>File → Settings → Locale</code> sets the default date format and how Sheets reads ambiguous date <em>text</em> (<code>03/04/2016</code> as Mar 4 or Apr 3)</li>
+        <li>Once Sheets has stored a <b>real</b> date, changing locale changes how it's written on screen - <b>not</b> which day it is</li>
+        <li class="note-bad">Don't use <code>ISDATE()</code>: <code>ISDATE("July 20 1969")</code> is TRUE, so text passes</li>
+        <li class="note-good">Use <code>=ISNUMBER()</code> / <code>=ISTEXT()</code></li>
+      </ul>
+    </div>
+    <aside class="notes">
+      This replaces the lesson's 1900/1904 date-system material, which isn't a thing in
+      Sheets. Set your sheet locale on purpose before class and say what it is.
+    </aside>
+  </section>
+
+  <!-- 9 -->
+  <section data-background-color="#ffffff">
+    <div class="content-mid">
+      <span class="tag">Concept 4 · the defensive move</span>
+      <div class="slide-head"><h2>Make dates safe</h2></div>
+      <ul class="clean" style="font-size:25px;max-width:24em;">
+        <li>Store dates as separate <code>year</code> / <code>month</code> / <code>day</code> columns, or as a recognised date shown <code>yyyy-mm-dd</code></li>
+        <li>Set the locale on purpose and <b>record it</b></li>
+        <li>Format with the full year <b>before</b> you export - a CSV keeps only what is shown</li>
+        <li>After any export, open the file and check the dates</li>
+      </ul>
+    </div>
+    <aside class="notes">
+      "4 Mar" exports with no year; "2016-03-04" keeps it. The CSV writes the displayed
+      string, so the fix happens before download, not after.
+    </aside>
+  </section>
+
+  <!-- 10 -->
+  <section data-background-color="#ffffff">
+    <div class="content-mid">
+      <span class="tag">Concept 5</span>
+      <div class="slide-head"><h2>QA blocks · QC finds</h2></div>
+      <div class="two">
+        <figure>
+          <svg viewBox="0 0 200 200" width="70%" role="img" aria-label="Quality assurance: a bad value rejected at the entry gate">
+            <text x="100" y="16" text-anchor="middle" font-family="Lato" font-weight="900" font-size="15" fill="#2774AE">QA - at entry</text>
+            <path d="M40 40 H160 L120 100 V150 H80 V100 Z" fill="#F5F7FA" stroke="#2774AE" stroke-width="2"/>
+            <text x="100" y="180" text-anchor="middle" font-family="IBM Plex Mono" font-size="14" fill="#C53030">"tomrrow" ✗</text>
+            <text x="100" y="36" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="#647082">reject the input</text>
+          </svg>
+          <figcaption>Data validation: number range, dropdown, "reject the input".</figcaption>
+        </figure>
+        <figure>
+          <svg viewBox="0 0 200 200" width="70%" role="img" aria-label="Quality control: a bad value already in the data, found by sorting">
+            <text x="100" y="16" text-anchor="middle" font-family="Lato" font-weight="900" font-size="15" fill="#2774AE">QC - already there</text>
+            <g font-family="IBM Plex Mono" font-size="12" fill="#1A202C">
+              <rect x="30" y="30" width="140" height="20" fill="#F5F7FA"/>
+              <rect x="30" y="50" width="140" height="18" fill="#fff" stroke="#E2E8F0"/>
+              <rect x="30" y="68" width="140" height="18" fill="#FFD100" opacity="0.4"/>
+              <rect x="30" y="86" width="140" height="18" fill="#fff" stroke="#E2E8F0"/>
+              <rect x="30" y="104" width="140" height="18" fill="#fff" stroke="#E2E8F0"/>
+              <text x="38" y="44">len_hours ↓</text>
+              <text x="38" y="63">2.0</text>
+              <text x="38" y="81" fill="#C53030">"1.5 hours"</text>
+              <text x="38" y="99">1.5</text>
+              <text x="38" y="117">1.0</text>
+            </g>
+            <circle cx="150" cy="80" r="26" fill="none" stroke="#1D4E79" stroke-width="3"/>
+            <line x1="168" y1="98" x2="185" y2="115" stroke="#1D4E79" stroke-width="4"/>
+          </svg>
+          <figcaption>Sort the whole table with "Data has header row" ticked; colour scale.</figcaption>
+        </figure>
+      </div>
+    </div>
+    <aside class="notes">
+      1:30–1:55. QA is prevention, QC is detection - you need both. Sorting to find
+      outliers: the two first moves are select the whole table and tick "Data has header
+      row", or you shuffle rows apart from their keys.
+    </aside>
+  </section>
+
+  <!-- 11 -->
+  <section data-background-color="#ffffff">
+    <div class="content-mid">
+      <span class="tag">Practice 2</span>
+      <div class="slide-head"><h2>Export to CSV</h2></div>
+      <div class="two">
+        <div>
+          <p style="font-size:16px;font-weight:900;color:#2F855A;letter-spacing:.08em;">A CSV KEEPS</p>
+          <ul class="clean" style="font-size:21px;">
+            <li>one table of plain text</li>
+            <li>the values, exactly as displayed</li>
+          </ul>
+          <p style="font-size:16px;font-weight:900;color:#C53030;letter-spacing:.08em;margin-top:14px;">A CSV DROPS</p>
+          <ul class="clean" style="font-size:21px;">
+            <li>formulas, formatting, tabs, validation</li>
+            <li>data types - everything is text</li>
+            <li>your change log</li>
+          </ul>
+        </div>
+        <div class="stack-list">
+          <ul class="clean">
+            <li><code>File → Download → CSV</code> = <b>current sheet only</b>. Five tabs, five downloads.</li>
+            <li><code>GQ, DF</code> gets wrapped as <code>"GQ, DF"</code> so the comma isn't a new column - but two values in one cell is still the real problem</li>
+            <li>Keep the working Sheet alongside the CSV, or export the change log as its own file</li>
+          </ul>
+          <p style="font-size:17px;margin-top:10px;color:#647082;">The Library of Congress lists CSV as a preferred format for datasets.</p>
+        </div>
+      </div>
+    </div>
+    <aside class="notes">
+      2:03–2:25. The date gotcha lands here again: format with the full year first. Comma
+      quoting is automatic; don't dwell on it.
+    </aside>
+  </section>
+
+  <!-- 12 -->
+  <section data-background-color="#ffffff">
+    <div class="content-mid">
+      <span class="tag">Practice 3</span>
+      <div class="slide-head"><h2>Write down what you changed</h2></div>
+      <ul class="clean" style="font-size:25px;max-width:23em;">
+        <li>The CSV won't carry it. Version history is inside the Sheet, not the export.</li>
+        <li>A <code>changelog</code> tab, a README, or a dated note - anything the CSV can't drop</li>
+        <li>"Split trainer column 2026-09-08; 3 rows had two names" is enough</li>
+      </ul>
+      <div class="callout">If someone asks "why is this number different?" - the answer is your change log.</div>
+    </div>
+    <aside class="notes">
+      Short. This is the habit that makes cleaning defensible six months later. Pair it
+      with "keep the raw file".
+    </aside>
+  </section>
+
+  <!-- 13 -->
+  <section data-background-color="#ffffff">
+    <div class="content-mid">
+      <span class="tag">Framing idea</span>
+      <div class="slide-head"><h2>Everything downstream reads your structure</h2></div>
+      <figure>
+        <svg viewBox="0 0 900 180" width="100%" role="img" aria-label="A tidy table feeding R, Python, a colleague, preservation, and AI tools">
+          <rect x="20" y="66" width="150" height="48" rx="6" fill="#2774AE"/>
+          <text x="95" y="95" text-anchor="middle" fill="#fff" font-family="Lato" font-weight="900" font-size="16">tidy table</text>
+          <g font-family="Lato" font-size="15" fill="#1A202C">
+            <path d="M170 90 H250" stroke="#1D4E79" stroke-width="2"/>
+            <g>
+              <path d="M250 90 C300 90 300 24 350 24" fill="none" stroke="#1D4E79" stroke-width="2"/>
+              <path d="M250 90 C300 90 300 57 350 57" fill="none" stroke="#1D4E79" stroke-width="2"/>
+              <path d="M250 90 H350" stroke="#1D4E79" stroke-width="2"/>
+              <path d="M250 90 C300 90 300 123 350 123" fill="none" stroke="#1D4E79" stroke-width="2"/>
+              <path d="M250 90 C300 90 300 156 350 156" fill="none" stroke="#1D4E79" stroke-width="2"/>
+            </g>
+            <text x="360" y="29">R / tidyverse</text>
+            <text x="360" y="62">Python / pandas</text>
+            <text x="360" y="95">a colleague</text>
+            <text x="360" y="128">a preservation system</text>
+            <text x="360" y="161">ChatGPT · Gemini · Claude</text>
+          </g>
+          <text x="620" y="95" font-family="Lato" font-weight="900" font-size="15" fill="#2F855A">tidy → all of them work</text>
+          <text x="620" y="120" font-family="Lato" font-weight="900" font-size="15" fill="#C53030">merged cells → all of them break</text>
+        </svg>
+      </figure>
+      <p style="font-size:20px;margin-top:4px;">AI does not fix messy data. It produces a fluent, plausible answer even when its assumptions are wrong. <b>Fluent is not correct.</b></p>
+    </div>
+    <aside class="notes">
+      2:25–2:40. Data caution first: today's data is fictional. Do not paste real patron,
+      student, personnel, health, licensed, or unpublished research data into an AI service
+      unless it's approved.
+    </aside>
+  </section>
+
+  <!-- 14 -->
+  <section data-background-color="#ffffff">
+    <div class="content-mid">
+      <span class="tag">Framing idea · verify</span>
+      <div class="slide-head"><h2>Check AI output by counting</h2></div>
+      <figure>
+        <svg viewBox="0 0 900 200" width="100%" role="img" aria-label="Twelve input rows, eleven output rows, source_row_id 7 missing">
+          <g font-family="IBM Plex Mono" font-size="15" fill="#1A202C">
+            <rect x="20" y="20" width="200" height="150" fill="#F5F7FA" stroke="#E2E8F0"/>
+            <text x="40" y="14" font-family="Lato" font-weight="900" font-size="14" fill="#1D4E79">ai_input</text>
+            <text x="40" y="45">source_row_id 1..12</text>
+            <text x="40" y="72">12 rows in</text>
+            <text x="40" y="99" fill="#647082">rows 5, 7, 11:</text>
+            <text x="40" y="120" fill="#647082">blank num_attended</text>
+
+            <path d="M235 95 H320" stroke="#1D4E79" stroke-width="2" marker-end="url(#c)"/>
+            <text x="238" y="86" font-family="Lato" font-size="12" fill="#647082">"make it tidy"</text>
+
+            <rect x="335" y="20" width="200" height="150" fill="#F5F7FA" stroke="#E2E8F0"/>
+            <text x="355" y="14" font-family="Lato" font-weight="900" font-size="14" fill="#1D4E79">AI output</text>
+            <text x="355" y="45">ids 1,2,3,4,5,6,</text>
+            <text x="355" y="68" fill="#C53030">   [7 missing]</text>
+            <text x="355" y="91">8,9,10,11,12</text>
+            <text x="355" y="122" font-weight="600">11 rows out</text>
+
+            <rect x="560" y="55" width="320" height="82" fill="#FFD100" opacity="0.25" stroke="#DD6B20"/>
+            <text x="580" y="82" font-family="Lato" font-weight="900" font-size="15" fill="#1A202C">12 in ≠ 11 out</text>
+            <text x="580" y="108" font-family="Lato" font-size="14" fill="#1A202C">Compare the ids. Row 7 was</text>
+            <text x="580" y="127" font-family="Lato" font-size="14" fill="#1A202C">dropped - silently.</text>
+          </g>
+          <defs><marker id="c" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="#1D4E79"/></marker></defs>
+        </svg>
+      </figure>
+      <p style="font-size:20px;">Row count before and after. Compare values to the raw data you kept. Same check, every time.</p>
+    </div>
+    <aside class="notes">
+      Use a saved flawed output from a pre-class run, not a live model. After the id
+      compare, ask: how would you catch this without the source_row_id column? (Row counts;
+      compare to raw.) Optional live rerun to show output varies.
+    </aside>
+  </section>
+
+  <!-- 15 -->
+  <section data-background-color="#ffffff">
+    <div class="content-mid">
+      <div class="slide-head"><h2>Recap</h2></div>
+      <div class="two">
+        <ul class="clean" style="font-size:21px;">
+          <li><b>1</b> columns are variables, rows observations, one value per cell</li>
+          <li><b>2</b> the source file is read-only; work in a named copy</li>
+          <li><b>3</b> formatting is not data</li>
+          <li><b>4</b> a date is a value plus a display - or just text</li>
+          <li><b>5</b> QA blocks bad input; QC finds bad values already there</li>
+        </ul>
+        <ul class="clean" style="font-size:21px;">
+          <li>represent missing values consistently, and decide what missing means</li>
+          <li>export to CSV for a portable single table; keep the docs alongside</li>
+          <li>write down what you changed</li>
+          <li>downstream tools - including AI - consume your structure; verify by counting</li>
+        </ul>
+      </div>
+      <small class="src">
+        LC Spreadsheets: librarycarpentry.github.io/lc-spreadsheets · Wickham, "Tidy Data",
+        J. Stat. Soft. 59(10) · Cornell, Guide to writing README files · Feedback link in the Etherpad
+      </small>
+    </div>
+    <aside class="notes">
+      2:40–2:50. Recap the five, then the change-log habit, then resources and the feedback
+      form. 10-minute buffer after this.
+    </aside>
+  </section>
+
+</div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script>
+  Reveal.initialize({
+    width: 1280, height: 720, margin: 0.06,
+    hash: true, slideNumber: 'c/t', transition: 'fade',
+    plugins: [ RevealNotes ]
+  });
+</script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UC Carpentries Workshop Series — Welcome</title>
+<title>UC Carpentries Workshop Series · Welcome</title>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css" id="theme">
@@ -96,27 +96,31 @@
     display: inline-block;
   }
 
-  /* ---- title slide ---- */
-  .title-slide { height: 100%; }
+  /* ---- title slide: hero on top, text below ---- */
+  .title-slide {
+    height: 720px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 30px;
+  }
+  .title-slide .hero {
+    display: block; width: 1050px; max-width: 100%;
+  }
+  .title-slide .title-text { text-align: center; }
   .title-slide .kicker {
-    font-size: 21px; font-weight: 700; color: var(--uc-blue);
-    text-transform: uppercase; letter-spacing: .12em; margin: 16px 0 6px;
+    font-size: 20px; font-weight: 700; color: var(--uc-blue);
+    text-transform: uppercase; letter-spacing: .12em; margin-bottom: 6px;
   }
   .title-slide h1 {
-    font-size: 60px; font-weight: 900; color: var(--uc-blue-deep);
+    font-size: 56px; font-weight: 900; color: var(--uc-blue-deep);
     line-height: 1.02;
   }
   .title-slide .sub {
-    font-size: 21px; font-weight: 700; color: var(--ink); margin-top: 8px;
+    font-size: 20px; font-weight: 700; color: var(--ink); margin-top: 10px;
   }
   .title-slide .url {
-    margin-top: 10px; font-size: 19px; font-weight: 700; color: var(--uc-blue-deep);
+    margin-top: 12px; font-size: 19px; font-weight: 700; color: var(--uc-blue-deep);
     border-bottom: 4px solid var(--uc-gold); padding-bottom: 3px; display: inline-block;
-  }
-  .title-slide .hero {
-    position: absolute; left: 50%; transform: translateX(-50%); bottom: 0;
-    width: 1060px; max-width: 100%;
-    display: block;
   }
 
   .reveal .footer {
@@ -136,12 +140,14 @@
 
   <!-- 1 · TITLE -->
   <section class="title-slide" data-background-color="#ffffff">
-    <div class="kicker">UC Carpentries Workshop Series · Fall 2026</div>
-    <h1>Welcome!</h1>
-    <p class="sub">We'll begin shortly. Grab the collaborative notes and settle in.</p>
-    <p class="url">www.tim-dennis.com/2026-09-08-uc-carpentries</p>
     <img class="hero" src="uc-carpentries-hero.png"
          alt="UC Carpentries. Data and Software Skills. September 8 to 23, 2026. Join learners from across the UC community.">
+    <div class="title-text">
+      <div class="kicker">UC Carpentries Workshop Series · Fall 2026</div>
+      <h1>Welcome!</h1>
+      <p class="sub">We'll begin shortly. Grab the collaborative notes and settle in.</p>
+      <p class="url">www.tim-dennis.com/2026-09-08-uc-carpentries</p>
+    </div>
     <aside class="notes">
       Holding slide. Welcome people by name as they arrive. Point them at the Etherpad
       (linked on the site) and, for a hands-on session, the practice data / "make a copy"
