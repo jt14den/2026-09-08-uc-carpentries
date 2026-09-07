@@ -15,7 +15,7 @@ for anyone who wants to see how the session is put together or teach it themselv
 
 - Full self-paced lesson: <https://librarycarpentry.github.io/lc-spreadsheets/aio.html>
 - Collaborative notes (Etherpad): <https://pad.carpentries.org/2026-fall-uc-carpentries-tidydate>
-- Practice data (xlsx): [training_attendance_practice.xlsx]({{ relative_root_path }}/files/training_attendance_practice.xlsx)
+- Practice data (xlsx): [training_attendance_practice.xlsx]({{ '/files/training_attendance_practice.xlsx' | relative_url }})
 
 ---
 

@@ -212,9 +212,10 @@ SESSION_NOTES = {
 }
 
 # Internal links shown under a session's name, keyed by the exact CSV
-# "Workshop Type" text. Rendered with {{ relative_root_path }} so the link
-# resolves on the GitHub Pages project site. Add an entry when a session gets
-# its own notes/extras page in this repo.
+# "Workshop Type" text. Rendered through Jekyll's `relative_url` filter so the
+# link resolves on the GitHub Pages project site (schedule.html is included in
+# page *content*, before the layout runs base_path.html, so {{ relative_root_path }}
+# is empty there). Add an entry when a session gets its own notes/extras page.
 SESSION_LINKS = {
     "Tidy Data": ("Session notes & instructor guide", "/tidy-data-notes/"),
 }
@@ -235,7 +236,7 @@ def render_schedule_html(sessions):
         if link:
             label, path = link
             lesson_cell += (
-                f'<br><small><a href="{{{{ relative_root_path }}}}{path}">{label}</a></small>'
+                f'<br><small><a href="{{{{ \'{path}\' | relative_url }}}}">{label}</a></small>'
             )
         rows.append(
             f"      <tr>\n"
