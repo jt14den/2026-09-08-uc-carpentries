@@ -38,7 +38,6 @@
     content: ""; position: absolute; top: 0; left: -60px; right: -60px;
     height: 12px; background: var(--gradbar);
   }
-  /* content sits top-aligned; the term signpost follows it in normal flow */
   .content-mid { position: absolute; top: 46px; left: 0; right: 0; }
   .title-slide .content-mid { top: 50%; transform: translateY(-50%); }
 
@@ -58,26 +57,24 @@
 
   .lead { font-size: 26px; margin-bottom: 18px; max-width: 21em; }
   .reveal ul.clean { list-style: none; margin: 0; padding: 0; }
-  .reveal ul.clean li { position: relative; padding-left: 26px; margin-bottom: 14px; font-size: 22px; line-height: 1.4; }
+  .reveal ul.clean li { position: relative; padding-left: 26px; margin-bottom: 13px; font-size: 22px; line-height: 1.4; }
   .reveal ul.clean li::before { content: ""; position: absolute; left: 0; top: 10px; width: 9px; height: 9px; background: var(--uc-gold); border-radius: 2px; }
   .reveal ul.clean li b { color: var(--uc-blue-deep); font-weight: 900; }
 
-  .callout { margin-top: 20px; background: var(--uc-gold); color: var(--ink); font-weight: 900; font-size: 23px; padding: 14px 22px; border-radius: 8px; display: inline-block; }
+  .callout { margin-top: 20px; background: var(--uc-gold); color: var(--ink); font-weight: 900; font-size: 22px; padding: 14px 22px; border-radius: 8px; display: inline-block; }
   .note-bad { color: var(--bad); font-weight: 900; }
   .note-good { color: var(--good); font-weight: 900; }
   figure { margin: 0; }
   figcaption { font-size: 16px; color: var(--muted); margin-top: 8px; }
 
-  /* term-of-art signpost */
   .term {
-    margin-top: 24px;
+    margin-top: 22px;
     font-size: 15px; line-height: 1.3; color: var(--muted); font-weight: 400;
     border-top: 1px solid var(--panel-line); padding-top: 8px;
   }
   .term b { color: var(--uc-blue-deep); font-weight: 700; }
   .term::before { content: "In the data world  ·  "; font-weight: 900; color: #97a1af; letter-spacing: .04em; }
 
-  /* title slide */
   .title-slide .kicker { font-size: 20px; font-weight: 700; color: var(--uc-blue); text-transform: uppercase; letter-spacing: .12em; margin-bottom: 10px; }
   .title-slide h1 { font-size: 74px; font-weight: 900; color: var(--uc-blue-deep); line-height: 1.02; }
   .title-slide .meta { font-size: 21px; font-weight: 700; margin-top: 14px; }
@@ -88,13 +85,13 @@
 
   .two { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; align-items: center; }
   .stack-list { font-size: 21px; }
-  .exbox { background: var(--panel); border-left: 6px solid var(--uc-gold); border-radius: 8px; padding: 20px 26px; font-size: 22px; }
-  .exbox ol { margin: 8px 0 0; padding-left: 22px; }
-  .exbox li { margin-bottom: 8px; line-height: 1.35; }
-  .zoomcue { margin-top: 14px; font-size: 17px; color: var(--muted); }
+  .exbox { background: var(--panel); border-left: 6px solid var(--uc-gold); border-radius: 8px; padding: 18px 24px; font-size: 21px; }
+  .exbox ol, .exbox ul { margin: 6px 0 0; padding-left: 22px; }
+  .exbox li { margin-bottom: 7px; line-height: 1.35; }
+  .exbox h4 { font-size: 16px; text-transform: uppercase; letter-spacing: .06em; color: var(--uc-blue-deep); margin: 0 0 4px; }
+  .zoomcue { margin-top: 12px; font-size: 17px; color: var(--muted); }
   .zoomcue b { color: var(--uc-blue-deep); }
 
-  /* tidy-table figure */
   .tidy-fig { position: relative; padding: 26px 78px 30px 0; }
   table.tidy { border-collapse: collapse; font-family: var(--mono); font-size: 15px; width: 100%; }
   table.tidy th { background: var(--uc-blue); color: #fff; font-family: "Lato"; font-weight: 700; padding: 7px 10px; text-align: left; }
@@ -124,20 +121,19 @@
         <div><b>Etherpad:</b> pad.carpentries.org/2026-fall-uc-carpentries-tidydate</div>
         <div><b>Practice sheet:</b> link in the Etherpad - open it and make your own copy</div>
       </div>
-      <small class="src">Based on Library Carpentry, Spreadsheets / Tidy Data for Librarians (CC BY 4.0)</small>
+      <small class="src">Library Carpentry, Spreadsheets / Tidy Data for Librarians (CC BY 4.0)</small>
     </div>
     <aside class="notes">
-      HOLDING SLIDE (learners arriving, 0:00). Greet people by name. Ask them to:
-      (1) add their name to the Etherpad, (2) click the practice-sheet link in the Etherpad,
-      (3) File ▸ Make a copy, (4) rename the copy "tidy-data-YOURNAME". Helpers: watch the
-      chat, help anyone stuck on the copy step. We move to the next slide once ~everyone has a copy.
+      HOLDING SLIDE (learners arriving, 0:00). Greet people by name. Ask them to
+      (1) add their name to the Etherpad, (2) click the practice-sheet link, (3) File
+      Make a copy, (4) rename it "tidy-data-YOURNAME". Helpers watch the chat.
 
-      Practice-sheet copy link (put in the Etherpad, pinned at top):
+      Practice-sheet copy link (pin at the top of the Etherpad):
       https://docs.google.com/spreadsheets/d/1NuHEr-1xDKpZHq77e5XDBdRAdROWbwEG/copy
 
-      Zoom setup for the whole session: your screen shares the practice sheet during demos;
-      learners work in their own copy the whole time; "done/stuck" via reaction icons or a
-      chat line; think-pair-share happens in the chat and the Etherpad, not breakout rooms.
+      Zoom model all session: your screen shares the practice sheet during demos; learners
+      work in their own copy throughout; "done/stuck" via reaction icons or a chat line;
+      pair/group work happens in the chat and the Etherpad, not breakout rooms.
     </aside>
   </section>
 
@@ -151,53 +147,68 @@
           <li>Open the <b>practice sheet</b> link from the Etherpad</li>
           <li><code>File ▸ Make a copy</code> - this is now <em>your</em> sheet, in your Drive</li>
           <li>Rename it <code>tidy-data-yourname</code></li>
-          <li>You'll edit your copy for the whole session. I'll drive a copy of my own on screen.</li>
+          <li>You'll edit your copy all session. I'll drive a copy of my own on screen.</li>
         </ol>
       </div>
       <p class="zoomcue"><b>Helpers:</b> anyone without the link or a Google account, jump in via chat now.</p>
-      <div class="term">the original stays untouched - your copy is a <b>working copy</b>, the source is left <b>immutable</b></div>
+      <div class="term">the original is left <b>immutable</b>; your copy is a <b>working copy</b></div>
     </div>
     <aside class="notes">
-      0:00–0:04. Share your screen with your own copy of the practice sheet. Do the three
-      steps live so they can mirror them. Say out loud: "the sheet I was given is evidence;
-      I never type in it - I work in a copy." Point out the tabs along the bottom
-      (2016_messy, 2017_messy, dates, checkpoint_*, ai_input, Notes) so they know the shape
-      of what's here. Don't tour the messy data yet.
-
-      If Sheets shows "make a copy" as converting an .xlsx, that's fine - let it convert.
-      Wait until the chat shows most people have a renamed copy before moving on.
+      0:00–0:04. Share your own copy of the practice sheet. Do the three steps live so they
+      mirror them. Say: "the sheet I was given is evidence; I never type in it, I work in a
+      copy." Point out the tabs along the bottom (2016_messy, 2017_messy, dates,
+      checkpoint_*, ai_input, Notes) so they know the shape of what's here. Don't tour the
+      messy data yet. Wait for the chat to show most people have a renamed copy.
     </aside>
   </section>
 
-  <!-- 3 · GOOD HABITS -->
+  <!-- 3 · OPENING DISCUSSION (LC Ep0) -->
+  <section data-background-color="#ffffff">
+    <div class="content-mid">
+      <div class="toprow"><span class="tag">To start</span> <span class="badge discuss">discuss</span></div>
+      <div class="slide-head"><h2>Two questions</h2></div>
+      <ul class="clean" style="font-size:25px;max-width:24em;">
+        <li>What do you <b>use spreadsheets for</b>? What are they good at?</li>
+        <li>What have you <b>accidentally done</b> in a spreadsheet, or been frustrated you couldn't do easily?</li>
+      </ul>
+      <p class="zoomcue"><b>On Zoom:</b> drop answers in the chat. I'll read a few out.</p>
+      <div class="term">spreadsheets are strong for <b>data entry</b> and <b>quick views</b>; weaker for <b>reproducible analysis</b> and <b>version control</b></div>
+    </div>
+    <aside class="notes">
+      LC Episode 1 opening. Keep it to ~3 min. Read 4–5 chat answers. Common frustrations:
+      autocorrect changing values, dates mangled, sort that shuffled rows, "it looked right
+      but the formula was wrong". Land on: spreadsheets are great for entering and eyeballing
+      data, and today is about entering it so the next tool can use it.
+    </aside>
+  </section>
+
+  <!-- 4 · GOOD HABITS -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <span class="tag">Before we start</span>
-      <div class="slide-head"><h2>Six habits, then we practise</h2></div>
+      <div class="slide-head"><h2>Habits for data you're creating</h2></div>
       <div class="two">
         <ul class="clean">
-          <li>One <b>rectangular table</b> per sheet - no side-by-side tables</li>
-          <li>A real <b>header row</b>, row 1, one word or phrase per column</li>
-          <li><b>One value per cell</b> - no <code>GQ &amp; DF</code>, no <code>45|0|0</code></li>
+          <li>One <b>rectangular table</b> per sheet - no side-by-side tables, one table per tab</li>
+          <li>A real <b>header row</b>, row 1, one short name per column</li>
+          <li><b>One value per cell</b>; <b>one column per variable</b></li>
           <li>Raw data is <b>read-only</b> - no notes, no colour, no maths in the data cells</li>
         </ul>
         <ul class="clean">
           <li>Be <b>consistent</b>: same spelling, same units, same date format, every row</li>
-          <li>Say what <b>missing</b> looks like and use it everywhere</li>
+          <li><b>Fill in zeros</b> where you mean zero; use one null value for missing</li>
         </ul>
       </div>
-      <p style="font-size:19px;margin-top:16px;color:var(--muted);">Everything today is one of these six, shown on real messy data.</p>
-      <div class="term">consistent column names and value spellings are a <b>controlled vocabulary</b> - librarians already do this in cataloguing</div>
+      <p style="font-size:18px;margin-top:14px;color:var(--muted);">Today we practise spotting and fixing where these have been broken, on real messy data.</p>
+      <div class="term">these are the lesson's <b>keypoints</b>; consistent names and codes are a <b>controlled vocabulary</b>, which librarians already keep</div>
     </div>
     <aside class="notes">
-      0:04–0:08. This is the whole lesson on one slide - don't over-explain, it's a preview.
-      Frame it as: "these are habits for data you're creating; today we practise spotting
-      and fixing where they've been broken." Then move straight into the first hands-on.
-      No demo here.
+      0:04–0:08. This is the whole lesson on one slide, and it is the lesson's keypoints
+      list. Don't over-explain, it's a preview. Then straight into the first hands-on.
     </aside>
   </section>
 
-  <!-- 4 · THE ONE RULE -->
+  <!-- 5 · THE ONE RULE -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <span class="tag">Concept 1</span>
@@ -230,56 +241,55 @@
           <div class="lbl-cell">one value per cell</div>
         </figure>
       </div>
-      <div class="term"><b>tidy data</b> (Wickham). The same grid is <b>rows &amp; columns</b> to a database, <b>cases &amp; variables</b> in stats, <b>observations &amp; variables</b> here</div>
+      <div class="term"><b>tidy data</b> (Wickham). The grid is <b>rows &amp; columns</b> in a database, <b>cases &amp; variables</b> in stats, <b>observations &amp; variables</b> here</div>
     </div>
     <aside class="notes">
-      0:08–0:12. Back on slides. Name the two things they just did in the warm-up: worked
-      in a copy, and started thinking in a rectangular table. Keep this to the one rule;
-      resist adding a sixth concept later in the session.
+      0:08–0:12. Back on slides. Name the two things they just did: worked in a copy, and
+      started thinking in a rectangular table. Keep this to the one rule.
     </aside>
   </section>
 
-  <!-- 5 · DISCUSSION 2016_messy -->
+  <!-- 6 · DISCUSSION: what would a program choke on (LC Ep1/Ep2) -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <div class="toprow"><span class="tag">Concept 1</span> <span class="badge discuss">discuss</span></div>
       <div class="slide-head"><h2>What would a program choke on?</h2></div>
-      <p class="lead">Open the <code>2016_messy</code> tab in your copy. Look for 60 seconds.</p>
+      <p class="lead">Open <code>2016_messy</code> in your copy. Look for 60 seconds.</p>
       <p style="font-size:24px;">Drop <b>one thing</b> in the chat that a script could not read as data.</p>
-      <p class="zoomcue"><b>On Zoom:</b> everyone types into the chat at once - I'll read a few out. No wrong answers; we're building the list together.</p>
-      <div class="term">you're reading a <b>schema</b> - the column structure a tool expects. When it changes between files, that's <b>schema drift</b></div>
+      <p class="zoomcue"><b>On Zoom:</b> everyone types at once. No wrong answers; we're building the list together.</p>
+      <div class="term">you're reading a <b>schema</b> - the column structure a tool expects. When it changes between files that's <b>schema drift</b></div>
     </div>
     <aside class="notes">
-      0:12–0:16. Share the 2016_messy tab on screen while they look at their own. Give a
-      real 60 seconds of quiet. Then: "type one thing in the chat." Read 4–5 aloud, group
-      them (merged title / two tables / packed column / colour-only cancelled / text
-      durations / 1900 dates). Land on: a person reads this fine; a program can't. That's
-      the rest of the session.
+      0:12–0:16. Share 2016_messy on screen while they look at their own. A real 60 seconds
+      of quiet, then "type one thing in the chat." Read 4–5 aloud and group them: merged
+      title / two side-by-side tables / packed PGR|PDRA|other column / colour-only cancelled
+      rows / "1.5 hours" text in the Len column / the 1900 date. Land on: a person reads this
+      fine, a program can't. In the lesson this is the group debrief after the cleaning
+      exercise; we do it first to set up the exercise.
     </aside>
   </section>
 
-  <!-- 6 · WORK IN A COPY -->
+  <!-- 7 · WORK IN A COPY -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <span class="tag">Concept 2</span>
       <div class="slide-head"><h2>Work in a copy</h2></div>
-      <ul class="clean" style="font-size:24px;max-width:23em;">
+      <ul class="clean" style="font-size:23px;max-width:24em;">
         <li>The source file is <b>read-only</b>. You never edit what you were given.</li>
         <li>Work in a <b>named</b> copy - <code>2016_clean</code>, not <code>Copy of Sheet1</code></li>
         <li>Duplicating a <em>tab</em> keeps both in one file: a working copy, not a backup</li>
-        <li>Version history helps, but the discipline is the point</li>
       </ul>
-      <div class="callout">If you can't get back to the raw data, you have no data.</div>
-      <div class="term">raw data as a <b>single source of truth</b>; keeping it unchanged is treating it as <b>immutable</b></div>
+      <div class="callout">Create a new file for the cleaned data. Never modify the original raw data.</div>
+      <div class="term">raw data as a <b>single source of truth</b>, kept <b>immutable</b>; the lesson's first rule</div>
     </div>
     <aside class="notes">
-      Quick, ~2 min. They already made a copy in the warm-up, so this is naming the habit.
-      Demo the move you're about to use a lot: right-click the 2016_messy tab ▸ Duplicate ▸
-      rename to 2016_clean. Then all edits happen in 2016_clean.
+      Quick, ~2 min. They already made a copy in the warm-up. Demo the move you'll use a
+      lot: right-click the 2016_messy tab, Duplicate, rename to 2016_clean. All edits happen
+      in 2016_clean. The callout is the lesson's "Important" box, verbatim in spirit.
     </aside>
   </section>
 
-  <!-- 7 · ONE VALUE PER CELL -->
+  <!-- 8 · ONE VALUE PER CELL -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <span class="tag">Concept 1 · in practice</span>
@@ -319,52 +329,53 @@
       <div class="term"><b>atomic values</b> / <b>first normal form (1NF)</b>. The Sheets tool is <b>Data ▸ Split text to columns</b> (splitting on a <b>delimiter</b>)</div>
     </div>
     <aside class="notes">
-      Slides, ~2 min, then straight into the challenge. Show the split visually here; do the
-      actual split on screen in the next slide's demo.
+      ~2 min, slides, then into the exercise. Show the split visually here; do it on screen
+      in the next slide's demo.
     </aside>
   </section>
 
-  <!-- 8 · CHALLENGE tidy the RDM table -->
+  <!-- 9 · EXERCISE: clean the messy training data (LC Ep2 exercise) -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <div class="toprow"><span class="tag">The core exercise</span> <span class="badge demo">demo</span> <span class="badge exercise">exercise</span></div>
-      <div class="slide-head"><h2>Tidy one table</h2></div>
+      <div class="slide-head"><h2>Clean the messy training data</h2></div>
       <div class="two">
         <div class="exbox">
-          <p style="margin:0 0 6px;">In <code>2016_clean</code>, turn the <b>RDM training</b> block into a tidy table:</p>
-          <ol>
-            <li>Delete the merged title and spacer rows; header in row 1</li>
-            <li>Split <code>PGR|PDRA|other</code> into three columns</li>
-            <li>Grey "cancelled" rows → a real <code>cancelled</code> column (yes/no)</li>
-            <li>Make the nulls consistent</li>
-          </ol>
-          <p style="margin:10px 0 0;font-weight:900;">Write your data row count in the chat.</p>
+          <p style="margin:0 0 6px;">Various people recorded training attendance across 2016 and 2017, each their own way. You need to evaluate the programme and start doing statistics.</p>
+          <p style="margin:6px 0 0;">Working in your copies, make the <code>2016_messy</code> and <code>2017_messy</code> data something a <b>computer</b> can read, and put them together in one table.</p>
         </div>
         <div>
-          <p style="font-size:20px;">I'll demo on the RDM table.</p>
-          <p style="font-size:20px;">You do the <b>Open access</b> table next to it - same moves - and check against <code>checkpoint_clean</code>.</p>
-          <p class="zoomcue"><b>On Zoom:</b> work in your own copy. Green check = done, red x = stuck. Helpers watch the chat and will DM you. Row counts in the chat let me see where everyone is.</p>
+          <h4 style="font-size:16px;text-transform:uppercase;letter-spacing:.06em;color:var(--uc-blue-deep);margin:0 0 6px;">How we'll run it</h4>
+          <ul class="clean" style="font-size:19px;">
+            <li>I demo the <b>RDM</b> table in <code>2016_clean</code></li>
+            <li>You clean the <b>Open access</b> table beside it, then the 2017 tab</li>
+            <li>Check against <code>checkpoint_clean</code> / <code>checkpoint_combined</code></li>
+            <li>Post your <b>row count</b> in the chat</li>
+          </ul>
+          <p class="zoomcue"><b>On Zoom:</b> own copies. Green check = done, red x = stuck. Helpers watch the chat and DM you.</p>
         </div>
       </div>
-      <div class="term">breaking a packed column into parts is <b>decomposition</b>; the next step, moving <code>pgr/pdra/other</code> into a <code>role</code> + <code>count</code> pair, is <b>reshaping wide to long</b> (<b>pivoting</b>)</div>
+      <div class="term">the moves: <b>decomposition</b> (split packed columns), a <b>cancelled</b> flag not colour, consistent <b>nulls</b>; combining years then checking counts is basic <b>reconciliation</b></div>
     </div>
     <aside class="notes">
-      0:28–0:53, the core segment (25 min). SWITCH TO SHEET.
-      Demo on RDM (about 8 min): unmerge the title (Format ▸ Merge cells ▸ Unmerge),
-      delete title/spacer rows, select the packed column ▸ Data ▸ Split text to columns ▸
-      set separator to "|", rename the three new columns, add a cancelled column and fill
-      yes/no from the grey rows, replace blank/na inconsistencies. Narrate every click.
-      Flag the two 1900 dates out loud but DO NOT fix them - "we'll deal with dates later".
+      0:28–0:53, the core segment (25 min). This is LC Episode 2's exercise. SWITCH TO SHEET.
 
-      Then learners take the Open access table (units in Len, name drift) against
-      checkpoint_clean, ~12 min. Watch the chat: row counts should converge. Helpers DM the
-      red-x people. Reconvene, show checkpoint_clean, ask whose count differed and why
-      (usually the cancelled rows or a stray blank row).
-      SWITCH BACK TO SLIDES for the next concept.
+      Demo on the RDM table (~8 min): unmerge the title (Format ▸ Merge cells ▸ Unmerge),
+      delete title/spacer rows, select PGR|PDRA|other ▸ Data ▸ Split text to columns ▸
+      separator "|", rename the three columns, add a cancelled column and fill yes/no from
+      the grey rows, make blank/na consistent. Narrate every click. Flag the 1900 date out
+      loud but do NOT fix it - "dates get their own segment".
+
+      Learners take the Open access table (units in Len, name drift) then the 2017 tab
+      (text dates, GQ & DF, legend row), ~12 min, checking checkpoint_clean. Watch the chat:
+      row counts should converge. Reconvene, show checkpoint_combined (2016 + 2017 cleaned
+      the same way, plus a year column). Row-count check: 2016 rows + 2017 rows = combined
+      minus one header. Ask whose count differed and why (usually a cancelled row or a stray
+      blank). SWITCH BACK TO SLIDES.
     </aside>
   </section>
 
-  <!-- 9 · FORMATTING IS NOT DATA -->
+  <!-- 10 · FORMATTING IS NOT DATA -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <span class="tag">Concept 3</span>
@@ -374,7 +385,7 @@
           <svg viewBox="0 0 430 250" width="100%" role="img" aria-label="A styled layout versus the plain CSV it becomes">
             <text x="0" y="14" font-family="Lato" font-weight="900" font-size="13" fill="#647082">WHAT YOU SEE</text>
             <rect x="0" y="22" width="430" height="26" fill="#2774AE"/>
-            <text x="115" y="40" fill="#fff" font-family="Lato" font-weight="700" font-size="13">RDM training - Spring 2016</text>
+            <text x="115" y="40" fill="#fff" font-family="Lato" font-weight="700" font-size="13">RDM training, Spring 2016</text>
             <g font-family="IBM Plex Mono" font-size="12" fill="#1A202C">
               <rect x="0" y="48" width="430" height="24" fill="#F5F7FA"/>
               <rect x="0" y="72" width="430" height="22" fill="#fff"/>
@@ -399,44 +410,46 @@
           <ul class="clean">
             <li>Merged titles, colour, spacing, row shading: <b>not data</b></li>
             <li>Grey-for-cancelled had to become a <code>cancelled</code> column</li>
-            <li>None of it survives an export. Encode meaning as a <b>value</b>.</li>
+            <li>Comments and units in cells go too - use another column</li>
+            <li>Metadata (the <code>Notes</code> tab) belongs in a separate file</li>
           </ul>
         </div>
       </div>
       <div class="term"><b>separation of data from presentation</b> - the same idea as content vs. style on the web. Colour-as-data is a known <b>anti-pattern</b></div>
     </div>
     <aside class="notes">
-      Slides, ~3 min. This names what they just did with the grey rows. Ask: "how would a
-      script know those rows were cancelled?" - it wouldn't, unless it's a value.
+      Slides, ~3 min. Names what they just did with the grey rows. From LC Episode "Common
+      mistakes": merged cells, formatting-as-info, units/comments in cells, metadata in the
+      data table. Ask: how would a script know those rows were cancelled? It wouldn't.
     </aside>
   </section>
 
-  <!-- 10 · MISSING VALUES -->
+  <!-- 11 · MISSING VALUES -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <span class="tag">Practice 1</span>
-      <div class="slide-head"><h2>Missing values</h2></div>
-      <ul class="clean" style="font-size:24px;max-width:22em;">
-        <li>Pick <b>one</b> representation per column and use it everywhere</li>
-        <li>Today: a <b>blank</b> cell for genuinely missing; <code>0</code> only for a measured zero</li>
+      <div class="slide-head"><h2>Zeros and nulls</h2></div>
+      <ul class="clean" style="font-size:23px;max-width:23em;">
+        <li><b>Fill in zero</b> when you mean a measured zero</li>
+        <li>Pick <b>one</b> null value for genuinely missing and use it everywhere - for us, a blank cell</li>
         <li class="note-bad">Never <code>0</code> for missing. Never <code>-999</code>.</li>
-        <li>Real work: decide what "missing" means here, write it down, check how the next tool reads it</li>
+        <li>Decide what "missing" means here, write it down, check how the next tool reads it</li>
       </ul>
       <div class="term"><code>-999</code> and <code>0</code>-for-missing are <b>sentinel values</b> / <b>magic numbers</b>. Missing ≠ not-applicable ≠ zero ≠ unknown is <b>null semantics</b></div>
     </div>
     <aside class="notes">
-      ~3 min, slides. Tie forward: in the dates tab, cancelled rows carry num_attended 0.
-      Is that a real zero or a stand-in for missing? A data-dictionary question, not an
-      auto-blank. Don't fix it now; flag it for the QC exercise.
+      ~3 min, slides. From LC "Common mistakes": fill in zeroes; use an appropriate null.
+      Tie forward: in the dates tab, cancelled rows carry num_attended 0. Real zero, or a
+      stand-in for missing? A data-dictionary question. Flag it for the QC exercise.
     </aside>
   </section>
 
-  <!-- 11 · THREE STATES OF A DATE -->
+  <!-- 12 · THREE STATES OF A DATE (opens with LC Ep3 discussion) -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
-      <span class="tag">Concept 4</span>
+      <div class="toprow"><span class="tag">Concept 4</span> <span class="badge discuss">discuss</span></div>
       <div class="slide-head"><h2>A date has three states</h2></div>
-      <p class="lead">All three can look identical in the cell.</p>
+      <p class="lead">These three cells all display <code>2016-03-04</code>. What might differ underneath? What could be ambiguous?</p>
       <figure>
         <svg viewBox="0 0 900 210" width="100%" role="img" aria-label="Three cells all showing 2016-03-04 with different underlying states">
           <g font-family="IBM Plex Mono" font-size="20">
@@ -453,8 +466,8 @@
             <text x="12" y="142">shown through a format.</text>
             <text x="12" y="168" font-family="IBM Plex Mono" font-size="13">=ISNUMBER → TRUE</text>
             <text x="317" y="100" font-weight="900" fill="#C53030">2 · Text</text>
-            <text x="317" y="122">just characters that</text>
-            <text x="317" y="142">happen to look like a date.</text>
+            <text x="317" y="122">characters that happen</text>
+            <text x="317" y="142">to look like a date.</text>
             <text x="317" y="168" font-family="IBM Plex Mono" font-size="13">=ISNUMBER → FALSE</text>
             <text x="622" y="100" font-weight="900" fill="#DD6B20">3 · Real, wrong</text>
             <text x="622" y="122">a genuine date value,</text>
@@ -463,17 +476,19 @@
           </g>
         </svg>
       </figure>
-      <p style="font-size:19px;margin-top:4px;"><code>ISNUMBER</code> TRUE means it's a real date, <b>not</b> that the date is correct.</p>
       <div class="term">a stored value vs. how it looks is <b>data type</b> vs. <b>lexical representation</b>; Sheets guessing on entry is <b>type inference</b>. Dates are stored as <b>serial numbers</b></div>
     </div>
     <aside class="notes">
-      1:05–1:15, slides. SWITCH TO SHEET briefly: click a real date, show Format ▸ Number to
-      reveal the underlying serial number; then a text date, show it left-aligns and has no
-      serial. Back to slides for locale.
+      1:05–1:15. This is LC Episode 3's discussion ("How can these features create data
+      ambiguity? What changes between columns? What lacks specificity?"). Take a couple of
+      chat answers, then reveal the three states. SWITCH TO SHEET briefly: click a real
+      date, Format ▸ Number shows the serial number; click a text date, it left-aligns with
+      no serial. Note: ISNUMBER TRUE means it's a real date, not that the date is correct.
+      Back to slides for locale.
     </aside>
   </section>
 
-  <!-- 12 · LOCALE + DEFENSIVE -->
+  <!-- 13 · LOCALE + DEFENSIVE -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <span class="tag">Concept 4</span>
@@ -496,40 +511,45 @@
     </div>
     <aside class="notes">
       1:15–1:20, slides. This replaces the lesson's 1900/1904 date-system material (not a
-      thing in Sheets). Say your sheet's locale out loud. Then move to the dates exercise.
+      thing in Sheets). Say your sheet's locale out loud. Then the dates exercise.
     </aside>
   </section>
 
-  <!-- 13 · CHALLENGE dates -->
+  <!-- 14 · EXERCISE: dates (LC Ep3 Challenge 1 + Challenge 2) -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <div class="toprow"><span class="tag">Concept 4</span> <span class="badge demo">demo</span> <span class="badge exercise">exercise</span></div>
-      <div class="slide-head"><h2>Find the broken dates</h2></div>
+      <div class="slide-head"><h2>Dates as data</h2></div>
       <div class="two">
         <div class="exbox">
-          <ol>
-            <li>In <code>2017_messy</code>, add a column <code>=ISNUMBER(</code>date cell<code>)</code> and fill down. Which rows are <b>FALSE</b> (stored as text)?</li>
-            <li>In <code>dates</code>, add <code>=YEAR(</code>date cell<code>)</code>. Which <b>two</b> rows have the wrong year?</li>
-          </ol>
-          <p style="margin:10px 0 0;font-size:19px;">The events all happened in <b>2015</b>.</p>
+          <h4>Part 1 · pull the pieces</h4>
+          <p style="margin:0;">In <code>dates</code> (2015 data), add three columns:
+          <code>=MONTH(</code>date<code>)</code>, <code>=DAY(</code>date<code>)</code>, <code>=YEAR(</code>date<code>)</code>. Format them as <b>number</b>.
+          Which <b>two rows</b> show the wrong year?</p>
         </div>
-        <div>
-          <p style="font-size:20px;">I'll set up <code>ISNUMBER</code> on the first few rows, then you carry it down and do <code>YEAR</code>.</p>
-          <p class="zoomcue"><b>On Zoom:</b> put the row numbers you find in the chat. Check / x for done / stuck.</p>
+        <div class="exbox" style="margin-top:14px;">
+          <h4>Part 2 · through a CSV and back</h4>
+          <p style="margin:0;">Download the <code>dates</code> tab as CSV. Open it in a plain-text editor - what happened to the dates? Re-open it in Sheets - now what?</p>
         </div>
       </div>
-      <div class="term">a formula testing a value's type is a <b>type check</b>; the wrong-year rows are a <b>data-entry error</b> that passes every format check</div>
+      <p class="zoomcue"><b>On Zoom:</b> own copies. Put the wrong-year row numbers in the chat; then say in the chat what the CSV did to the dates.</p>
+      <div class="term">the wrong-year rows are a <b>data-entry error</b> (entry year vs. event year) that passes every format check; the CSV round-trip is <b>lossy</b> and not <b>reversible</b></div>
     </div>
     <aside class="notes">
-      1:20–1:30. SWITCH TO SHEET. Demo ISNUMBER on 3–4 rows of 2017_messy, name the text
-      dates (7/8 Feb, etc.). Learners fill down and post FALSE rows in chat, ~4 min. Then
-      demo YEAR on the dates tab for 2 rows; they find the 2017-should-be-2015 pair, ~4 min.
-      Mention the 1900 dates in 2016_messy get caught the same way with YEAR.
+      1:20–1:32. LC Episode 3, Challenge 1 and Challenge 2, verbatim.
+
+      Part 1: SWITCH TO SHEET, demo MONTH/DAY/YEAR on the first 2–3 rows, format as number.
+      Learners fill down, ~4 min. The two rows show 2017 (the year the data was entered) not
+      2015 (the workshop year). Same trick with YEAR catches the 1900 date in 2016_messy.
+
+      Part 2: demo File ▸ Download ▸ CSV on the dates tab, open the file in a text editor -
+      the dates show as month/day with no year. Re-open in Sheets - they come back with the
+      current year, not 2015. Point: exporting and re-importing changed the data again.
       SWITCH BACK TO SLIDES.
     </aside>
   </section>
 
-  <!-- 14 · QA vs QC -->
+  <!-- 15 · QA vs QC -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <span class="tag">Concept 5</span>
@@ -542,7 +562,7 @@
             <text x="100" y="180" text-anchor="middle" font-family="IBM Plex Mono" font-size="14" fill="#C53030">"tomrrow" ✗</text>
             <text x="100" y="36" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="#647082">reject the input</text>
           </svg>
-          <figcaption>Data validation: number range, dropdown, "reject the input".</figcaption>
+          <figcaption>Data validation on <code>num_registered</code>: whole number, 1 to 100.</figcaption>
         </figure>
         <figure>
           <svg viewBox="0 0 200 200" width="70%" role="img" aria-label="Quality control: a bad value already in the data, found by sorting">
@@ -555,54 +575,55 @@
               <rect x="30" y="104" width="140" height="18" fill="#fff" stroke="#E2E8F0"/>
               <text x="38" y="44">len_hours ↓</text>
               <text x="38" y="63">2.0</text>
-              <text x="38" y="81" fill="#C53030">"1.5 hours"</text>
+              <text x="38" y="81" fill="#C53030">"90 min"</text>
               <text x="38" y="99">1.5</text>
               <text x="38" y="117">1.0</text>
             </g>
             <circle cx="150" cy="80" r="26" fill="none" stroke="#1D4E79" stroke-width="3"/>
             <line x1="168" y1="98" x2="185" y2="115" stroke="#1D4E79" stroke-width="4"/>
           </svg>
-          <figcaption>Sort the whole table with "Data has header row" ticked; colour scale.</figcaption>
+          <figcaption>Sort and colour-scale to surface odd values already present.</figcaption>
         </figure>
       </div>
       <div class="term"><b>QA</b> = prevention (process), <b>QC</b> = detection (product). "Reject the input" is a <b>constraint</b> / <b>input validation</b></div>
     </div>
     <aside class="notes">
-      1:30–1:40, slides + short demo. SWITCH TO SHEET: Data ▸ Data validation, add a number
-      range on a count column and a dropdown on cancelled, set "reject the input", show it
-      block a bad entry. Then set up the sort for the exercise.
+      1:32–1:40, slides + a QA demo. SWITCH TO SHEET: select num_registered ▸ Data ▸ Data
+      validation ▸ Whole number ▸ min 1 max 100 ▸ "Reject the input". Try a bad value, show
+      it blocked. Mention you can add a dropdown for the session type too. Then set up the
+      sort for the QC exercise.
     </aside>
   </section>
 
-  <!-- 15 · CHALLENGE sort -->
+  <!-- 16 · EXERCISE: QC sort + conditional formatting (LC Ep4 Ch1 + Ch2) -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <div class="toprow"><span class="tag">Concept 5</span> <span class="badge exercise">exercise</span></div>
-      <div class="slide-head"><h2>Sort to surface the junk</h2></div>
+      <div class="slide-head"><h2>Sort, then colour-scale</h2></div>
       <div class="two">
         <div class="exbox">
-          <ol>
-            <li>Select the <b>whole</b> <code>dates</code> table</li>
-            <li><code>Data ▸ Sort range ▸ Advanced</code>; tick <b>Data has header row</b></li>
-            <li>Sort <code>len_hours</code> largest to smallest</li>
-          </ol>
-          <p style="margin:10px 0 0;font-size:19px;">What shows up at the top? At the bottom? Put it in the chat.</p>
+          <h4>Sort</h4>
+          <p style="margin:0 0 4px;">In <code>dates</code>: <code>Data ▸ Sort range ▸ Advanced</code>, tick <b>Data has header row</b>. Sort <code>len_hours</code> largest to smallest.</p>
+          <p style="margin:4px 0 0;">Notice anything strange? Try other columns.</p>
         </div>
-        <div>
-          <p style="font-size:20px;">Two moves before any sort: <b>select the whole table</b>, and <b>tick the header row</b>. Miss either and you shear rows away from their keys.</p>
-          <p class="zoomcue"><b>On Zoom:</b> own copies. This one's short - 4 minutes.</p>
+        <div class="exbox" style="margin-top:14px;">
+          <h4>Colour scale</h4>
+          <p style="margin:0;">Select <code>num_attended</code>. <code>Format ▸ Conditional formatting ▸ Colour scale</code>. Any strange values stand out?</p>
         </div>
       </div>
-      <div class="term">scanning sorted extremes is <b>range checking</b> / basic <b>outlier detection</b>. Sorting a partial selection is a classic way to <b>corrupt</b> a dataset</div>
+      <p class="zoomcue"><b>On Zoom:</b> own copies, ~6 minutes. Put what you find in the chat.</p>
+      <div class="term">scanning sorted extremes is <b>range checking</b> / basic <b>outlier detection</b>. Sorting a partial selection <b>corrupts</b> a dataset - always select the whole table</div>
     </div>
     <aside class="notes">
-      1:40–1:50. Mostly learner time. The junk: "1.5 hours" as text sorts oddly, a 1.5 in
-      num_registered, the 0-attendance cancelled rows. Reconvene, ask what they found,
-      connect back to missing values (is that 0 real?). SWITCH BACK TO SLIDES.
+      1:40–1:52. LC Episode 4, both QC challenges. Sort: "90 min", "1 hour", "15 min" as
+      text sort to the top; the numeric 90/60/15 also stand out. Colour scale on
+      num_attended: two cells at 0 pop - those two classes were cancelled. Connect back to
+      the missing-values slide: is that 0 real, or missing? A data-dictionary call.
+      SWITCH BACK TO SLIDES.
     </aside>
   </section>
 
-  <!-- 16 · EXPORT TO CSV -->
+  <!-- 17 · EXPORT TO CSV -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <span class="tag">Practice 2</span>
@@ -624,41 +645,40 @@
         <div class="stack-list">
           <ul class="clean">
             <li><code>File ▸ Download ▸ CSV</code> = <b>current sheet only</b>. Five tabs, five files.</li>
-            <li>Format dates with the full year <b>first</b> - CSV keeps only what's shown</li>
-            <li><code>GQ, DF</code> is written <code>"GQ, DF"</code> so the comma isn't a new column; the real fix is not having two values in a cell</li>
+            <li>Format dates with the full year <b>first</b> - a CSV keeps only what's shown</li>
+            <li><code>GQ, DF</code> is written <code>"GQ, DF"</code> so the comma isn't a new column; the real fix is one value per cell</li>
           </ul>
         </div>
       </div>
       <div class="term">a CSV is a <b>flat file</b>, <b>machine-readable</b> and <b>non-proprietary</b>; the export is <b>lossy</b> and doesn't <b>round-trip</b>. Library of Congress lists it as a <b>preferred format</b></div>
     </div>
     <aside class="notes">
-      2:03–2:20. SWITCH TO SHEET: format a date column to yyyy with the full year, then
-      File ▸ Download ▸ CSV, open the downloaded file in a text editor or re-import, show
-      the formulas and colour are gone and a text date lost its year. Row-count check:
-      2016_clean + 2017_clean rows = combined minus one header.
+      2:03–2:15. You already showed the CSV round-trip in the dates exercise. Here, name why
+      CSV anyway: portable, open, one table, machine-readable. LC Episodes "Exporting data"
+      and "Data format caveats".
     </aside>
   </section>
 
-  <!-- 17 · CHANGE LOG -->
+  <!-- 18 · CHANGE LOG -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <span class="tag">Practice 3</span>
       <div class="slide-head"><h2>Write down what you changed</h2></div>
-      <ul class="clean" style="font-size:24px;max-width:23em;">
-        <li>The CSV won't carry it. Version history is inside the Sheet, not the export.</li>
-        <li>A <code>changelog</code> tab, a README, or a dated note - anything the CSV can't drop</li>
+      <ul class="clean" style="font-size:23px;max-width:24em;">
+        <li>Keep every clean-up step in a <b>plain text file</b> beside the data - the lesson's advice</li>
+        <li>The <code>Notes</code> tab in the workbook shows the wrong way: metadata inside the data</li>
         <li>"Split trainer column 2026-09-08; 3 rows had two names" is enough</li>
       </ul>
       <div class="callout">"Why is this number different?" - the answer is your change log.</div>
       <div class="term">where data came from is <b>provenance</b>; what happened to it is <b>lineage</b>; the goal is <b>reproducible</b> cleaning</div>
     </div>
     <aside class="notes">
-      ~2 min, slides. Pair this with "keep the raw file". Show your own changelog tab in the
-      demo sheet as an example.
+      ~2 min, slides. LC Episode "Formatting data": keep track of your analyses in a plain
+      text file in the same folder. Show your own changelog file or tab as an example.
     </aside>
   </section>
 
-  <!-- 18 · DOWNSTREAM -->
+  <!-- 19 · DOWNSTREAM -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <span class="tag">Framing idea</span>
@@ -688,13 +708,14 @@
       <div class="term">reshape-then-hand-off is the <b>"T" in ETL</b> (extract, transform, load); the whole chain is a <b>data pipeline</b>. Fluent-but-wrong output is <b>hallucination</b></div>
     </div>
     <aside class="notes">
-      2:20–2:25, slides. Data caution first: today's data is fictional. Do not paste real
-      patron, student, personnel, health, licensed, or unpublished research data into an AI
-      service unless it's institutionally approved.
+      2:15–2:20, slides. This and the next slide are beyond the LC lesson - your run sheet's
+      AI segment. Data caution first: today's data is fictional. Do not paste real patron,
+      student, personnel, health, licensed, or unpublished research data into an AI service
+      unless it's institutionally approved.
     </aside>
   </section>
 
-  <!-- 19 · CHALLENGE AI count -->
+  <!-- 20 · CHALLENGE AI count -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <div class="toprow"><span class="tag">Framing idea · verify</span> <span class="badge exercise">exercise</span></div>
@@ -729,14 +750,14 @@
     </div>
     <aside class="notes">
       2:25–2:38. SWITCH TO SHEET. Show the pre-run AI output tab next to ai_input. Learners
-      compare source_row_id columns and post the missing id in the chat, ~4 min. Then ask:
-      "how would you catch this without the id column?" (row counts; compare to raw). Optional
-      live re-run to show the output varies. Takeaway: AI shifts the work to specifying and
-      verifying - it still doesn't count reliably. SWITCH BACK TO SLIDES.
+      compare source_row_id columns and post the missing id, ~4 min. Then: "how would you
+      catch this without the id column?" (row counts; compare to raw). Optional live re-run
+      to show the output varies. Takeaway: AI shifts the work to specifying and verifying;
+      it still doesn't count reliably. SWITCH BACK TO SLIDES.
     </aside>
   </section>
 
-  <!-- 20 · VOCABULARY -->
+  <!-- 21 · VOCABULARY -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <span class="tag">You now have the words</span>
@@ -759,31 +780,30 @@
           <li>check the AI's rows → <b>reconciliation</b> on a <b>key</b></li>
         </ul>
       </div>
-      <p style="font-size:17px;margin-top:12px;color:var(--muted);">You don't need these today. You'll meet them again in R, in a database, in a data-management plan - now they won't be new.</p>
+      <p style="font-size:17px;margin-top:10px;color:var(--muted);">You don't need these today. You'll meet them again in R, in a database, in a data-management plan - now they won't be new.</p>
     </div>
     <aside class="notes">
       2:38–2:40. Don't read the whole slide. Point at 3 or 4 they'll hit soonest (ISO 8601,
-      wide vs long, data validation) and say "this is a map for later". It's also on the
-      notes page.
+      wide vs long, data validation). It's also on the notes page.
     </aside>
   </section>
 
-  <!-- 21 · RECAP -->
+  <!-- 22 · RECAP -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <div class="slide-head"><h2>Recap</h2></div>
       <div class="two">
         <ul class="clean" style="font-size:20px;">
-          <li><b>1</b> columns are variables, rows observations, one value per cell</li>
-          <li><b>2</b> the source file is read-only; work in a named copy</li>
-          <li><b>3</b> formatting is not data</li>
-          <li><b>4</b> a date is a value plus a display, or just text</li>
-          <li><b>5</b> QA blocks bad input; QC finds bad values already there</li>
+          <li>one column for one variable</li>
+          <li>one row for one observation</li>
+          <li>one cell for one value</li>
+          <li>never modify your raw data; always copy first</li>
+          <li>keep your clean-up steps in a plain text file</li>
         </ul>
         <ul class="clean" style="font-size:20px;">
-          <li>represent missing values consistently; decide what missing means</li>
-          <li>export to CSV; keep the docs alongside</li>
-          <li>write down what you changed</li>
+          <li>a date is a value plus a display, or just text</li>
+          <li>QA blocks bad input; QC finds bad values already there</li>
+          <li>export to CSV for storage and processing</li>
           <li>downstream tools, including AI, consume your structure; verify by counting</li>
         </ul>
       </div>
@@ -793,8 +813,8 @@
       </small>
     </div>
     <aside class="notes">
-      2:40–2:50. Recap the five, then the change-log habit, then the feedback form.
-      10-minute buffer after this for questions or an early break.
+      2:40–2:50. The left column is the lesson's keypoints, verbatim. Then the feedback form.
+      10-minute buffer after this.
     </aside>
   </section>
 
