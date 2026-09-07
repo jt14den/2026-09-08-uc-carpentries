@@ -15,7 +15,9 @@ for anyone who wants to see how the session is put together or teach it themselv
 
 - Full self-paced lesson: <https://librarycarpentry.github.io/lc-spreadsheets/aio.html>
 - Collaborative notes (Etherpad): <https://pad.carpentries.org/2026-fall-uc-carpentries-tidydate>
-- Practice data (xlsx): [training_attendance_practice.xlsx]({{ '/files/training_attendance_practice.xlsx' | relative_url }})
+- Practice sheet (Google Sheets): <https://docs.google.com/spreadsheets/d/1NuHEr-1xDKpZHq77e5XDBdRAdROWbwEG/copy> &mdash; this link prompts you to make your own copy
+- Practice data, original xlsx: [training_attendance_practice.xlsx]({{ '/files/training_attendance_practice.xlsx' | relative_url }})
+- Slides: <{{ '/slides/tidy-data/' | relative_url }}> (press `S` for the instructor script)
 
 ---
 
@@ -23,8 +25,8 @@ for anyone who wants to see how the session is put together or teach it themselv
 
 `training_attendance_practice.xlsx` is a teaching build derived from the Library
 Carpentry `training_attendance.xlsx` (fictional records of library training sessions,
-2015&ndash;2017). Your instructor will share it as a Google Sheet with a "make a copy"
-link. Tabs:
+2015&ndash;2017). It is published as a Google Sheet; the "practice sheet" link above
+prompts you to save your own copy, which you edit for the whole session. Tabs:
 
 - **`2016_messy`** &mdash; two side-by-side tables, merged titles, a `PGR|PDRA|other`
   column that packs three numbers into one cell, durations written as text
@@ -286,9 +288,12 @@ mid-session.
 
 ### Prep
 
-- `training_attendance_practice.xlsx` (linked at the top of this page) already has the
-  nine tabs and the planted problems. Upload it to Drive, open as a Google Sheet, and
-  make a force-copy link (share link, replace `/edit...` with `/copy`).
+- The practice Google Sheet is at
+  `docs.google.com/spreadsheets/d/1NuHEr-1xDKpZHq77e5XDBdRAdROWbwEG` &mdash; the
+  `/copy` link above is the force-copy form. **Before the session: confirm sharing is set
+  to "Anyone with the link &rarr; Viewer"** so learners can copy it, and consider
+  `File &rarr; Save as Google Sheets` to convert it from the uploaded `.xlsx` for a
+  cleaner experience. Open your own copy to drive the demo.
 - The planted problems: `2016_messy` has two side-by-side tables, merged titles, the
   packed `PGR|PDRA|other` column, `1 hour` / `1.5 hours` text durations, two dates in
   1900, cancelled shown by grey row shading plus one stray `cancelled` note.
