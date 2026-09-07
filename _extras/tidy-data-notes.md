@@ -18,6 +18,8 @@ for anyone who wants to see how the session is put together or teach it themselv
 - Practice sheet (Google Sheets): <https://docs.google.com/spreadsheets/d/1NuHEr-1xDKpZHq77e5XDBdRAdROWbwEG/copy> &mdash; this link prompts you to make your own copy
 - Practice data, original xlsx: [training_attendance_practice.xlsx]({{ '/files/training_attendance_practice.xlsx' | relative_url }})
 - Slides: <{{ '/slides/tidy-data/' | relative_url }}> (press `S` for the instructor script)
+- Instructor run card (one page): [RUN-CARD.md]({{ '/slides/tidy-data/RUN-CARD.md' | relative_url }})
+- Etherpad starter to paste into the live pad: [tidy-data-etherpad.txt]({{ '/files/tidy-data-etherpad.txt' | relative_url }})
 
 ---
 

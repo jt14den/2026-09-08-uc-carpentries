@@ -1,0 +1,75 @@
+===================================================================
+  UC CARPENTRIES  ·  TIDY DATA  ·  Tue Sep 8, 2026  ·  9:00-12:00 PT
+===================================================================
+
+PRACTICE SHEET  --  open this, then  File > Make a copy , rename it "tidy-data-yourname":
+https://docs.google.com/spreadsheets/d/1NuHEr-1xDKpZHq77e5XDBdRAdROWbwEG/copy
+
+Slides:  https://www.tim-dennis.com/2026-09-08-uc-carpentries/slides/tidy-data/
+Notes:   https://www.tim-dennis.com/2026-09-08-uc-carpentries/tidy-data-notes/
+Lesson:  https://librarycarpentry.github.io/lc-spreadsheets/
+
+
+HOW THIS WORKS
+- Work in your OWN copy the whole time. The instructor drives a copy on screen.
+- Done / stuck: use the Zoom reaction icons ( check / x ), or type a line here.
+- Put questions HERE in the pad, not only in chat -- helpers watch both, we get to all of them.
+- Typing "I'm stuck" is a complete sentence.
+
+
+WHO'S HERE   (add yourself:  name  --  role, institution)
+- Tim Dennis -- Director, UCLA Library Data Science Center
+
+
+-------------------------------------------------------------------
+TODAY
+-------------------------------------------------------------------
+1.  Two questions: what do you use spreadsheets for? what has bitten you?
+2.  The one rule: column = variable, row = observation, cell = one value
+3.  Clean the messy training data (2016_messy + 2017_messy)  <- the main exercise
+4.  Dates: pull month/day/year, find the wrong year; then a CSV round-trip
+5.  QA / QC: data validation; sort; colour scale
+6.  Export to CSV; write down what you changed
+7.  Check an AI's cleanup by counting rows
+
+
+-------------------------------------------------------------------
+GOOGLE SHEETS  --  WHERE THINGS ARE
+-------------------------------------------------------------------
+Duplicate a tab .......... right-click the tab  >  Duplicate
+Delete rows .............. select the row numbers  >  right-click  >  Delete rows
+Unmerge cells ........... Format  >  Merge cells  >  Unmerge
+Split a packed column ... select it  >  Data  >  Split text to columns  >  pick the separator
+Number / date format ... Format  >  Number
+Data validation ......... Data  >  Data validation  >  Add rule ;  Advanced  >  Reject the input
+Sort a table ............ Data  >  Sort range  >  Advanced range sorting options ;  tick "Data has header row"
+Conditional formatting . Format  >  Conditional formatting  >  Colour scale
+Version history ......... File  >  Version history  >  See version history
+Download as CSV ........ File  >  Download  >  Comma-separated values  (current sheet only)
+Locale ................. File  >  Settings  >  Locale
+
+
+FUNCTIONS WE USE
+=ISNUMBER(A2)   TRUE if the cell holds a real date value, FALSE if it is text
+=ISTEXT(A2)     the mirror check
+=YEAR(A2)  =MONTH(A2)  =DAY(A2)     pull the parts out of a real date
+  ( ISNUMBER returning TRUE means it is a real date -- NOT that the date is correct. )
+
+
+-------------------------------------------------------------------
+NOTES     (everyone: edit these as we go)
+-------------------------------------------------------------------
+
+
+
+-------------------------------------------------------------------
+QUESTIONS     (drop them here)
+-------------------------------------------------------------------
+
+
+
+-------------------------------------------------------------------
+FEEDBACK     (one thing that worked  /  one thing to change)
+-------------------------------------------------------------------
+
+
