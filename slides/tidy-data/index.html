@@ -860,77 +860,16 @@
     <aside class="notes">
       <p><b>11:15–11:20 · everything downstream reads your structure</b></p>
       <ul>
-        <li>This slide and the next are beyond the LC lesson; your run sheet's AI segment</li>
+        <li>This slide is beyond the core LC lesson - a short note on AI as a downstream consumer</li>
         <li><b>Data caution first:</b> today's data is fictional</li>
         <li>No real patron / student / personnel / health / licensed / unpublished research data into an AI service unless it's institutionally approved</li>
-        <li>→ slide 20</li>
+        <li>→ slide 20 (vocab)</li>
       </ul>
     </aside>
   </section>
 
-  <!-- 20 · CHALLENGE AI count -->
-  <section data-background-color="#ffffff">
-    <div class="content-mid">
-      <div class="toprow"><span class="tag">Framing idea · verify</span> <span class="badge exercise">exercise</span></div>
-      <div class="slide-head"><h2>Check the AI's work by counting</h2></div>
-      <figure>
-        <svg viewBox="0 0 900 200" width="100%" role="img" aria-label="Twelve input rows, eleven output rows, source_row_id 7 missing">
-          <g font-family="IBM Plex Mono" font-size="15" fill="#1A202C">
-            <rect x="20" y="20" width="200" height="150" fill="#F5F7FA" stroke="#E2E8F0"/>
-            <text x="40" y="14" font-family="Lato" font-weight="900" font-size="14" fill="#1D4E79">ai_input</text>
-            <text x="40" y="45">source_row_id 1..12</text>
-            <text x="40" y="72">12 rows in</text>
-            <text x="40" y="99" fill="#647082">rows 5, 7, 11:</text>
-            <text x="40" y="120" fill="#647082">blank num_attended</text>
-            <path d="M235 95 H320" stroke="#1D4E79" stroke-width="2" marker-end="url(#c)"/>
-            <text x="238" y="86" font-family="Lato" font-size="12" fill="#647082">"make it tidy"</text>
-            <rect x="335" y="20" width="200" height="150" fill="#F5F7FA" stroke="#E2E8F0"/>
-            <text x="355" y="14" font-family="Lato" font-weight="900" font-size="14" fill="#1D4E79">AI output</text>
-            <text x="355" y="45">ids 1,2,3,4,5,6,</text>
-            <text x="355" y="68" fill="#C53030">   [7 missing]</text>
-            <text x="355" y="91">8,9,10,11,12</text>
-            <text x="355" y="122" font-weight="600">11 rows out</text>
-            <rect x="560" y="55" width="320" height="82" fill="#FFD100" opacity="0.25" stroke="#DD6B20"/>
-            <text x="580" y="82" font-family="Lato" font-weight="900" font-size="15" fill="#1A202C">12 in ≠ 11 out</text>
-            <text x="580" y="108" font-family="Lato" font-size="14" fill="#1A202C">Compare the ids. Row 7 was</text>
-            <text x="580" y="127" font-family="Lato" font-size="14" fill="#1A202C">dropped, silently.</text>
-          </g>
-          <defs><marker id="c" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="#1D4E79"/></marker></defs>
-        </svg>
-      </figure>
-      <p style="font-size:19px;">Row count before and after. Compare values to the raw data you kept. Same check, every time.</p>
-      <div class="term">the <code>source_row_id</code> is a <b>surrogate key</b>; matching input to output on it is a <b>join</b> and the check is <b>reconciliation</b>. Without a key you'd need <b>fuzzy matching</b> / <b>record linkage</b></div>
-    </div>
-    <aside class="notes">
-      <p><b>11:25-11:38 · check the AI by counting · EXERCISE</b></p>
-      <p><b>PREP - before class (~15 min). This slide is the one part beyond the core LC lesson - if you're short on time or energy, cut it and go straight from slide 19 to slide 21.</b></p>
-      <p>No AI runs inside Google Sheets here. It's plain copy / paste into a normal chat window.</p>
-      <ol>
-        <li>Open the <code>ai_input</code> tab. It should be a small table with a <code>source_row_id</code> column (1-12) and a few deliberate blanks. If your sheet has no such tab, cut this slide (or build a quick 12-row table with a <code>source_row_id</code> column).</li>
-        <li>In a browser tab open <b>chatgpt.com</b>, <b>claude.ai</b>, or <b>gemini.google.com</b> - a normal chat window.</li>
-        <li>In Sheets, select the <code>ai_input</code> data and copy (Cmd/Ctrl+C). Paste it into the chat and send: <i>"Clean this up and make it tidy."</i></li>
-        <li>You want a <b>flawed</b> answer. Models usually drop a row silently or change a value. If the first reply looks clean, send "now fill in the missing values" or just run it again until one comes back with a row missing or mangled.</li>
-        <li>Copy that flawed table, paste it into a <b>new tab</b> in your practice sheet, name it <code>ai_output</code>.</li>
-        <li>Write down for yourself: <code>ai_input</code> has 12 rows; <code>ai_output</code> has how many; which <code>source_row_id</code> is gone. The slide art says "12 in, 11 out, id 7" - if your real result is different, say your real numbers in class; the slide is just illustrative.</li>
-      </ol>
-      <p><b>SHOW</b>: this slide (12 in, 11 out; the missing source_row_id). Leave it up.</p>
-      <p><b>DO</b> - switch to the Sheet:</p>
-      <ol>
-        <li>Open the <code>ai_input</code> tab and your <code>ai_output</code> tab side by side (or flip between them)</li>
-        <li><code>ai_input</code> has 12 rows, <code>source_row_id</code> 1-12; <code>ai_output</code> has fewer</li>
-        <li>Learners compare the <code>source_row_id</code> column in each and post the missing id in the chat (~4 min) - the row the model silently dropped</li>
-      </ol>
-      <p><b>THEN</b></p>
-      <ul>
-        <li>Ask: how would you have caught this <b>without</b> the id column? (count rows before and after; compare values to the raw data you kept)</li>
-        <li>Optional, if you're comfortable: paste <code>ai_input</code> into the chat window again live so they see the output change run to run</li>
-        <li>Reiterate: AI moves your work to specifying the change and verifying the result; it still doesn't count reliably</li>
-        <li>&rarr; slide 21</li>
-      </ul>
-    </aside>
-  </section>
 
-  <!-- 21 · VOCABULARY -->
+  <!-- 20 · VOCABULARY -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <span class="tag">You now have the words</span>
@@ -956,17 +895,17 @@
       <p style="font-size:17px;margin-top:10px;color:var(--muted);">You don't need these today. You'll meet them again in R, in a database, in a data-management plan - now they won't be new.</p>
     </div>
     <aside class="notes">
-      <p><b>11:38–11:40 · what the field calls this</b></p>
+      <p><b>11:20–11:25 · what the field calls this</b></p>
       <ul>
         <li>Don't read the whole slide</li>
         <li>Point at 3–4 they'll hit soonest: ISO 8601; wide vs long; data validation</li>
         <li>It's also on the notes page</li>
-        <li>→ slide 22</li>
+        <li>→ slide 21</li>
       </ul>
     </aside>
   </section>
 
-  <!-- 22 · RECAP -->
+  <!-- 21 · RECAP -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <div class="slide-head"><h2>Recap</h2></div>
@@ -991,11 +930,11 @@
       </small>
     </div>
     <aside class="notes">
-      <p><b>11:40–11:50 · recap</b></p>
+      <p><b>11:25–11:35 · recap</b></p>
       <ul>
         <li>The left column is the lesson's keypoints, verbatim</li>
         <li>Then the feedback link (in the Etherpad)</li>
-        <li>10-minute buffer after this: questions, or an early finish</li>
+        <li>Buffer 11:35–12:00: questions, or an early finish</li>
       </ul>
     </aside>
   </section>

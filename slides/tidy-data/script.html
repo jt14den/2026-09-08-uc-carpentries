@@ -28,16 +28,15 @@
 <div class="wrap">
 <h1>Tidy Data - instructor script</h1>
 <p class="sub">Everything you need to teach the session, in order. Times are clock time (PT); the session runs 9:00 am - 12:00 pm. Keep this on a second screen and the <a href="./">deck</a> on the shared one. Each demo/exercise slide reads <b>SHOW</b> then <b>DO</b> then <b>THEN</b>.</p>
-<div class="topnav"><a href="#s1">1</a> · <a href="#s2">2</a> · <a href="#s3">3</a> · <a href="#s4">4</a> · <a href="#s5">5</a> · <a href="#s6">6</a> · <a href="#s7">7</a> · <a href="#s8">8</a> · <a href="#s9">9</a> · <a href="#s10">10</a> · <a href="#s11">11</a> · <a href="#s12">12</a> · <a href="#s13">13</a> · <a href="#s14">14</a> · <a href="#s15">15</a> · <a href="#s16">16</a> · <a href="#s17">17</a> · <a href="#s18">18</a> · <a href="#s19">19</a> · <a href="#s20">20</a> · <a href="#s21">21</a> · <a href="#s22">22</a></div>
+<div class="topnav"><a href="#s1">1</a> · <a href="#s2">2</a> · <a href="#s3">3</a> · <a href="#s4">4</a> · <a href="#s5">5</a> · <a href="#s6">6</a> · <a href="#s7">7</a> · <a href="#s8">8</a> · <a href="#s9">9</a> · <a href="#s10">10</a> · <a href="#s11">11</a> · <a href="#s12">12</a> · <a href="#s13">13</a> · <a href="#s14">14</a> · <a href="#s15">15</a> · <a href="#s16">16</a> · <a href="#s17">17</a> · <a href="#s18">18</a> · <a href="#s19">19</a> · <a href="#s20">20</a> · <a href="#s21">21</a></div>
 <article id="preflight" style="border-top:none;background:var(--panel);border-radius:10px;padding:18px 22px;">
   <header><span class="n" style="background:#C53030;">!</span><h2 style="color:#C53030;">Before you teach - check these</h2></header>
   <div class="note">
     <ul>
       <li>Practice sheet sharing = <b>Anyone with the link -&gt; Viewer</b> (so learners can copy)</li>
-      <li>Tabs present: <code>2016_messy</code> <code>2017_messy</code> <code>dates</code> <code>checkpoint_clean</code> <code>checkpoint_combined</code> <code>ai_input</code> <code>Notes</code></li>
+      <li>Tabs present: <code>2016_messy</code> <code>2017_messy</code> <code>dates</code> <code>checkpoint_clean</code> <code>checkpoint_combined</code> <code>Notes</code></li>
       <li>Open <code>2016_messy</code>: RDM training is the <b>left</b> table, Open access the <b>right</b>. Note which row is grey / carries the "cancelled" note, and which row has the 1900 date</li>
       <li><code>checkpoint_combined</code> really is 2016 + 2017 cleaned + a <code>year</code> column (your row-count check depends on it)</li>
-      <li><b>Build the <code>ai_output</code> tab for slide 20</b> - the full steps are in slide 20's PREP block below. ~15 min. No time? cut slide 20</li>
       <li><b>Run the slide-14 CSV round-trip once yourself</b> - Google Sheets may not match the Excel lesson text exactly</li>
       <li>Etherpad populated (<code>files/tidy-data-etherpad.txt</code>), practice-sheet <code>/copy</code> link pinned at the top</li>
       <li>Your Sheet's <b>Locale</b> set on purpose (<code>File &#9656; Settings &#9656; Locale</code>)</li>
@@ -328,57 +327,29 @@
   <header><span class="n">19</span><h2>Everything downstream reads your structure</h2><span class="tag">Framing idea</span></header>
   <div class="note"><p><b>11:15–11:20 · everything downstream reads your structure</b></p>
       <ul>
-        <li>This slide and the next are beyond the LC lesson; your run sheet's AI segment</li>
+        <li>This slide is beyond the core LC lesson - a short note on AI as a downstream consumer</li>
         <li><b>Data caution first:</b> today's data is fictional</li>
         <li>No real patron / student / personnel / health / licensed / unpublished research data into an AI service unless it's institutionally approved</li>
-        <li>→ slide 20</li>
+        <li>→ slide 20 (vocab)</li>
       </ul></div>
   <div class="term">reshape-then-hand-off is the <b>"T" in ETL</b> (extract, transform, load); the whole chain is a <b>data pipeline</b>. Fluent-but-wrong output is <b>hallucination</b></div>
 </article><article id="s20">
-  <header><span class="n">20</span><h2>Check the AI&#x27;s work by counting</h2><span class="tag">Framing idea · verify</span><span class="b exercise">exercise</span></header>
-  <div class="note"><p><b>11:25-11:38 · check the AI by counting · EXERCISE</b></p>
-      <p><b>PREP - before class (~15 min). This slide is the one part beyond the core LC lesson - if you're short on time or energy, cut it and go straight from slide 19 to slide 21.</b></p>
-      <p>No AI runs inside Google Sheets here. It's plain copy / paste into a normal chat window.</p>
-      <ol>
-        <li>Open the <code>ai_input</code> tab. It should be a small table with a <code>source_row_id</code> column (1-12) and a few deliberate blanks. If your sheet has no such tab, cut this slide (or build a quick 12-row table with a <code>source_row_id</code> column).</li>
-        <li>In a browser tab open <b>chatgpt.com</b>, <b>claude.ai</b>, or <b>gemini.google.com</b> - a normal chat window.</li>
-        <li>In Sheets, select the <code>ai_input</code> data and copy (Cmd/Ctrl+C). Paste it into the chat and send: <i>"Clean this up and make it tidy."</i></li>
-        <li>You want a <b>flawed</b> answer. Models usually drop a row silently or change a value. If the first reply looks clean, send "now fill in the missing values" or just run it again until one comes back with a row missing or mangled.</li>
-        <li>Copy that flawed table, paste it into a <b>new tab</b> in your practice sheet, name it <code>ai_output</code>.</li>
-        <li>Write down for yourself: <code>ai_input</code> has 12 rows; <code>ai_output</code> has how many; which <code>source_row_id</code> is gone. The slide art says "12 in, 11 out, id 7" - if your real result is different, say your real numbers in class; the slide is just illustrative.</li>
-      </ol>
-      <p><b>SHOW</b>: this slide (12 in, 11 out; the missing source_row_id). Leave it up.</p>
-      <p><b>DO</b> - switch to the Sheet:</p>
-      <ol>
-        <li>Open the <code>ai_input</code> tab and your <code>ai_output</code> tab side by side (or flip between them)</li>
-        <li><code>ai_input</code> has 12 rows, <code>source_row_id</code> 1-12; <code>ai_output</code> has fewer</li>
-        <li>Learners compare the <code>source_row_id</code> column in each and post the missing id in the chat (~4 min) - the row the model silently dropped</li>
-      </ol>
-      <p><b>THEN</b></p>
-      <ul>
-        <li>Ask: how would you have caught this <b>without</b> the id column? (count rows before and after; compare values to the raw data you kept)</li>
-        <li>Optional, if you're comfortable: paste <code>ai_input</code> into the chat window again live so they see the output change run to run</li>
-        <li>Reiterate: AI moves your work to specifying the change and verifying the result; it still doesn't count reliably</li>
-        <li>&rarr; slide 21</li>
-      </ul></div>
-  <div class="term">the <code>source_row_id</code> is a <b>surrogate key</b>; matching input to output on it is a <b>join</b> and the check is <b>reconciliation</b>. Without a key you'd need <b>fuzzy matching</b> / <b>record linkage</b></div>
-</article><article id="s21">
-  <header><span class="n">21</span><h2>What the field calls this</h2><span class="tag">You now have the words</span></header>
-  <div class="note"><p><b>11:38–11:40 · what the field calls this</b></p>
+  <header><span class="n">20</span><h2>What the field calls this</h2><span class="tag">You now have the words</span></header>
+  <div class="note"><p><b>11:20–11:25 · what the field calls this</b></p>
       <ul>
         <li>Don't read the whole slide</li>
         <li>Point at 3–4 they'll hit soonest: ISO 8601; wide vs long; data validation</li>
         <li>It's also on the notes page</li>
-        <li>→ slide 22</li>
+        <li>→ slide 21</li>
       </ul></div>
   
-</article><article id="s22">
-  <header><span class="n">22</span><h2>Recap</h2></header>
-  <div class="note"><p><b>11:40–11:50 · recap</b></p>
+</article><article id="s21">
+  <header><span class="n">21</span><h2>Recap</h2></header>
+  <div class="note"><p><b>11:25–11:35 · recap</b></p>
       <ul>
         <li>The left column is the lesson's keypoints, verbatim</li>
         <li>Then the feedback link (in the Etherpad)</li>
-        <li>10-minute buffer after this: questions, or an early finish</li>
+        <li>Buffer 11:35–12:00: questions, or an early finish</li>
       </ul></div>
   
 </article>

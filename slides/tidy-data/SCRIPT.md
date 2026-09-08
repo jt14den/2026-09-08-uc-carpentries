@@ -1,6 +1,6 @@
 # Tidy Data - full instructor script
 
-**Rendered (pre-flight + bullets): [script.html](script.html)** - `/slides/tidy-data/script.html`.
+**Rendered (pre-flight + bullets): [script.html](script.html)**
 
 Times are clock time (PT); session runs 9:00 am - 12:00 pm.
 
@@ -379,68 +379,33 @@ In the lesson this is the debrief after the cleaning exercise; we do it first to
 
 **11:15–11:20 · everything downstream reads your structure**
 
-- This slide and the next are beyond the LC lesson; your run sheet's AI segment
+- This slide is beyond the core LC lesson - a short note on AI as a downstream consumer
 - **Data caution first:** today's data is fictional
 - No real patron / student / personnel / health / licensed / unpublished research data into an AI service unless it's institutionally approved
-- → slide 20
+- → slide 20 (vocab)
 
 > *slide footnote:* reshape-then-hand-off is the **"T" in ETL** (extract, transform, load); the whole chain is a **data pipeline**. Fluent-but-wrong output is **hallucination**
 
 ---
 
-## 20. Check the AI's work by counting
-<sub>Framing idea · verify  ·  **EXERCISE**</sub>
-
-**11:25-11:38 · check the AI by counting · EXERCISE**
-
-**PREP - before class (~15 min). This slide is the one part beyond the core LC lesson - if you're short on time or energy, cut it and go straight from slide 19 to slide 21.**
-
-No AI runs inside Google Sheets here. It's plain copy / paste into a normal chat window.
-
-1. Open the `ai_input` tab. It should be a small table with a `source_row_id` column (1-12) and a few deliberate blanks. If your sheet has no such tab, cut this slide (or build a quick 12-row table with a `source_row_id` column).
-2. In a browser tab open **chatgpt.com**, **claude.ai**, or **gemini.google.com** - a normal chat window.
-3. In Sheets, select the `ai_input` data and copy (Cmd/Ctrl+C). Paste it into the chat and send: *"Clean this up and make it tidy."*
-4. You want a **flawed** answer. Models usually drop a row silently or change a value. If the first reply looks clean, send "now fill in the missing values" or just run it again until one comes back with a row missing or mangled.
-5. Copy that flawed table, paste it into a **new tab** in your practice sheet, name it `ai_output`.
-6. Write down for yourself: `ai_input` has 12 rows; `ai_output` has how many; which `source_row_id` is gone. The slide art says "12 in, 11 out, id 7" - if your real result is different, say your real numbers in class; the slide is just illustrative.
-
-**SHOW**: this slide (12 in, 11 out; the missing source_row_id). Leave it up.
-
-**DO** - switch to the Sheet:
-
-1. Open the `ai_input` tab and your `ai_output` tab side by side (or flip between them)
-2. `ai_input` has 12 rows, `source_row_id` 1-12; `ai_output` has fewer
-3. Learners compare the `source_row_id` column in each and post the missing id in the chat (~4 min) - the row the model silently dropped
-
-**THEN**
-
-- Ask: how would you have caught this **without** the id column? (count rows before and after; compare values to the raw data you kept)
-- Optional, if you're comfortable: paste `ai_input` into the chat window again live so they see the output change run to run
-- Reiterate: AI moves your work to specifying the change and verifying the result; it still doesn't count reliably
-- → slide 21
-
-> *slide footnote:* the `source_row_id` is a **surrogate key**; matching input to output on it is a **join** and the check is **reconciliation**. Without a key you'd need **fuzzy matching** / **record linkage**
-
----
-
-## 21. What the field calls this
+## 20. What the field calls this
 <sub>You now have the words</sub>
 
-**11:38–11:40 · what the field calls this**
+**11:20–11:25 · what the field calls this**
 
 - Don't read the whole slide
 - Point at 3–4 they'll hit soonest: ISO 8601; wide vs long; data validation
 - It's also on the notes page
-- → slide 22
+- → slide 21
 
 ---
 
-## 22. Recap
+## 21. Recap
 
-**11:40–11:50 · recap**
+**11:25–11:35 · recap**
 
 - The left column is the lesson's keypoints, verbatim
 - Then the feedback link (in the Etherpad)
-- 10-minute buffer after this: questions, or an early finish
+- Buffer 11:35–12:00: questions, or an early finish
 
 ---

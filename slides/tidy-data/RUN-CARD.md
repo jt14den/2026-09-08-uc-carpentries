@@ -9,10 +9,9 @@ One page. Keep this where you can see it while you drive the Sheet. The full per
 ## Pre-flight - do these before you teach
 
 - [ ] Practice sheet sharing = **Anyone with the link → Viewer**
-- [ ] Tabs present: `2016_messy` `2017_messy` `dates` `checkpoint_clean` `checkpoint_combined` `ai_input` `Notes`
+- [ ] Tabs present: `2016_messy` `2017_messy` `dates` `checkpoint_clean` `checkpoint_combined` `Notes`
 - [ ] Open `2016_messy`: confirm RDM training is the **left** table, Open access the **right**; note which row is grey / carries the "cancelled" note, and which row has the 1900 date. Do the same glance at `2017_messy` (`GQ & DF`, `7/8 Feb`, leading-zero counts, trailing blank rows) and `dates` (`len_hours` mixes numbers and "90 min"; two rows read 2017 that should be 2015)
 - [ ] `checkpoint_combined` really is 2016 + 2017 cleaned the same way **plus a `year` column** - it has to match the row-count check you do out loud
-- [ ] **AI-output tab built**: run "clean this and make it tidy" on `ai_input`, paste a version that dropped or mangled a row into its own tab, write down input vs output row counts
 - [ ] **Run the slide-14 CSV round-trip once yourself** - Google Sheets may not behave exactly like the Excel lesson text; adjust your patter to what you actually see
 - [ ] Etherpad populated (paste `files/tidy-data-etherpad.txt`), practice-sheet link pinned at the top
 - [ ] Your Sheet's **Locale** set on purpose (`File ▸ Settings ▸ Locale`) - know what it is
@@ -40,10 +39,10 @@ One page. Keep this where you can see it while you drive the Sheet. The full per
 | 10:40 | 16 | slides (learners in Sheet, ~6 min) | Sort `len_hours` largest→smallest with **"Data has header row"** ticked - text values ("90 min", "1 hour") sort to the top. Colour scale on `num_attended` - two `0` cells pop, those classes were cancelled. Tie back to zeros vs nulls. **→ back to slide 17** |
 | 10:55 | - | - | **Break, 8 min** |
 | 11:03 | 17–18 | slides | Why CSV anyway. Write down what you changed - show your own changelog. |
-| 11:15 | 19 | slides | Downstream / AI. **Data caution first: today's data is fictional; no real patron/student/health/licensed data into an AI service.** |
-| 11:25 | 20 | **Sheet - ~4 min** | Show the pre-built AI-output tab next to `ai_input`. Learners find the missing `source_row_id`. Ask: "how would you catch this without the id column?" (row counts; compare to the raw). **→ back to slide 21** |
-| 11:38 | 21–22 | slides | Vocab - point at 3–4, don't read the slide. Recap = the lesson's keypoints. Feedback link in the Etherpad. |
-| 11:50 | - | - | Buffer: questions, or an early finish. |
+| 11:15 | 19 | slides | Downstream / AI as a consumer. **Data caution: today's data is fictional; no real patron/student/health/licensed data into an AI service.** |
+| 11:20 | 20 | slides | Vocab - point at 3–4, don't read the slide. |
+| 11:25 | 21 | slides | Recap = the lesson's keypoints. Feedback link in the Etherpad. |
+| 11:35 | - | - | Buffer: questions, or an early finish. |
 
 ---
 
@@ -55,5 +54,5 @@ Say: **"Grab `checkpoint_clean` and follow along from there,"** and move on. The
 
 - The lead helper runs the chat. You watch the Sheet and talk. That's it.
 - It's fine to say "let me take 10 seconds" for water. Silence while people work is normal, not dead air.
-- Don't ad-lib new material. The deck is the scope. If you're fading, cut the AI segment (slide 20) - it's the one part beyond the core lesson.
+- Don't ad-lib new material. The deck is the scope.
 - Formative checks beat "any questions?": "type the row count", "put the wrong-year rows in chat", "one thing a program can't read". Every one of those tells you where the room is without you having to read faces.
