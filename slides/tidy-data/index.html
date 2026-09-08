@@ -203,12 +203,46 @@
       <div class="term">these are the lesson's <b>keypoints</b>; consistent names and codes are a <b>controlled vocabulary</b>, which librarians already keep</div>
     </div>
     <aside class="notes">
-      0:04–0:08. This is the whole lesson on one slide, and it is the lesson's keypoints
-      list. Don't over-explain, it's a preview. Then straight into the first hands-on.
+      0:07–0:09. This is the whole lesson on one slide, and it is the lesson's keypoints
+      list. Don't over-explain, it's a preview. Next slide: everyone's first real edit.
     </aside>
   </section>
 
-  <!-- 5 · THE ONE RULE -->
+  <!-- 5 · WORK IN A COPY + FIRST EDIT -->
+  <section data-background-color="#ffffff">
+    <div class="content-mid">
+      <div class="toprow"><span class="tag">Concept 2</span> <span class="badge demo">demo</span> <span class="badge exercise">exercise</span></div>
+      <div class="slide-head"><h2>Work in a copy: your first edit</h2></div>
+      <div class="two" style="align-items:start;">
+        <div>
+          <ul class="clean" style="font-size:21px;">
+            <li>The source file is <b>read-only</b>. You never edit what you were given.</li>
+            <li>Work in a <b>named</b> copy - <code>2016_clean</code>, not <code>Copy of Sheet1</code></li>
+            <li>A duplicated tab is a working copy, not a backup - keep the raw tab too</li>
+          </ul>
+          <div class="callout" style="font-size:19px;margin-top:14px;">Never modify the original raw data.</div>
+        </div>
+        <div class="exbox">
+          <h4>Everyone, now</h4>
+          <ol>
+            <li>Right-click the <code>2016_messy</code> tab ▸ <b>Duplicate</b></li>
+            <li>Rename the new tab <code>2016_clean</code></li>
+            <li>Delete the merged title row and the blank spacer rows</li>
+          </ol>
+        </div>
+      </div>
+      <div class="term">raw data as a <b>single source of truth</b>, kept <b>immutable</b>; the lesson's first rule</div>
+    </div>
+    <aside class="notes">
+      0:09–0:14. This completes the warm-up: one real edit before minute 10 (LC Episode 1).
+      SWITCH TO SHEET. Demo the three steps slowly in your copy - right-click 2016_messy,
+      Duplicate, rename 2016_clean, delete the title and spacer rows. Then wait while
+      everyone does the same in their copy; watch the chat for check / x. From here on every
+      edit happens in 2016_clean and 2016_messy is never touched. SWITCH BACK TO SLIDES.
+    </aside>
+  </section>
+
+  <!-- 6 · THE ONE RULE -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <span class="tag">Concept 1</span>
@@ -244,48 +278,28 @@
       <div class="term"><b>tidy data</b> (Wickham). The grid is <b>rows &amp; columns</b> in a database, <b>cases &amp; variables</b> in stats, <b>observations &amp; variables</b> here</div>
     </div>
     <aside class="notes">
-      0:08–0:12. Back on slides. Name the two things they just did: worked in a copy, and
-      started thinking in a rectangular table. Keep this to the one rule.
+      0:14–0:18. Back on slides. Name the two things they just did: worked in a copy, and
+      made the sheet a bit more of a rectangular table. That's the rule. Keep it to the rule.
     </aside>
   </section>
 
-  <!-- 6 · DISCUSSION: what would a program choke on (LC Ep1/Ep2) -->
+  <!-- 7 · DISCUSSION: what would a program choke on (LC Ep1/Ep2) -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <div class="toprow"><span class="tag">Concept 1</span> <span class="badge discuss">discuss</span></div>
       <div class="slide-head"><h2>What would a program choke on?</h2></div>
-      <p class="lead">Open <code>2016_messy</code> in your copy. Look for 60 seconds.</p>
+      <p class="lead">Look at what's left in <code>2016_messy</code>. 60 seconds.</p>
       <p style="font-size:24px;">Drop <b>one thing</b> in the chat that a script could not read as data.</p>
       <p class="zoomcue"><b>On Zoom:</b> everyone types at once. No wrong answers; we're building the list together.</p>
       <div class="term">you're reading a <b>schema</b> - the column structure a tool expects. When it changes between files that's <b>schema drift</b></div>
     </div>
     <aside class="notes">
-      0:12–0:16. Share 2016_messy on screen while they look at their own. A real 60 seconds
-      of quiet, then "type one thing in the chat." Read 4–5 aloud and group them: merged
-      title / two side-by-side tables / packed PGR|PDRA|other column / colour-only cancelled
-      rows / "1.5 hours" text in the Len column / the 1900 date. Land on: a person reads this
-      fine, a program can't. In the lesson this is the group debrief after the cleaning
-      exercise; we do it first to set up the exercise.
-    </aside>
-  </section>
-
-  <!-- 7 · WORK IN A COPY -->
-  <section data-background-color="#ffffff">
-    <div class="content-mid">
-      <span class="tag">Concept 2</span>
-      <div class="slide-head"><h2>Work in a copy</h2></div>
-      <ul class="clean" style="font-size:23px;max-width:24em;">
-        <li>The source file is <b>read-only</b>. You never edit what you were given.</li>
-        <li>Work in a <b>named</b> copy - <code>2016_clean</code>, not <code>Copy of Sheet1</code></li>
-        <li>Duplicating a <em>tab</em> keeps both in one file: a working copy, not a backup</li>
-      </ul>
-      <div class="callout">Create a new file for the cleaned data. Never modify the original raw data.</div>
-      <div class="term">raw data as a <b>single source of truth</b>, kept <b>immutable</b>; the lesson's first rule</div>
-    </div>
-    <aside class="notes">
-      Quick, ~2 min. They already made a copy in the warm-up. Demo the move you'll use a
-      lot: right-click the 2016_messy tab, Duplicate, rename to 2016_clean. All edits happen
-      in 2016_clean. The callout is the lesson's "Important" box, verbatim in spirit.
+      0:18–0:24. Share 2016_messy on screen while they look at their own. A real 60 seconds
+      of quiet, then "type one thing in the chat." Read 4–5 aloud and group them: two
+      side-by-side tables / packed PGR|PDRA|other column / colour-only cancelled rows /
+      "1.5 hours" text in the Len column / the 1900 date. Land on: a person reads this fine,
+      a program can't. In the lesson this is the group debrief after the cleaning exercise;
+      we do it first to set up the exercise.
     </aside>
   </section>
 
@@ -329,8 +343,8 @@
       <div class="term"><b>atomic values</b> / <b>first normal form (1NF)</b>. The Sheets tool is <b>Data ▸ Split text to columns</b> (splitting on a <b>delimiter</b>)</div>
     </div>
     <aside class="notes">
-      ~2 min, slides, then into the exercise. Show the split visually here; do it on screen
-      in the next slide's demo.
+      0:24–0:28, slides, then into the exercise. Show the split visually here; do it on
+      screen in the next slide's demo.
     </aside>
   </section>
 

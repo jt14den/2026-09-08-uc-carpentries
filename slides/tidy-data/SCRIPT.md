@@ -41,43 +41,43 @@ LC Episode 1 opening. Keep it to ~3 min. Read 4–5 chat answers. Common frustra
 ## 4. Habits for data you're creating
 <sub>Before we start</sub>
 
-0:04–0:08. This is the whole lesson on one slide, and it is the lesson's keypoints list. Don't over-explain, it's a preview. Then straight into the first hands-on.
+0:07–0:09. This is the whole lesson on one slide, and it is the lesson's keypoints list. Don't over-explain, it's a preview. Next slide: everyone's first real edit.
 
 > *slide footnote:* these are the lesson's keypoints; consistent names and codes are a controlled vocabulary, which librarians already keep
 
 ---
 
-## 5. The one rule
+## 5. Work in a copy: your first edit
+<sub>Concept 2  ·  **DEMO** **EXERCISE**</sub>
+
+0:09–0:14. This completes the warm-up: one real edit before minute 10 (LC Episode 1). SWITCH TO SHEET. Demo the three steps slowly in your copy - right-click 2016_messy, Duplicate, rename 2016_clean, delete the title and spacer rows. Then wait while everyone does the same in their copy; watch the chat for check / x. From here on every edit happens in 2016_clean and 2016_messy is never touched. SWITCH BACK TO SLIDES.
+
+> *slide footnote:* raw data as a single source of truth, kept immutable; the lesson's first rule
+
+---
+
+## 6. The one rule
 <sub>Concept 1</sub>
 
-0:08–0:12. Back on slides. Name the two things they just did: worked in a copy, and started thinking in a rectangular table. Keep this to the one rule.
+0:14–0:18. Back on slides. Name the two things they just did: worked in a copy, and made the sheet a bit more of a rectangular table. That's the rule. Keep it to the rule.
 
 > *slide footnote:* tidy data (Wickham). The grid is rows & columns in a database, cases & variables in stats, observations & variables here
 
 ---
 
-## 6. What would a program choke on?
+## 7. What would a program choke on?
 <sub>Concept 1  ·  **DISCUSS**</sub>
 
-0:12–0:16. Share 2016_messy on screen while they look at their own. A real 60 seconds of quiet, then "type one thing in the chat." Read 4–5 aloud and group them: merged title / two side-by-side tables / packed PGR|PDRA|other column / colour-only cancelled rows / "1.5 hours" text in the Len column / the 1900 date. Land on: a person reads this fine, a program can't. In the lesson this is the group debrief after the cleaning exercise; we do it first to set up the exercise.
+0:18–0:24. Share 2016_messy on screen while they look at their own. A real 60 seconds of quiet, then "type one thing in the chat." Read 4–5 aloud and group them: two side-by-side tables / packed PGR|PDRA|other column / colour-only cancelled rows / "1.5 hours" text in the Len column / the 1900 date. Land on: a person reads this fine, a program can't. In the lesson this is the group debrief after the cleaning exercise; we do it first to set up the exercise.
 
 > *slide footnote:* you're reading a schema - the column structure a tool expects. When it changes between files that's schema drift
-
----
-
-## 7. Work in a copy
-<sub>Concept 2</sub>
-
-Quick, ~2 min. They already made a copy in the warm-up. Demo the move you'll use a lot: right-click the 2016_messy tab, Duplicate, rename to 2016_clean. All edits happen in 2016_clean. The callout is the lesson's "Important" box, verbatim in spirit.
-
-> *slide footnote:* raw data as a single source of truth, kept immutable; the lesson's first rule
 
 ---
 
 ## 8. One value per cell
 <sub>Concept 1 · in practice</sub>
 
-~2 min, slides, then into the exercise. Show the split visually here; do it on screen in the next slide's demo.
+0:24–0:28, slides, then into the exercise. Show the split visually here; do it on screen in the next slide's demo.
 
 > *slide footnote:* atomic values / first normal form (1NF). The Sheets tool is Data ▸ Split text to columns (splitting on a delimiter)
 
