@@ -1,6 +1,6 @@
 # Tidy Data — instructor run card
 
-One page. Keep the slides/speaker-notes on a second screen or a tablet; keep this where you can see it while you drive the Sheet.
+One page. Keep this where you can see it while you drive the Sheet. The full per-slide script is at **`script.html`** (`/slides/tidy-data/script.html`) — open it on a second screen or tablet; the deck's built-in presenter view (press `S`) is unreliable from a CDN, so use `script.html` instead.
 
 **Zoom:** share **one window** (the Sheet), not the whole screen. Zoom the Sheet to ~150%. Lead helper drives the chat so you can watch the Sheet. Say what you are about to click *before* you click it.
 

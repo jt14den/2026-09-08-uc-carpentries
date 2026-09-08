@@ -19,7 +19,7 @@ for anyone who wants to see how the session is put together or teach it themselv
 - Practice data, original xlsx: [training_attendance_practice.xlsx]({{ '/files/training_attendance_practice.xlsx' | relative_url }})
 - Slides: <{{ '/slides/tidy-data/' | relative_url }}> (press `S` for the instructor script)
 - Instructor run card, one page: [RUN-CARD.md]({{ '/slides/tidy-data/RUN-CARD.md' | relative_url }})
-- Full slide-by-slide script: [SCRIPT.md]({{ '/slides/tidy-data/SCRIPT.md' | relative_url }})
+- Full slide-by-slide script, rendered: [script.html]({{ '/slides/tidy-data/script.html' | relative_url }}) (plain-markdown source: [SCRIPT.md]({{ '/slides/tidy-data/SCRIPT.md' | relative_url }}))
 - Etherpad starter to paste into the live pad: [tidy-data-etherpad.txt]({{ '/files/tidy-data-etherpad.txt' | relative_url }})
 
 ---

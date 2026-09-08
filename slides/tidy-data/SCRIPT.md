@@ -1,17 +1,16 @@
 # Tidy Data - full instructor script
 
-Every slide's speaker notes, in order - the same text reveal shows in presenter view (press **S** in the deck). Open the deck alongside this.
+**Rendered version (bullets, badges, nav): [script.html](script.html)** - `/slides/tidy-data/script.html`. This `.md` is the plain-text source.
 
-Transition slides run **SHOW** (what's on the slide) then **DO** (drive the Sheet / learners work) then **THEN** (debrief, what to reiterate, advance).
-
-- Deck: <https://www.tim-dennis.com/2026-09-08-uc-carpentries/slides/tidy-data/>
-- One-page run card: `RUN-CARD.md`
+Every slide's speaker notes, in order. Open the deck alongside this on a second screen.
 
 Legend: **DEMO** = you drive the Sheet  ·  **EXERCISE** = learners work in their copy  ·  **DISCUSS** = chat / pad prompt
 
 ---
 
 ## 1. Tidy Data
+
+**Open `script.html` (link, bottom-right of this slide) on a second screen for the full per-slide script. Reveal's own presenter view (S) is unreliable from a CDN.**
 
 **Holding slide - learners arriving (0:00)**
 
