@@ -5,8 +5,8 @@ venue: "UC Carpentries (Online)"        # brief name of the institution that hos
 address: "online"      # full street address of workshop (e.g., "Room A, 123 Forth Street, Blimingen, Euphoria"), videoconferencing URL, or 'online'
 country: "us"      # lowercase two-letter ISO country code such as "fr" (see https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes) for the institution that hosts the workshop
 language: "en"     # lowercase two-letter ISO language code such as "fr" (see https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) for the workshop
-latitude:      # decimal latitude of workshop venue - this should be a number greater than or equal to -90, and less than or equal to 90 (use https://www.latlong.net/)
-longitude:     # decimal longitude of the workshop venue - this should be a number greater than or equal to -180, and less than or equal to 180 (use https://www.latlong.net)
+latitude: 34.0754       # decimal latitude of workshop venue (online: organising institution, UCLA Library)
+longitude: -118.4417    # decimal longitude of workshop venue (online: organising institution, UCLA Library)
 humandate: "Sep 8-23, 2026"    # human-readable dates for the workshop (e.g., "Feb 17-18, 2020")
 humantime: "9:00 am - 12:00 pm PT"    # human-readable times for the workshop e.g., "9:00 am - 4:30 pm CEST (7:00 am - 2:30 pm UTC)"
 startdate: 2026-09-08      # machine-readable start date for the workshop in YYYY-MM-DD format like 2015-01-01
@@ -17,7 +17,6 @@ email: ["tdennis@library.ucla.edu"]    # boxed, comma-separated list of contact 
 # Optional variables
 collaborative_notes:  "https://pad.carpentries.org/2026-fall-uc"# URL for the workshop collaborative notes, e.g. an Etherpad or Google Docs document (e.g., https://pad.carpentries.org/2015-01-01-euphoria)
 eventbrite:           # alphanumeric key for Eventbrite registration, e.g., "1234567890AB" (if Eventbrite is being used)
-what3words:           # what3words (https://what3words.com) address of the workshop venue, without leading slashes e.g. "globe.lessening.computers"
 # DON'T CHANGE THIS
 layout: workshop
 ---
