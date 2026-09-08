@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Unix Shell - instructor script</title>
+<style>
+  :root { --blue:#2774AE; --deep:#1D4E79; --gold:#FFD100; --ink:#1A202C; --panel:#F5F7FA; --line:#E2E8F0; --muted:#647082; --term:#1A202C; }
+  * { box-sizing:border-box; }
+  body { font:16px/1.5 "Lato","Helvetica Neue",Arial,sans-serif; color:var(--ink); margin:0; background:#fff; }
+  .wrap { max-width:860px; margin:0 auto; padding:28px 20px 80px; }
+  h1 { font-size:28px; color:var(--deep); margin:0 0 4px; }
+  .sub { color:var(--muted); margin:0 0 18px; } .sub a { color:var(--blue); }
+  .topnav { font-size:13px; color:var(--muted); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:8px 0; margin-bottom:24px; line-height:2; }
+  .topnav a { color:var(--blue); text-decoration:none; padding:0 2px; }
+  .part { margin:34px 0 0; padding:12px 16px; background:var(--deep); color:#fff; border-radius:7px; font-weight:900; font-size:15px; letter-spacing:.04em; }
+  .part span { font-weight:400; opacity:.85; }
+  article { border-top:2px solid var(--line); padding:20px 0 6px; }
+  article header { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:8px; }
+  header .n { background:var(--deep); color:#fff; font-weight:900; font-size:13px; width:26px; height:26px; border-radius:5px; display:flex; align-items:center; justify-content:center; flex:none; }
+  header h2 { font-size:20px; color:var(--blue); margin:0; }
+  header .tag { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#8895a7; font-weight:700; }
+  .b { font-size:11px; font-weight:900; letter-spacing:.06em; text-transform:uppercase; padding:2px 7px; border-radius:4px; }
+  .b.demo { background:var(--blue); color:#fff; } .b.exercise { background:var(--gold); color:var(--ink); } .b.discuss { background:#fff; color:#2F855A; border:1.5px solid #2F855A; }
+  .note p { margin:.5em 0; } .note p b { color:var(--deep); }
+  .note ul, .note ol { margin:.4em 0 .9em; padding-left:1.5em; } .note li { margin:.28em 0; }
+  .note code { background:var(--panel); padding:1px 5px; border-radius:4px; font-size:.92em; font-family:ui-monospace,Menlo,Consolas,monospace; }
+  .note pre { background:var(--term); color:#E9EDF2; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:13.5px; line-height:1.55; padding:12px 16px; border-radius:7px; overflow-x:auto; margin:.4em 0 1em; }
+  .note pre .cmt { color:#8fb7d6; }
+  .say { border-left:3px solid var(--blue); padding-left:12px; }
+  .type-label { font-size:11px; font-weight:900; letter-spacing:.08em; text-transform:uppercase; color:var(--deep); margin:.8em 0 -.4em; }
+  .term { font-size:13px; color:var(--muted); border-left:3px solid var(--gold); padding:4px 0 4px 12px; margin:6px 0 0; }
+  .term b { color:var(--deep); } .term::before { content:"In the data world  \00B7  "; font-weight:900; color:#97a1af; }
+  @media print { .topnav { display:none; } article { break-inside:avoid; } }
+</style></head><body>
+<div class="wrap">
+<h1>The Unix Shell - instructor script</h1>
+<p class="sub">Software Carpentry, The Unix Shell - <b>Episodes 1-6</b> (Episode 7, grep/find, dropped). Every slide's speaker notes, rendered. Clock time (PT), 9:00 am - 12:00 pm. Open the <a href="./">deck</a> alongside on a second screen. Each slide reads <b>SAY</b> then <b>TYPE</b> then <b>THEN</b>. Two instructors: Part 1 (slides 1-16, Ep 1-3), Part 2 (slides 17-28, Ep 4-6), handoff after the wildcards exercise. Pace is brisk - trim exercises before demos; loops/scripts are the compressible end.</p>
+<div class="topnav"><a href="#s1">1</a> · <a href="#s2">2</a> · <a href="#s3">3</a> · <a href="#s4">4</a> · <a href="#s5">5</a> · <a href="#s6">6</a> · <a href="#s7">7</a> · <a href="#s8">8</a> · <a href="#s9">9</a> · <a href="#s10">10</a> · <a href="#s11">11</a> · <a href="#s12">12</a> · <a href="#s13">13</a> · <a href="#s14">14</a> · <a href="#s15">15</a> · <a href="#s16">16</a> · <a href="#s17">17</a> · <a href="#s18">18</a> · <a href="#s19">19</a> · <a href="#s20">20</a> · <a href="#s21">21</a> · <a href="#s22">22</a> · <a href="#s23">23</a> · <a href="#s24">24</a> · <a href="#s25">25</a> · <a href="#s26">26</a> · <a href="#s27">27</a> · <a href="#s28">28</a></div>
+
+<div class="part">PART 1 — Instructor 1 — Episodes 1-3 (introducing the shell, navigating, creating/moving/deleting files) — <span>~9:00-10:38, one break after slide 9</span></div>
+
+<article id="s1">
+  <header><span class="n">1</span><h2>The Unix Shell</h2></header>
+  <div class="note">
+    <p><b>Open <code>script.html</code> on a second screen. Reveal's own presenter view (S) is unreliable from a CDN.</b></p>
+    <p><b>Holding slide - learners arriving (9:00)</b></p>
+    <ul>
+      <li>Greet people by name</li>
+      <li>Ask them to: (1) add their name to the Etherpad; (2) open their shell - Terminal on Mac, Git Bash on Windows; (3) confirm there is a <code>shell-lesson-data</code> folder on their Desktop</li>
+    </ul>
+    <p><b>The split:</b> Part 1 = slides 1-16 (Episodes 1-3), Instructor 1. Part 2 = slides 17-28 (Episodes 4-6), Instructor 2, from slide 17. Suggested: Tim Part 1, Frew Part 2. Pace is brisk - official time for Ep 1-6 is ~225 min vs ~160 min teaching time. If Part 2 is behind at the second break: cut slide 24, do <code>"$@"</code> only on slide 26.</p>
+    <p><b>Zoom model, all session:</b> instructor screen-shares one window (terminal, ~150%, large font, short prompt <code>PS1='$ '</code>, colour off); learners work in their own terminal; done/stuck = a Zoom reaction or a chat line; questions go in the pad.</p>
+  </div>
+</article>
+
+<article id="s2">
+  <header><span class="n">2</span><h2>Open your shell</h2><span class="tag">Before we start</span><span class="b demo">demo</span></header>
+  <div class="note">
+    <p><b>9:00-9:08 · open your shell · DEMO</b></p>
+    <div class="say"><p><b>SAY</b></p>
+    <ul>
+      <li>The <code>$</code> is the prompt. Yours might have your username and machine name in front - fine, ignore it, focus on the <code>$</code>.</li>
+      <li>We never type the <code>$</code>. Press Enter to run a command.</li>
+      <li>The loop: you type a command, the shell reads it, evaluates (runs) it, prints the result, waits. Read-evaluate-print loop.</li>
+      <li>Blank line back = it worked. <code>command not found</code> = typo or not installed.</li>
+    </ul></div>
+    <p class="type-label">TYPE (share the terminal, do this live)</p>
+    <pre>whoami
+ls
+cd ~/Desktop/shell-lesson-data
+ls</pre>
+    <p><b>THEN</b> - wait for "I see exercise-data" in chat; helpers DM the stuck. &rarr; slide 3</p>
+  </div>
+  <div class="term">the shell runs a <b>read-evaluate-print loop (REPL)</b>; the <code>$</code> is the <b>prompt</b> - "ready for input"</div>
+</article>
+
+<article id="s3">
+  <header><span class="n">3</span><h2>Why type when you can click?</h2><span class="tag">Concept 1</span><span class="b discuss">discuss</span></header>
+  <div class="note">
+    <p><b>9:08-9:14 · why the shell · DISCUSS · SWC Episode 1</b></p>
+    <div class="say"><p><b>SAY</b></p>
+    <ul>
+      <li>Give your own recent example - a real thing you did last week or month with the shell.</li>
+      <li>Nelle Nemo, marine biologist, is the story that runs through this lesson. 1520 files, one program, by end of month. We meet her again in every episode - navigate, create, check length, chain commands, loop, script.</li>
+    </ul></div>
+    <p><b>DO</b> - read 3-4 chat answers aloud. Common: batch renaming, find-and-replace across many docs, "which of these 200 files mentions X".</p>
+    <p><b>THEN</b> - keep to ~5 min, the pace is tight today. &rarr; slide 4</p>
+  </div>
+  <div class="term">Unix's design rule: <b>small pieces, loosely joined</b> - many tiny tools that each do one job well and combine</div>
+</article>
+
+<article id="s4">
+  <header><span class="n">4</span><h2>Where am I? What's here?</h2><span class="tag">Navigating</span><span class="b demo">demo</span></header>
+  <div class="note">
+    <p><b>9:14-9:20 · pwd / ls · DEMO · SWC Episode 2</b></p>
+    <div class="say"><p><b>SAY</b></p>
+    <ul>
+      <li>You are always <em>somewhere</em>. <code>pwd</code> answers "where".</li>
+      <li>Draw the tree if it helps: <code>/</code> at the top, <code>/Users</code> inside it, <code>/Users/you</code> inside that.</li>
+      <li><code>ls</code> with a name after it lists <em>that</em> place without moving you.</li>
+    </ul></div>
+    <p class="type-label">TYPE</p>
+    <pre>pwd
+ls
+ls exercise-data
+ls exercise-data/alkanes</pre>
+    <p><b>THEN</b> &rarr; slide 5</p>
+  </div>
+  <div class="term">the filesystem is a <b>tree</b>: the <b>root</b> <code>/</code> at the top; your <b>home directory</b> is where a new shell starts</div>
+</article>
+
+<article id="s5">
+  <header><span class="n">5</span><h2>Options change what a command does</h2><span class="tag">Navigating</span><span class="b demo">demo</span></header>
+  <div class="note">
+    <p><b>9:20-9:27 · ls options · DEMO · SWC Episode 2</b></p>
+    <div class="say"><p><b>SAY</b></p>
+    <ul>
+      <li>Capital vs lowercase matters: <code>ls -s</code> (show sizes) is not <code>ls -S</code> (sort by size).</li>
+      <li>Miss the space - <code>ls-F</code> - and the shell looks for a command called <code>ls-F</code> and fails.</li>
+      <li><code>-a</code> reveals <code>.</code> (here) and <code>..</code> (one level up).</li>
+    </ul></div>
+    <p class="type-label">TYPE</p>
+    <pre>ls -F
+ls -l
+ls -lh
+ls -F -a
+ls -Fa</pre>
+    <p><b>Quick check (~1 min):</b> chat - "what does <code>ls -lh</code> add over <code>ls -l</code>?" (human-readable sizes)</p>
+    <p><b>THEN</b> &rarr; slide 6</p>
+  </div>
+  <div class="term">an <code>-F</code> is an <b>option</b> (also <b>flag</b> / <b>switch</b>); a name to act on is an <b>argument</b></div>
+</article>
+
+<article id="s6">
+  <header><span class="n">6</span><h2>How do I find the options?</h2><span class="tag">Navigating</span><span class="b demo">demo</span></header>
+  <div class="note">
+    <p><b>9:27-9:32 · getting help · DEMO · SWC Episode 2</b></p>
+    <div class="say"><p><b>SAY</b></p>
+    <ul>
+      <li>Nobody memorises these. You look them up.</li>
+      <li>Get into <code>man ls</code>, scroll a little, then <b>press q</b> - say "q gets you out" clearly.</li>
+      <li>Git Bash / Windows: <code>man</code> often missing, use <code>ls --help</code>. For built-ins like <code>cd</code>: <code>help cd</code>.</li>
+    </ul></div>
+    <p class="type-label">TYPE</p>
+    <pre>ls --help          <span class="cmt"># or: man ls   (q to quit)</span>
+ls -j              <span class="cmt"># error for an unknown option</span></pre>
+    <p><b>THEN</b> &rarr; slide 7</p>
+  </div>
+  <div class="term">a <b>manual page</b> (man page) is the reference doc shipped with the tool</div>
+</article>
+
+<article id="s7">
+  <header><span class="n">7</span><h2>Moving around: cd</h2><span class="tag">Navigating</span><span class="b demo">demo</span></header>
+  <div class="note">
+    <p><b>9:32-9:38 · cd · DEMO · SWC Episode 2</b></p>
+    <div class="say"><p><b>SAY</b></p>
+    <ul>
+      <li>No output after <code>cd</code> = success. The shell only speaks when something's wrong.</li>
+      <li>Try <code>cd shell-lesson-data</code> from inside <code>exercise-data</code> - it errors, because <code>cd</code> only sees children. Read the error aloud.</li>
+      <li><code>cd ..</code> goes up. <code>cd</code> with nothing goes home - your escape hatch.</li>
+      <li>Run <code>pwd</code> after each move.</li>
+    </ul></div>
+    <p class="type-label">TYPE</p>
+    <pre>cd exercise-data
+pwd
+cd creatures
+cd ..
+cd ../..
+pwd
+cd
+cd Desktop/shell-lesson-data</pre>
+    <p><b>THEN</b> - everyone back in <code>shell-lesson-data</code>. &rarr; slide 8</p>
+  </div>
+  <div class="term"><code>.</code> = the current directory, <code>..</code> = its parent</div>
+</article>
+
+<article id="s8">
+  <header><span class="n">8</span><h2>Two ways to name a place</h2><span class="tag">Navigating</span><span class="b demo">demo</span></header>
+  <div class="note">
+    <p><b>9:38-9:44 · paths · DEMO · SWC Episode 2</b></p>
+    <div class="say"><p><b>SAY</b></p>
+    <ul>
+      <li>Relative paths are shorter but depend on where you are. Absolute paths are longer but unambiguous.</li>
+      <li><code>pwd</code> gives you an absolute path you can copy.</li>
+      <li><code>~</code> saves typing your home path. <code>cd -</code> is the "undo" for <code>cd</code>.</li>
+    </ul></div>
+    <p class="type-label">TYPE</p>
+    <pre>cd exercise-data/creatures
+pwd
+cd ~/Desktop/shell-lesson-data
+cd -
+cd -</pre>
+    <p><b>THEN</b> &rarr; slide 9</p>
+  </div>
+  <div class="term">a path is an address; <b>absolute</b> from <code>/</code>, <b>relative</b> from where you stand</div>
+</article>
+
+<article id="s9">
+  <header><span class="n">9</span><h2>Tab completion, and a walk around</h2><span class="tag">Navigating</span><span class="b exercise">exercise</span></header>
+  <div class="note">
+    <p><b>9:44-9:51 · navigation exercise · EXERCISE · SWC Episode 2</b></p>
+    <p><b>Task (~7 min):</b></p>
+    <ul>
+      <li>Type <code>ls nor</code> then press Tab - the shell finishes <code>north-pacific-gyre/</code></li>
+      <li>Type <code>ls north-pacific-gyre/g</code> + Tab Tab - see the choices</li>
+      <li>From <code>/Users/you/data</code>, which reach home? <code>cd .</code> / <code>cd ~</code> / <code>cd ../..</code> / <code>cd</code> / <code>cd ..</code></li>
+      <li>Reach <code>exercise-data/alkanes</code> with one <b>relative</b> path, then leave and come back with one <b>absolute</b> path</li>
+    </ul>
+    <p><b>Answers:</b> <code>cd ~</code>, <code>cd</code>, and <code>cd ..</code> reach <code>/Users/you</code>. <code>cd .</code> stays put, <code>cd ../..</code> goes to <code>/Users</code>. Relative: <code>cd exercise-data/alkanes</code>. Absolute back: <code>cd ~/Desktop/shell-lesson-data/exercise-data/alkanes</code>.</p>
+    <p><b>THEN</b> - reconvene, everyone in <code>shell-lesson-data</code>, then <b>BREAK, 8 min</b> (back ~10:00). &rarr; slide 10</p>
+  </div>
+  <div class="term">if Tab does nothing, the name isn't there or you're not where you think</div>
+</article>
+
+<article id="s10">
+  <header><span class="n">10</span><h2>The shape of a command</h2><span class="tag">Navigating · recap</span></header>
+  <div class="note">
+    <p><b>10:00-10:03 · command syntax · SWC Episode 2 close</b></p>
+    <div class="say"><p><b>SAY</b></p>
+    <ul>
+      <li>Quick recap coming back from the break. Name the parts (command / option / argument) once.</li>
+      <li>Re-anchor: "run <code>pwd</code>, you should be in <code>shell-lesson-data</code>."</li>
+      <li>Then straight into creating files.</li>
+    </ul></div>
+    <p><b>THEN</b> &rarr; slide 11</p>
+  </div>
+  <div class="term">options and arguments together are <b>parameters</b>; options that take no value are <b>flags</b> or <b>switches</b></div>
+</article>
+
+<article id="s11">
+  <header><span class="n">11</span><h2>Create a file with nano</h2><span class="tag">Concept 2 · files</span><span class="b demo">demo</span></header>
+  <div class="note">
+    <p><b>10:03-10:09 · nano · DEMO · SWC Episode 3</b></p>
+    <div class="say"><p><b>SAY</b></p>
+    <ul>
+      <li>Go to <code>exercise-data/writing</code> first.</li>
+      <li>Type a sentence or two. Then <b>slowly</b>: "Ctrl and O, the letter O, then Enter to confirm the name. Then Ctrl and X to leave."</li>
+      <li>Point at the bottom bar - <code>^O WriteOut</code>, <code>^X Exit</code>. <code>^</code> is Ctrl.</li>
+      <li>Trapped in vim: Esc then <code>:q!</code> then Enter. Or close the tab and reopen.</li>
+      <li>Windows: <code>notepad draft.txt</code> works the same way here.</li>
+    </ul></div>
+    <p class="type-label">TYPE</p>
+    <pre>cd ~/Desktop/shell-lesson-data/exercise-data/writing
+nano draft.txt
+<span class="cmt"># type two lines, Ctrl-O, Enter, Ctrl-X</span>
+ls</pre>
+    <p><b>THEN</b> &rarr; slide 12</p>
+  </div>
+  <div class="term">a <b>plain-text</b> file is just characters - that's what shell tools expect</div>
+</article>
+
+<article id="s12">
+  <header><span class="n">12</span><h2>Make directories: mkdir</h2><span class="tag">Files</span><span class="b demo">demo</span></header>
+  <div class="note">
+    <p><b>10:09-10:15 · mkdir · DEMO · SWC Episode 3</b></p>
+    <div class="say"><p><b>SAY</b></p>
+    <ul>
+      <li>Relative path = made here. Leading slash would put it somewhere absolute.</li>
+      <li><code>-p</code> builds intermediate directories - without it, <code>mkdir a/b/c</code> fails if <code>a/b</code> doesn't exist.</li>
+      <li>Names: try <code>mkdir north pacific gyre</code> then <code>ls</code> - you get <em>three</em> directories.</li>
+    </ul></div>
+    <p class="type-label">TYPE</p>
+    <pre>mkdir thesis
+ls -F
+mkdir -p ../project/data ../project/results
+ls -F ../project</pre>
+    <p><b>THEN</b> &rarr; slide 13</p>
+  </div>
+  <div class="term">consistent, predictable names are what make wildcards and loops work later</div>
+</article>
+
+<article id="s13">
+  <header><span class="n">13</span><h2>Rename and move: mv</h2><span class="tag">Files</span><span class="b demo">demo</span></header>
+  <div class="note">
+    <p><b>10:15-10:21 · mv · DEMO · SWC Episode 3</b></p>
+    <div class="say"><p><b>SAY</b></p>
+    <ul>
+      <li>First argument = what to move, second = where it goes (or what to call it).</li>
+      <li>Move into <code>thesis/</code> with a new name, then move back with <code>mv thesis/quotes.txt .</code> - the <code>.</code> means current directory.</li>
+      <li>Check with <code>ls thesis</code> (empty) and <code>ls quotes.txt</code> (here).</li>
+      <li>Overwrite risk is real - <code>-i</code> for a prompt.</li>
+    </ul></div>
+    <p class="type-label">TYPE</p>
+    <pre>mv draft.txt thesis/quotes.txt
+ls thesis
+mv thesis/quotes.txt .
+ls thesis
+ls quotes.txt</pre>
+    <p><b>THEN</b> &rarr; slide 14</p>
+  </div>
+  <div class="term"><code>.</code> as a target means "here"; <code>mv</code> is one command for both renaming and relocating</div>
+</article>
+
+<article id="s14">
+  <header><span class="n">14</span><h2>Copy: cp</h2><span class="tag">Files</span><span class="b demo">demo</span></header>
+  <div class="note">
+    <p><b>10:21-10:26 · cp · DEMO · SWC Episode 3</b></p>
+    <div class="say"><p><b>SAY</b></p>
+    <ul>
+      <li><code>cp</code> is <code>mv</code> that leaves the original in place.</li>
+      <li>Without <code>-r</code>, copying a directory fails: <code>cp: -r not specified; omitting directory</code>. Show that error, then add <code>-r</code>.</li>
+      <li><code>ls</code> with two arguments lists both.</li>
+    </ul></div>
+    <p class="type-label">TYPE</p>
+    <pre>cp quotes.txt thesis/quotations.txt
+ls quotes.txt thesis/quotations.txt
+cp thesis thesis_backup          <span class="cmt"># show the error</span>
+cp -r thesis thesis_backup
+ls thesis thesis_backup</pre>
+    <p><b>THEN</b> &rarr; slide 15</p>
+  </div>
+  <div class="term">a copy is a working duplicate, not a snapshot in time - versioning is Git, day two</div>
+</article>
+
+<article id="s15">
+  <header><span class="n">15</span><h2>Delete: rm (carefully)</h2><span class="tag">Files</span><span class="b demo">demo</span></header>
+  <div class="note">
+    <p><b>10:26-10:31 · rm · DEMO · SWC Episode 3</b></p>
+    <div class="say"><p><b>SAY</b> - say the danger twice.</p>
+    <ul>
+      <li>There is no recycle bin. <code>rm</code> means gone.</li>
+      <li><code>rm -r</code> on the wrong directory is the classic way people lose a project. <code>ls</code> first, then delete.</li>
+      <li>Some people alias <code>rm</code> to <code>rm -i</code> permanently.</li>
+    </ul></div>
+    <p class="type-label">TYPE</p>
+    <pre>rm quotes.txt
+ls quotes.txt
+rm thesis                <span class="cmt"># error: is a directory</span>
+rm -r thesis thesis_backup ../project</pre>
+    <p><b>THEN</b> - tidy up the practice files. &rarr; slide 16</p>
+  </div>
+  <div class="term">the shell <b>unlinks</b> the file - the disk space is reusable immediately</div>
+</article>
+
+<article id="s16">
+  <header><span class="n">16</span><h2>Wildcards: act on many files at once</h2><span class="tag">Files</span><span class="b demo">demo</span><span class="b exercise">exercise</span></header>
+  <div class="note">
+    <p><b>10:31-10:38 · wildcards · DEMO + EXERCISE · SWC Episode 3</b></p>
+    <div class="say"><p><b>SAY</b></p>
+    <ul>
+      <li>Move to <code>alkanes</code> - six <code>.pdb</code> files.</li>
+      <li>The command never sees the <code>*</code>. The shell turns <code>*.pdb</code> into the file list, then runs <code>ls</code> on that list.</li>
+      <li><code>ls *.pdf</code> (no PDFs) errors - nothing to expand to.</li>
+    </ul></div>
+    <p class="type-label">TYPE</p>
+    <pre>cd ~/Desktop/shell-lesson-data/exercise-data/alkanes
+ls *.pdb
+ls p*.pdb
+ls ???ane.pdb
+ls *.pdf          <span class="cmt"># error</span></pre>
+    <p><b>Exercise (~5 min):</b> In <code>alkanes</code>, which pattern lists <b>only</b> <code>ethane.pdb</code> and <code>methane.pdb</code>? <code>ls *t*ane.pdb</code> / <code>ls *t?ne.*</code> / <code>ls *t??ne.pdb</code> / <code>ls ethane.*</code></p>
+    <p><b>Answer:</b> <code>ls *t??ne.pdb</code> - two characters between <code>t</code> and <code>ne</code>.</p>
+    <p><b>END OF PART 1.</b> Reconvene, everyone in <code>alkanes</code>. Hand to Instructor 2 (~10:38). &rarr; slide 17</p>
+  </div>
+  <div class="term">wildcard expansion is <b>globbing</b>; a pattern that matches nothing is passed through unchanged</div>
+</article>
+
+<div class="part">PART 2 — Instructor 2 — Episodes 4-6 (pipes &amp; filters, loops, shell scripts) — <span>~10:38-12:00, one break after slide 20</span></div>
+
+<article id="s17">
+  <header><span class="n">17</span><h2>Count with wc, save with &gt;</h2><span class="tag">Concept 3 · pipes &amp; filters</span><span class="b demo">demo</span></header>
+  <div class="note">
+    <p><b>10:38-10:46 · wc + redirect · START OF PART 2 · DEMO · SWC Episode 4</b></p>
+    <p><b>Instructor 2: take over here.</b> Re-anchor: "run <code>pwd</code>, you should be in <code>exercise-data/alkanes</code>."</p>
+    <div class="say"><p><b>SAY</b></p>
+    <ul>
+      <li><code>wc</code> = word count: three numbers, lines / words / characters.</li>
+      <li><code>wc -l *.pdb</code> - the shell expands <code>*.pdb</code>, <code>wc</code> counts each, adds a total line.</li>
+      <li><code>&gt;</code> redirects: the screen shows nothing because it went into <code>lengths.txt</code>. <code>cat</code> to see it.</li>
+      <li>Warn: <code>&gt;</code> overwrites with no prompt.</li>
+      <li><code>wc -l</code> with no filename just sits waiting for typed input - Ctrl-C to escape.</li>
+    </ul></div>
+    <p class="type-label">TYPE</p>
+    <pre>wc cubane.pdb
+wc *.pdb
+wc -l *.pdb
+wc -l *.pdb &gt; lengths.txt
+cat lengths.txt</pre>
+    <p><b>THEN</b> &rarr; slide 18</p>
+  </div>
+  <div class="term">redirecting to a file a command is also reading corrupts it - never <code>sort x &gt; x</code></div>
+</article>
+
+<article id="s18">
+  <header><span class="n">18</span><h2>sort, head, tail, &gt;&gt;</h2><span class="tag">Pipes &amp; filters</span><span class="b demo">demo</span></header>
+  <div class="note">
+    <p><b>10:46-10:53 · sort/head/tail · DEMO · SWC Episode 4</b></p>
+    <div class="say"><p><b>SAY</b></p>
+    <ul>
+      <li>Detour: <code>sort ../numbers.txt</code> vs <code>sort -n ../numbers.txt</code> - text sort puts "10" before "2".</li>
+      <li><code>sort -n</code> prints to the screen; the file is unchanged. Redirect to keep it.</li>
+      <li><code>head -n 1 sorted.txt</code> = the shortest file, because we sorted ascending.</li>
+      <li><code>&gt;</code> replaces, <code>&gt;&gt;</code> adds. Run an <code>echo ... &gt;&gt;</code> twice, <code>cat</code> to show it accumulating.</li>
+    </ul></div>
+    <p class="type-label">TYPE</p>
+    <pre>sort -n ../numbers.txt
+sort ../numbers.txt
+sort -n lengths.txt &gt; sorted-lengths.txt
+head -n 1 sorted-lengths.txt
+echo appended &gt;&gt; sorted-lengths.txt
+cat sorted-lengths.txt</pre>
+    <p><b>THEN</b> &rarr; slide 19</p>
+  </div>
+  <div class="term"><code>sort -n</code> reads it as numbers, plain <code>sort</code> reads it as text</div>
+</article>
+
+<article id="s19">
+  <header><span class="n">19</span><h2>The pipe: |</h2><span class="tag">Pipes &amp; filters</span><span class="b demo">demo</span></header>
+  <div class="note">
+    <p><b>10:53-11:00 · the pipe · DEMO · SWC Episode 4</b></p>
+    <div class="say"><p><b>SAY - build it up one stage at a time</b></p>
+    <ul>
+      <li>We just used two temp files to answer "which file is shortest". The pipe removes them.</li>
+      <li><code>sort -n lengths.txt | head -n 1</code> - "sort's output goes straight into head".</li>
+      <li><code>wc -l *.pdb | sort -n</code> - no temp files. Add <code>| head -n 1</code> - the answer in one line.</li>
+      <li>Read it right to left: "head of sort of wc".</li>
+    </ul></div>
+    <p class="type-label">TYPE</p>
+    <pre>sort -n lengths.txt | head -n 1
+wc -l *.pdb | sort -n
+wc -l *.pdb | sort -n | head -n 1</pre>
+    <p><b>THEN</b> &rarr; slide 20</p>
+  </div>
+  <div class="term">tools that read <b>standard input</b> and write <b>standard output</b> snap together - <b>pipes and filters</b></div>
+</article>
+
+<article id="s20">
+  <header><span class="n">20</span><h2>Build a pipeline</h2><span class="tag">Pipes &amp; filters</span><span class="b exercise">exercise</span></header>
+  <div class="note">
+    <p><b>11:00-11:08 · pipeline exercise · EXERCISE · SWC Episode 4</b></p>
+    <p><b>Task (~8 min):</b></p>
+    <ul>
+      <li>Which finds the <b>3</b> files with the fewest lines? <code>wc -l * | sort -n | head -n 3</code> / <code>wc -l * | head -n 3 | sort -n</code></li>
+      <li>In <code>animal-counts</code>: <code>cut -d , -f 2 animals.csv | sort | uniq</code> - what does each stage do? Then add <code>| wc -l</code>.</li>
+    </ul>
+    <p><b>Answers:</b></p>
+    <ul>
+      <li>Fewest 3: <code>wc -l * | sort -n | head -n 3</code>. <code>head</code> before <code>sort</code> grabs the wrong 3.</li>
+      <li><code>cut -d , -f 2</code> = animal column; <code>sort</code> groups identical names; <code>uniq</code> collapses runs. One line per distinct animal.</li>
+      <li><code>| wc -l</code> = count of distinct animals (5: deer, rabbit, raccoon, fox, bear).</li>
+    </ul>
+    <p><b>Nelle (tell fast, ~1 min):</b> she ran <code>wc -l *.txt | sort -n | head -n 5</code> on 17 output files, one was 240 lines not 300 - machine left on over the weekend. <code>tail -n 5</code> caught a <code>Z</code> in a filename (her lab's "missing info" code).</p>
+    <p><b>THEN</b> - reconvene, then <b>BREAK, 8 min</b> (back ~11:16). &rarr; slide 21</p>
+  </div>
+  <div class="term"><code>cut -d , -f 2</code> pulls column 2; <code>uniq</code> collapses <em>adjacent</em> duplicates, so <code>sort</code> comes first</div>
+</article>
+
+<article id="s21">
+  <header><span class="n">21</span><h2>Loops: do it to the whole list</h2><span class="tag">Concept 4 · automation</span></header>
+  <div class="note">
+    <p><b>11:16-11:22 · the loop idea · SWC Episode 5</b></p>
+    <div class="say"><p><b>SAY</b></p>
+    <ul>
+      <li>Read the form aloud slowly: "for each thing in this list: do the following, using that thing."</li>
+      <li>The <code>$</code> in front of the variable means "give me its value" - same <code>$</code> idea as the prompt, different job.</li>
+      <li>Indentation is for humans; the shell doesn't need it.</li>
+    </ul></div>
+    <pre>for thing in list_of_things
+do
+    operation_using $thing
+done</pre>
+    <p><b>THEN</b> &rarr; slide 22, a real one</p>
+  </div>
+  <div class="term">this is a <b>for loop</b>; a variable walking a list is the same shape in every programming language</div>
+</article>
+
+<article id="s22">
+  <header><span class="n">22</span><h2>A real loop</h2><span class="tag">Automation</span><span class="b demo">demo</span></header>
+  <div class="note">
+    <p><b>11:22-11:30 · a real loop · DEMO · SWC Episode 5</b></p>
+    <div class="say"><p><b>SAY - narrate one full iteration</b></p>
+    <ul>
+      <li>Type it line by line. Point at the prompt flipping to <code>&gt;</code>.</li>
+      <li>"Pass one: filename is basilisk.dat. Echo prints it. head -n 2 gives the first two lines, tail -n 1 keeps the second - the classification." Then walk minotaur, unicorn fast.</li>
+      <li>Could also use <code>*.dat</code> instead of listing the three names - show that if time.</li>
+    </ul></div>
+    <p class="type-label">TYPE</p>
+    <pre>cd ~/Desktop/shell-lesson-data/exercise-data/creatures
+for filename in basilisk.dat minotaur.dat unicorn.dat
+do
+    echo $filename
+    head -n 2 $filename | tail -n 1
+done</pre>
+    <p><b>THEN</b> &rarr; slide 23</p>
+  </div>
+  <div class="term">each pass is an <b>iteration</b>; the classification is line 2 of every file, so <code>head -n 2 | tail -n 1</code> pulls it out</div>
+</article>
+
+<article id="s23">
+  <header><span class="n">23</span><h2>Check before you run</h2><span class="tag">Automation</span><span class="b demo">demo</span></header>
+  <div class="note">
+    <p><b>11:30-11:37 · dry run + backup loop · DEMO · SWC Episode 5</b></p>
+    <div class="say"><p><b>SAY</b></p>
+    <ul>
+      <li><code>cp *.dat original-*.dat</code> does NOT work - the shell expands both sides and <code>cp</code> gets confused. A loop is the fix.</li>
+      <li>Prefix with <code>echo</code>: the loop prints the three <code>cp</code> commands it <em>would</em> run. Read them, check they're right.</li>
+      <li>Drop the <code>echo</code>, run it, <code>ls</code> - the three <code>original-</code> files are there.</li>
+      <li><code>f</code> vs <code>filename</code>: the shell doesn't care, but a human reader does - name it for what it holds.</li>
+    </ul></div>
+    <p class="type-label">TYPE</p>
+    <pre>for f in *.dat
+do
+    echo cp $f original-$f
+done
+for f in *.dat
+do
+    cp $f original-$f
+done
+ls</pre>
+    <p><b>THEN</b> &rarr; slide 24</p>
+  </div>
+  <div class="term">a <b>dry run</b> - print what would happen before doing it - is a habit worth keeping for anything destructive</div>
+</article>
+
+<article id="s24">
+  <header><span class="n">24</span><h2>Trace the loop</h2><span class="tag">Automation</span><span class="b exercise">exercise</span></header>
+  <div class="note">
+    <p><b>11:37-11:43 · loop exercise · EXERCISE · SWC Episode 5</b></p>
+    <p><em>If Part 2 is behind: skip this, go straight to slide 25.</em></p>
+    <p><b>Task (~6 min):</b> In <code>alkanes</code>, what does each print, and why are they different?</p>
+    <pre>for f in *.pdb
+do ls *.pdb
+done
+
+for f in *.pdb
+do ls $f
+done</pre>
+    <p><b>Answer:</b> the first prints the full <code>.pdb</code> list six times (it re-runs <code>ls *.pdb</code> every pass, ignoring <code>$f</code>). The second prints one filename per pass (it uses <code>$f</code>). The point: the loop variable is what carries the current item into the body.</p>
+    <p><b>Also mention:</b> up-arrow to recall the loop, <code>history</code> to see recent commands, <code>!123</code> to re-run line 123.</p>
+    <p><b>THEN</b> &rarr; slide 25</p>
+  </div>
+  <div class="term"><code>$f</code> is the loop variable; <code>*.pdb</code> is expanded by the shell every time it's seen</div>
+</article>
+
+<article id="s25">
+  <header><span class="n">25</span><h2>Save commands as a script</h2><span class="tag">Concept 5 · scripts</span><span class="b demo">demo</span></header>
+  <div class="note">
+    <p><b>11:43-11:49 · scripts: save a pipeline · DEMO · SWC Episode 6</b></p>
+    <div class="say"><p><b>SAY</b></p>
+    <ul>
+      <li>We keep retyping <code>wc -l *.pdb | sort -n</code>. Put it in a file once.</li>
+      <li><code>nano sorted.sh</code>, type the comment line and the pipeline, save (<code>^O</code> Enter <code>^X</code>).</li>
+      <li><code>bash sorted.sh</code> - same output as typing the pipeline.</li>
+      <li>The <code>#</code> comment says what it does - your future self will thank you.</li>
+    </ul></div>
+    <p class="type-label">TYPE</p>
+    <pre>cd ~/Desktop/shell-lesson-data/exercise-data/alkanes
+nano sorted.sh
+<span class="cmt"># file contents:</span>
+<span class="cmt">#   # Sort files by their length.</span>
+<span class="cmt">#   wc -l *.pdb | sort -n</span>
+bash sorted.sh</pre>
+    <p><b>THEN</b> &rarr; slide 26</p>
+  </div>
+  <div class="term">a script is a small program; saving your pipeline makes the work <b>reproducible</b></div>
+</article>
+
+<article id="s26">
+  <header><span class="n">26</span><h2>Make the script take input</h2><span class="tag">Scripts</span><span class="b demo">demo</span></header>
+  <div class="note">
+    <p><b>11:49-11:55 · scripts with arguments · DEMO · SWC Episode 6</b></p>
+    <div class="say"><p><b>SAY</b></p>
+    <ul>
+      <li>Re-open <code>sorted.sh</code>, change <code>*.pdb</code> to <code>"$@"</code>, add a usage comment.</li>
+      <li>Now <code>bash sorted.sh *.pdb</code> - the shell expands <code>*.pdb</code> and hands the list to the script; <code>"$@"</code> passes it to <code>wc</code>.</li>
+      <li>Run it on <code>../creatures/*.dat</code> too - same script, different files. That's the payoff.</li>
+      <li>If short on time: skip the <code>$1</code>/<code>$2</code> aside, just do <code>"$@"</code>.</li>
+    </ul></div>
+    <p class="type-label">TYPE</p>
+    <pre>nano sorted.sh
+<span class="cmt"># change the last line to:  wc -l "$@" | sort -n</span>
+bash sorted.sh *.pdb
+bash sorted.sh ../creatures/*.dat</pre>
+    <p><b>THEN</b> &rarr; slide 27</p>
+  </div>
+  <div class="term"><code>"$@"</code> / <code>"$1"</code> are <b>positional parameters</b>; letting the caller choose the files is how every built-in command already works</div>
+</article>
+
+<article id="s27">
+  <header><span class="n">27</span><h2>What the field calls this</h2><span class="tag">You now have the words</span></header>
+  <div class="note">
+    <p><b>11:55-11:57 · vocab</b></p>
+    <ul>
+      <li>Don't read the slide. Point at 3-4: options vs arguments, paths, pipes, the for loop.</li>
+      <li>It's on the notes page.</li>
+      <li>&rarr; slide 28</li>
+    </ul>
+  </div>
+</article>
+
+<article id="s28">
+  <header><span class="n">28</span><h2>Recap</h2></header>
+  <div class="note">
+    <p><b>11:57-12:00 · recap</b></p>
+    <ul>
+      <li>The two columns are the keypoints from Episodes 2-6, condensed.</li>
+      <li>Then the feedback link (in the Etherpad).</li>
+      <li>Episode 7 (Finding Things - <code>grep</code>, <code>find</code>) is on the notes page for anyone who wants it, and could be a later session. If you finish early, that's fine - don't add it.</li>
+    </ul>
+  </div>
+</article>
+
+</div>
+</body></html>

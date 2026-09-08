@@ -1,0 +1,117 @@
+===================================================================
+  UC CARPENTRIES  ·  THE UNIX SHELL  ·  Wed Sep 9, 2026  ·  9:00-12:00 PT
+===================================================================
+
+DATA  --  download to your Desktop, then unzip it there (folder: "shell-lesson-data"):
+https://swcarpentry.github.io/shell-novice/data/shell-lesson-data.zip
+
+Check it works:
+    whoami
+    cd ~/Desktop/shell-lesson-data
+    ls          ->   exercise-data   north-pacific-gyre
+
+Slides: https://www.tim-dennis.com/2026-09-08-uc-carpentries/slides/shell/
+Notes:  https://www.tim-dennis.com/2026-09-08-uc-carpentries/shell-notes/
+Lesson: https://swcarpentry.github.io/shell-novice/   (we do Episodes 1-6 today)
+
+
+HOW THIS WORKS
+- Work in your OWN terminal the whole time. An instructor drives one on screen.
+- We never type the "$" -- that's the prompt. Just type what comes after it.
+- Two instructors today, split in two halves with a break in each half.
+- Ctrl-C stops a command that's running away.  In "man", press q to get out.
+- Done / stuck: use the Zoom reaction icons ( check / x ), or type a line here.
+- Put questions HERE in the pad, not only in chat -- helpers watch both.
+- "I'm stuck" is a complete sentence.
+
+
+WHO'S HERE   (add yourself:  name  --  role, institution)
+- Tim Dennis -- instructor, UCLA Library Data Science Center
+- James Frew -- instructor
+
+
+-------------------------------------------------------------------
+TODAY  (Episodes 1-6)
+-------------------------------------------------------------------
+PART 1  (Ep 1-3)
+1.  Open your shell.  Why the shell: do one thing to 400 files (Nelle's 1520 files)
+2.  Navigating: pwd, ls and its options, man / --help
+3.  Moving around: cd, .. , cd alone, cd - , absolute vs relative paths, ~
+    -- exercise: tab completion + a walk around
+    *** break ***
+4.  Command shape: command / option / argument
+5.  Making things: nano (a text file), mkdir
+6.  mv (rename / move), cp (copy, -r for folders), rm (NO UNDO)
+7.  Wildcards:  *  and  ?
+
+*** handoff to Instructor 2 ***
+
+PART 2  (Ep 4-6)
+8.  Counting: wc, wc -l ;  redirect  >  and  >>
+9.  sort / sort -n , head , tail
+10. The pipe |  --  build:  wc -l *.pdb | sort -n | head -n 1
+    -- exercise: find the 3 shortest files ; cut | sort | uniq
+    *** break ***
+11. Loops:  for ... in ... ; do ... ; done   (creatures/*.dat)
+    -- echo in front = a safe "dry run"
+    -- exercise: trace a loop
+12. Shell scripts: save a pipeline as sorted.sh , run with  bash sorted.sh
+    -- make it reusable with  "$@"
+
+
+-------------------------------------------------------------------
+COMMANDS  --  QUICK REFERENCE
+-------------------------------------------------------------------
+whoami ................. what user am I
+pwd ..................... where am I
+ls / ls -F / ls -l / ls -lh / ls -a ... list / mark types / long / human sizes / all
+man CMD  /  CMD --help .. how to use a command   (in man: q to quit)
+cd DIR  /  cd ..  /  cd  /  cd -  ... into / up one / home / previous directory
+  .  = here      ..  = one level up      ~  = home      /  = root
+nano FILE .............. edit a text file   (Ctrl-O then Enter = save, Ctrl-X = exit)
+mkdir NAME  /  mkdir -p a/b/c  ... make a directory / make nested directories
+mv OLD NEW ............. rename, or move into a directory
+cp OLD NEW  /  cp -r DIR NEWDIR  ... copy a file / copy a whole directory
+rm FILE  /  rm -r DIR .. DELETE. no Trash, no undo. -i to be asked first.
+*  ?  ................. wildcards: any characters / exactly one character
+wc / wc -l / wc -w ..... count lines+words+chars / lines / words
+sort  /  sort -n ...... alphabetical / numerical order
+head -n N  /  tail -n N  ... first N lines / last N lines
+cut -d , -f 2 FILE .... pull out column 2 (comma-separated)
+uniq  /  uniq -c ...... drop adjacent duplicate lines / count them  (sort first!)
+>   >>   | ............ write to file (overwrites!) / append / pipe to next command
+Ctrl-C ............... stop a running command       up-arrow = recall last command
+
+LOOP TEMPLATE
+    for filename in *.dat
+    do
+        echo $filename
+        head -n 2 $filename | tail -n 1
+    done
+  ( put "echo" in front of a command to preview what the loop would do )
+
+SCRIPT
+    nano sorted.sh          # then type:
+        # Sort files by their length.
+        wc -l "$@" | sort -n
+    bash sorted.sh *.pdb
+    bash sorted.sh ../creatures/*.dat
+
+
+-------------------------------------------------------------------
+NOTES     (everyone: edit these as we go)
+-------------------------------------------------------------------
+
+
+
+-------------------------------------------------------------------
+QUESTIONS     (drop them here)
+-------------------------------------------------------------------
+
+
+
+-------------------------------------------------------------------
+FEEDBACK     (one thing that worked  /  one thing to change)
+-------------------------------------------------------------------
+
+
