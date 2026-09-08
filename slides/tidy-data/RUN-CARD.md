@@ -10,6 +10,7 @@ One page. Keep this where you can see it while you drive the Sheet. The full per
 
 - [ ] Practice sheet sharing = **Anyone with the link → Viewer**
 - [ ] Tabs present: `2016_messy` `2017_messy` `dates` `checkpoint_clean` `checkpoint_combined` `ai_input` `Notes`
+- [ ] Open `2016_messy`: confirm RDM training is the **left** table, Open access the **right**; note which row is grey / carries the "cancelled" note, and which row has the 1900 date. Do the same glance at `2017_messy` (`GQ & DF`, `7/8 Feb`, leading-zero counts, trailing blank rows) and `dates` (`len_hours` mixes numbers and "90 min"; two rows read 2017 that should be 2015)
 - [ ] `checkpoint_combined` really is 2016 + 2017 cleaned the same way **plus a `year` column** - it has to match the row-count check you do out loud
 - [ ] **AI-output tab built**: run "clean this and make it tidy" on `ai_input`, paste a version that dropped or mangled a row into its own tab, write down input vs output row counts
 - [ ] **Run the slide-14 CSV round-trip once yourself** - Google Sheets may not behave exactly like the Excel lesson text; adjust your patter to what you actually see

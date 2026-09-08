@@ -163,12 +163,13 @@
     <aside class="notes">
       <p><b>9:00–9:04 · make your copy · DEMO</b></p>
       <p><b>SHOW</b>: this slide, the 3 steps</p>
-      <p><b>DO</b></p>
+      <p><b>DO</b> - share the Sheet and do this live in your own copy:</p>
       <ol>
-        <li>Share the Sheet; do the 3 steps live in your own copy</li>
+        <li>Open the practice-sheet link (it's the <code>/copy</code> URL, pinned in the Etherpad)</li>
+        <li><code>File ▸ Make a copy</code></li>
+        <li>Rename the copy <code>tidy-data-yourname</code></li>
         <li>Say: "the sheet I was given is evidence: I never type in it, I work in a copy"</li>
-        <li>Point at the tabs along the bottom (2016_messy, 2017_messy, dates, checkpoint_*, ai_input, Notes)</li>
-        <li>Don't tour the messy data yet</li>
+        <li>Point at the tabs along the bottom (2016_messy, 2017_messy, dates, checkpoint_*, ai_input, Notes) - don't tour the messy data yet</li>
       </ol>
       <p><b>THEN</b></p>
       <ul>
@@ -264,20 +265,21 @@
       <div class="term">raw data as a <b>single source of truth</b>, kept <b>immutable</b>; the lesson's first rule</div>
     </div>
     <aside class="notes">
-      <p><b>9:09–9:14 · your first edit · DEMO + EXERCISE · LC Episode 1</b></p>
+      <p><b>9:09-9:14 · your first edit · DEMO + EXERCISE · LC Episode 1</b></p>
       <p>Completes the warm-up: one real edit before minute 10.</p>
-      <p><b>SHOW</b>: this slide, the "Everyone, now" box. Leave it up; drop the 3 steps in the Etherpad.</p>
-      <p><b>DO</b></p>
+      <p><b>SHOW</b>: this slide, the "Everyone, now" box. Drop these steps in the Etherpad.</p>
+      <p><b>DO</b> - share the Sheet, demo slowly, narrate each click:</p>
       <ol>
-        <li>Switch your share to the Sheet; demo the 3 steps slowly in your copy</li>
-        <li>Switch back so they can see the box</li>
-        <li>Wait while everyone does it in their own copy</li>
+        <li>Right-click the <code>2016_messy</code> tab &#9656; <b>Duplicate</b></li>
+        <li>Double-click the new tab, type <code>2016_clean</code></li>
+        <li>The top of <code>2016_clean</code> has a blank row and a merged "RDM training" / "Open access" title row. Select those row numbers &#9656; right-click &#9656; <b>Delete rows</b>, so the real header (Date, Length (hours), &hellip;) becomes row 1</li>
+        <li>Switch back to this slide; wait while everyone does the same in their own copy</li>
         <li>Watch the chat for check / x; helpers DM the stuck</li>
       </ol>
       <p><b>THEN</b></p>
       <ul>
         <li>Reiterate: from here on every edit happens in <code>2016_clean</code>; <code>2016_messy</code> is never touched. That's the habit.</li>
-        <li>→ slide 6</li>
+        <li>&rarr; slide 6</li>
       </ul>
     </aside>
   </section>
@@ -430,31 +432,32 @@
       <div class="term">the moves: <b>decomposition</b> (split packed columns), a <b>cancelled</b> flag not colour, consistent <b>nulls</b>; combining years then checking counts is basic <b>reconciliation</b></div>
     </div>
     <aside class="notes">
-      <p><b>9:28–9:53 · core exercise (25 min) · DEMO + EXERCISE · LC Episode 2</b></p>
-      <p><b>SHOW</b>: keep this slide up the whole segment (task + "how we'll run it"). Put the task in the Etherpad.</p>
-      <p><b>DO - (a) demo the RDM table, ~8 min:</b></p>
+      <p><b>9:28-9:53 · core exercise (25 min) · DEMO + EXERCISE · LC Episode 2</b></p>
+      <p><b>SHOW</b>: keep this slide up all segment. Put the task and the checkpoint tab names in the Etherpad.</p>
+      <p><b>Layout:</b> <code>2016_messy</code> and <code>2017_messy</code> each hold <b>two tables side by side</b> - RDM training on the left, Open access on the right. You demo the left table; learners take the right table, then the 2017 tab.</p>
+      <p><b>DO - (a) demo the RDM (left) table in 2016_clean, ~8 min:</b></p>
       <ol>
-        <li>Unmerge the title (Format ▸ Merge cells ▸ Unmerge)</li>
-        <li>Delete title / spacer rows if any remain</li>
-        <li>Select PGR|PDRA|other ▸ Data ▸ Split text to columns ▸ separator "|"</li>
-        <li>Rename the three new columns</li>
-        <li>Add a <code>cancelled</code> column; fill yes/no from the grey rows</li>
-        <li>Make blank / na consistent</li>
-        <li>Narrate every click. Flag the 1900 date out loud; do NOT fix it</li>
+        <li>Title / blank rows already gone from slide 5. If not: select them &#9656; right-click &#9656; Delete rows</li>
+        <li>The <code>PGR|PDRA|other</code> column packs three counts in one cell (e.g. <code>45|0|0</code> = 45 postgrads, 0 postdocs, 0 other). Select that column &#9656; <b>Data &#9656; Split text to columns</b> &#9656; separator: <b>Custom</b> &#9656; type <code>|</code></li>
+        <li>Rename the three new columns <code>pgr</code>, <code>pdra</code>, <code>other</code></li>
+        <li>Nulls: replace any stray <code>na</code> / <code>n/a</code> / <code>-</code> in the count columns with an empty cell (this session's null is a blank)</li>
+        <li>You'll pass a row with a <b>1900 date</b> - say "that's a date bug, we fix dates after the break", leave it</li>
+        <li>Narrate every click</li>
       </ol>
       <p><b>DO - (b) learners, ~12 min:</b></p>
       <ul>
-        <li>Clean the Open access table (units in Len, name drift), then the 2017 tab (text dates, GQ &amp; DF, legend row)</li>
-        <li>Check against <code>checkpoint_clean</code></li>
-        <li>Post row counts in the chat; watch for check / x; helpers DM the stuck</li>
+        <li><b>Open access (right) table</b> in 2016_clean: the <code>Len</code> column mixes "1.5 hours", "1 hour", "1 hours" - make each a plain number of hours. Watch for name drift in <code>Delivered by</code>. One row is grey-shaded / has a stray "cancelled" note - add a <code>cancelled</code> column (yes/no), then clear the shading and the note</li>
+        <li><b>2017 tab</b> (same side-by-side layout): text dates like "7/8 Feb" and "2 June?"; a 1970 date; <code>GQ &amp; DF</code> in one Delivered-by cell (split into two columns); packed counts with leading zeros like <code>15|03|00</code>; blank / legend rows at the bottom to delete</li>
+        <li>Check the result against <code>checkpoint_clean</code></li>
+        <li>Post your <b>data row count</b> (rows, not counting the header) in the chat</li>
       </ul>
       <p><b>THEN - reconvene:</b></p>
       <ul>
-        <li>Show <code>checkpoint_combined</code> (both years cleaned the same way, plus a year column)</li>
-        <li>Row-count check aloud: 2016 + 2017 = combined minus one header</li>
-        <li>Ask whose count differed and why (a cancelled row, or a stray blank)</li>
-        <li>Reiterate the four moves: split packed columns; value not colour; one null; combine</li>
-        <li>→ slide 10</li>
+        <li>Show <code>checkpoint_combined</code> - 2016 and 2017 cleaned the same way, stacked into one table, with a <code>year</code> column added</li>
+        <li>Row-count check aloud: 2016 rows + 2017 rows = combined table minus one header</li>
+        <li>Ask whose count differed and why (a cancelled row kept vs dropped, or a stray blank row)</li>
+        <li>Reiterate the four moves: split packed columns; meaning as a value not colour; one consistent null; then stack the years</li>
+        <li>&rarr; slide 10</li>
       </ul>
     </aside>
   </section>
@@ -571,18 +574,19 @@
       <div class="term">a stored value vs. how it looks is <b>data type</b> vs. <b>lexical representation</b>; Sheets guessing on entry is <b>type inference</b>. Dates are stored as <b>serial numbers</b></div>
     </div>
     <aside class="notes">
-      <p><b>10:05–10:15 · a date has three states · DISCUSS · LC Episode 3</b></p>
+      <p><b>10:05-10:15 · a date has three states · DISCUSS · LC Episode 3</b></p>
       <p><b>SHOW</b>: this slide (three identical-looking cells + the question). Leave it up.</p>
       <p><b>DO</b></p>
       <ol>
-        <li>Take a couple of chat answers to "what could differ / be ambiguous"</li>
-        <li>Walk the three states on the slide</li>
-        <li>Switch to the Sheet briefly: a real date, Format ▸ Number shows the serial number; a text date left-aligns with none</li>
+        <li>Ask: "these all show 2016-03-04 - what could be different underneath? what's ambiguous?" Take 2-3 chat answers</li>
+        <li>Walk the three states on the slide: a real date value / text that looks like a date / a real date with the wrong day</li>
+        <li>Switch to the Sheet (<code>dates</code> tab): click a real date, <b>Format &#9656; Number &#9656; Number</b> - it shows the underlying serial number (e.g. 42433). Click a text date - Format &#9656; Number shows nothing numeric, and it's left-aligned</li>
+        <li>Type <code>=ISNUMBER(A2)</code> next to one of each: TRUE vs FALSE</li>
       </ol>
       <p><b>THEN</b></p>
       <ul>
-        <li>Reiterate: <code>ISNUMBER</code> TRUE means it's a real date, not that the date is correct</li>
-        <li>→ slide 13 (locale)</li>
+        <li>Reiterate: <code>ISNUMBER</code> TRUE means it's a real date value - <b>not</b> that the date is correct</li>
+        <li>&rarr; slide 13 (locale)</li>
       </ul>
     </aside>
   </section>
@@ -639,25 +643,28 @@
       <div class="term">the wrong-year rows are a <b>data-entry error</b> (entry year vs. event year) that passes every format check; the CSV round-trip is <b>lossy</b> and not <b>reversible</b></div>
     </div>
     <aside class="notes">
-      <p><b>10:20–10:32 · dates as data · DEMO + EXERCISE · LC Episode 3, Challenges 1 &amp; 2</b></p>
-      <p><b>SHOW</b>: this slide, both exercise boxes. Leave it up; put both in the Etherpad.</p>
-      <p><b>DO - Part 1:</b></p>
+      <p><b>10:20-10:32 · dates as data · DEMO + EXERCISE · LC Episode 3, Challenges 1 &amp; 2</b></p>
+      <p><b>SHOW</b>: this slide, both boxes. Put both in the Etherpad.</p>
+      <p><b>DO - Part 1 (~6 min), in the <code>dates</code> tab:</b></p>
       <ol>
-        <li>Switch to the Sheet; demo <code>=MONTH</code> / <code>=DAY</code> / <code>=YEAR</code> on the first 2–3 rows of <code>dates</code>, format as number</li>
-        <li>Learners fill down (~4 min), post the wrong-year rows in chat</li>
+        <li>In three empty columns to the right of the data, first data row (row 2): <code>=MONTH(A2)</code>, <code>=DAY(A2)</code>, <code>=YEAR(A2)</code> (A2 is the date cell)</li>
+        <li>Format those cells as plain number: <b>Format &#9656; Number &#9656; Number</b>, so the year doesn't display as a date</li>
+        <li>Select the three cells, drag the fill handle down to the last data row</li>
+        <li>Learners do the same; ask for the row numbers where <code>YEAR</code> shows <b>2017</b> (should be 2015) in the chat</li>
       </ol>
-      <p><b>DO - Part 2:</b></p>
+      <p><b>DO - Part 2 (~4 min):</b></p>
       <ol>
-        <li>Demo File ▸ Download ▸ CSV on the dates tab</li>
-        <li>Open the file in a text editor: dates show as month / day, no year</li>
-        <li>Re-import to Sheets: dates come back with the current year, not 2015</li>
+        <li><b>File &#9656; Download &#9656; Comma-separated values (.csv)</b> - downloads the <code>dates</code> tab only</li>
+        <li>Open the downloaded file in <b>TextEdit</b> (Mac) or <b>Notepad</b> (Windows): the dates show as month/day, <b>no year</b> - the CSV kept only the displayed string</li>
+        <li>Bring it back: <b>File &#9656; Import &#9656; Upload</b> &#9656; pick the CSV &#9656; "Insert new sheet(s)". The dates now show with the <b>current year</b>, not 2015</li>
+        <li>Ask in the chat: what changed, and why</li>
       </ol>
       <p><b>THEN - reconvene:</b></p>
       <ul>
-        <li>The two rows read 2017 (data-entry year) not 2015 (workshop year); an error that passes every format check</li>
-        <li>The same YEAR trick catches the 1900 date in 2016_messy</li>
-        <li>Reiterate: store dates as <code>yyyy-mm-dd</code> or y / m / d columns; full year before export; check dates after any export</li>
-        <li>→ slide 15</li>
+        <li>The two wrong-year rows read 2017 - the year someone typed the data - not 2015, the year of the event. A real date value, wrong day; every format check passes</li>
+        <li>The same <code>=YEAR</code> trick catches the 1900 date back in 2016_clean</li>
+        <li>Reiterate: store dates as <code>yyyy-mm-dd</code> or as year/month/day columns; format the full year before you export; open the file and check dates after any export</li>
+        <li>&rarr; slide 15</li>
       </ul>
     </aside>
   </section>
@@ -701,19 +708,22 @@
       <div class="term"><b>QA</b> = prevention (process), <b>QC</b> = detection (product). "Reject the input" is a <b>constraint</b> / <b>input validation</b></div>
     </div>
     <aside class="notes">
-      <p><b>10:32–10:40 · QA blocks / QC finds · one demo</b></p>
-      <p><b>SHOW</b>: this slide: QA (the gate) vs QC (the flashlight)</p>
-      <p><b>DO</b></p>
+      <p><b>10:32-10:40 · QA blocks / QC finds · one demo</b></p>
+      <p><b>SHOW</b>: this slide - QA (the gate) vs QC (the flashlight)</p>
+      <p><b>DO</b> - switch to the Sheet (<code>dates</code> tab):</p>
       <ol>
-        <li>Switch to the Sheet: select <code>num_registered</code> ▸ Data ▸ Data validation ▸ Whole number ▸ min 1 max 100 ▸ "Reject the input"</li>
-        <li>Try a bad value; show it blocked</li>
-        <li>Mention you could add a dropdown for the session type</li>
+        <li>Select the <code>num_registered</code> column</li>
+        <li><b>Data &#9656; Data validation &#9656; Add rule</b></li>
+        <li>Criteria: <b>Value is a number between</b> 1 and 100 (or Advanced &#9656; Whole number, min 1, max 100)</li>
+        <li>Set "If the data is invalid" to <b>Reject the input</b></li>
+        <li>Click a cell in that column, type something invalid (500, or "abc") - Sheets refuses it</li>
+        <li>Say: you could do the same with a dropdown list on the session-type column, so no one free-types a new spelling</li>
       </ol>
       <p><b>THEN</b></p>
       <ul>
-        <li>Reiterate: QA stops bad data at entry; QC finds bad data already there</li>
-        <li>Next we do the QC side</li>
-        <li>→ slide 16, leave it up</li>
+        <li>Reiterate: QA stops bad data at the point of entry; QC finds bad data already in the sheet</li>
+        <li>Next slide is the QC side</li>
+        <li>&rarr; slide 16, leave it up</li>
       </ul>
     </aside>
   </section>
@@ -738,19 +748,19 @@
       <div class="term">scanning sorted extremes is <b>range checking</b> / basic <b>outlier detection</b>. Sorting a partial selection <b>corrupts</b> a dataset - always select the whole table</div>
     </div>
     <aside class="notes">
-      <p><b>10:40–10:52 · sort, then colour-scale · EXERCISE · LC Episode 4</b></p>
-      <p><b>SHOW</b>: this slide (Sort box + Colour scale box). Leave it up; learners follow the steps straight from it. Put them in the Etherpad.</p>
-      <p><b>DO</b>: no demo; learners work in their own copies (~6 min)</p>
+      <p><b>10:40-10:52 · sort, then colour-scale · EXERCISE · LC Episode 4</b></p>
+      <p><b>SHOW</b>: this slide (Sort box + Colour scale box). Put both in the Etherpad.</p>
+      <p><b>DO</b> - no demo; learners work in their own copy of the <code>dates</code> tab (~6 min):</p>
       <ul>
-        <li>Sort: "90 min" / "1 hour" text values sort to the top; the numeric 90 / 60 / 15 also stand out</li>
-        <li>Colour scale on <code>num_attended</code>: two cells at 0 pop</li>
+        <li><b>Sort:</b> select the <b>whole</b> dates table (all columns, all rows incl. header) &#9656; <b>Data &#9656; Sort range &#9656; Advanced range sorting options</b> &#9656; tick <b>"Data has header row"</b> &#9656; sort by <code>len_hours</code>, Z &rarr; A</li>
+        <li>What's odd: "90 min" / "1 hour" / "15 min" as text sort to the top; the big raw numbers 90 / 60 / 15 stand out too</li>
+        <li><b>Colour scale:</b> select the <code>num_attended</code> column &#9656; <b>Format &#9656; Conditional formatting &#9656; Colour scale</b> &#9656; scan for outliers - two cells sit at 0</li>
       </ul>
       <p><b>THEN - reconvene:</b></p>
       <ul>
-        <li>Those two 0s are the cancelled classes</li>
-        <li>Reiterate: is a 0 a real zero or a stand-in for missing? Tie back to slide 11 (zeros and nulls)</li>
-        <li>The two pre-sort moves: select the whole table; tick "Data has header row"</li>
-        <li>→ slide 17</li>
+        <li>Those two 0s are the cancelled classes - is a 0 a real zero, or a stand-in for "didn't happen"? A data-dictionary call; tie back to slide 11 (zeros and nulls)</li>
+        <li>Why select the whole table first: sorting a partial selection shears rows away from their keys and corrupts the data</li>
+        <li>&rarr; slide 17</li>
       </ul>
     </aside>
   </section>
@@ -892,19 +902,20 @@
       <div class="term">the <code>source_row_id</code> is a <b>surrogate key</b>; matching input to output on it is a <b>join</b> and the check is <b>reconciliation</b>. Without a key you'd need <b>fuzzy matching</b> / <b>record linkage</b></div>
     </div>
     <aside class="notes">
-      <p><b>11:25–11:38 · check the AI by counting · EXERCISE</b></p>
+      <p><b>11:25-11:38 · check the AI by counting · EXERCISE</b></p>
       <p><b>SHOW</b>: this slide (12 in, 11 out; the missing source_row_id). Leave it up.</p>
-      <p><b>DO</b></p>
+      <p><b>DO</b> - switch to the Sheet:</p>
       <ol>
-        <li>Switch to the Sheet; show the pre-built AI-output tab next to <code>ai_input</code></li>
-        <li>Learners compare the source_row_id columns, post the missing id in chat (~4 min)</li>
+        <li>Open the <code>ai_input</code> tab and the <b>AI-output tab you saved in prep</b>, side by side (or flip between them)</li>
+        <li><code>ai_input</code> has 12 rows, <code>source_row_id</code> 1-12. The saved AI output has 11</li>
+        <li>Learners compare the <code>source_row_id</code> column in each and post the missing id in the chat (~4 min) - the row the model silently dropped</li>
       </ol>
       <p><b>THEN</b></p>
       <ul>
-        <li>Ask: "how would you catch this without the id column?" (row counts before and after; compare to the raw)</li>
-        <li>Optional: live re-run to show the output varies</li>
-        <li>Reiterate: AI shifts the work to specifying and verifying; it still doesn't count reliably</li>
-        <li>→ slide 21</li>
+        <li>Ask: how would you have caught this <b>without</b> the id column? (count rows before and after; compare values to the raw data you kept)</li>
+        <li>Optional: paste <code>ai_input</code> into a model live and run "clean this up and make it tidy" - the output varies run to run</li>
+        <li>Reiterate: AI moves your work to specifying the change and verifying the result; it still doesn't count reliably</li>
+        <li>&rarr; slide 21</li>
       </ul>
     </aside>
   </section>
