@@ -1,10 +1,8 @@
 # Tidy Data - full instructor script
 
-**Rendered version (bullets, badges, nav): [script.html](script.html)** - `/slides/tidy-data/script.html`. This `.md` is the plain-text source.
+**Rendered (pre-flight + bullets): [script.html](script.html)** - `/slides/tidy-data/script.html`.
 
-Times are clock time (PT); session runs 9:00 am - 12:00 pm. Open the deck alongside this on a second screen.
-
-Legend: **DEMO** = you drive the Sheet  ·  **EXERCISE** = learners work  ·  **DISCUSS** = chat / pad prompt
+Times are clock time (PT); session runs 9:00 am - 12:00 pm.
 
 ---
 
@@ -395,18 +393,29 @@ In the lesson this is the debrief after the cleaning exercise; we do it first to
 
 **11:25-11:38 · check the AI by counting · EXERCISE**
 
+**PREP - before class (~15 min). This slide is the one part beyond the core LC lesson - if you're short on time or energy, cut it and go straight from slide 19 to slide 21.**
+
+No AI runs inside Google Sheets here. It's plain copy / paste into a normal chat window.
+
+1. Open the `ai_input` tab. It should be a small table with a `source_row_id` column (1-12) and a few deliberate blanks. If your sheet has no such tab, cut this slide (or build a quick 12-row table with a `source_row_id` column).
+2. In a browser tab open **chatgpt.com**, **claude.ai**, or **gemini.google.com** - a normal chat window.
+3. In Sheets, select the `ai_input` data and copy (Cmd/Ctrl+C). Paste it into the chat and send: *"Clean this up and make it tidy."*
+4. You want a **flawed** answer. Models usually drop a row silently or change a value. If the first reply looks clean, send "now fill in the missing values" or just run it again until one comes back with a row missing or mangled.
+5. Copy that flawed table, paste it into a **new tab** in your practice sheet, name it `ai_output`.
+6. Write down for yourself: `ai_input` has 12 rows; `ai_output` has how many; which `source_row_id` is gone. The slide art says "12 in, 11 out, id 7" - if your real result is different, say your real numbers in class; the slide is just illustrative.
+
 **SHOW**: this slide (12 in, 11 out; the missing source_row_id). Leave it up.
 
 **DO** - switch to the Sheet:
 
-1. Open the `ai_input` tab and the **AI-output tab you saved in prep**, side by side (or flip between them)
-2. `ai_input` has 12 rows, `source_row_id` 1-12. The saved AI output has 11
+1. Open the `ai_input` tab and your `ai_output` tab side by side (or flip between them)
+2. `ai_input` has 12 rows, `source_row_id` 1-12; `ai_output` has fewer
 3. Learners compare the `source_row_id` column in each and post the missing id in the chat (~4 min) - the row the model silently dropped
 
 **THEN**
 
 - Ask: how would you have caught this **without** the id column? (count rows before and after; compare values to the raw data you kept)
-- Optional: paste `ai_input` into a model live and run "clean this up and make it tidy" - the output varies run to run
+- Optional, if you're comfortable: paste `ai_input` into the chat window again live so they see the output change run to run
 - Reiterate: AI moves your work to specifying the change and verifying the result; it still doesn't count reliably
 - → slide 21
 

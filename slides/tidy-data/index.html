@@ -903,17 +903,27 @@
     </div>
     <aside class="notes">
       <p><b>11:25-11:38 · check the AI by counting · EXERCISE</b></p>
+      <p><b>PREP - before class (~15 min). This slide is the one part beyond the core LC lesson - if you're short on time or energy, cut it and go straight from slide 19 to slide 21.</b></p>
+      <p>No AI runs inside Google Sheets here. It's plain copy / paste into a normal chat window.</p>
+      <ol>
+        <li>Open the <code>ai_input</code> tab. It should be a small table with a <code>source_row_id</code> column (1-12) and a few deliberate blanks. If your sheet has no such tab, cut this slide (or build a quick 12-row table with a <code>source_row_id</code> column).</li>
+        <li>In a browser tab open <b>chatgpt.com</b>, <b>claude.ai</b>, or <b>gemini.google.com</b> - a normal chat window.</li>
+        <li>In Sheets, select the <code>ai_input</code> data and copy (Cmd/Ctrl+C). Paste it into the chat and send: <i>"Clean this up and make it tidy."</i></li>
+        <li>You want a <b>flawed</b> answer. Models usually drop a row silently or change a value. If the first reply looks clean, send "now fill in the missing values" or just run it again until one comes back with a row missing or mangled.</li>
+        <li>Copy that flawed table, paste it into a <b>new tab</b> in your practice sheet, name it <code>ai_output</code>.</li>
+        <li>Write down for yourself: <code>ai_input</code> has 12 rows; <code>ai_output</code> has how many; which <code>source_row_id</code> is gone. The slide art says "12 in, 11 out, id 7" - if your real result is different, say your real numbers in class; the slide is just illustrative.</li>
+      </ol>
       <p><b>SHOW</b>: this slide (12 in, 11 out; the missing source_row_id). Leave it up.</p>
       <p><b>DO</b> - switch to the Sheet:</p>
       <ol>
-        <li>Open the <code>ai_input</code> tab and the <b>AI-output tab you saved in prep</b>, side by side (or flip between them)</li>
-        <li><code>ai_input</code> has 12 rows, <code>source_row_id</code> 1-12. The saved AI output has 11</li>
+        <li>Open the <code>ai_input</code> tab and your <code>ai_output</code> tab side by side (or flip between them)</li>
+        <li><code>ai_input</code> has 12 rows, <code>source_row_id</code> 1-12; <code>ai_output</code> has fewer</li>
         <li>Learners compare the <code>source_row_id</code> column in each and post the missing id in the chat (~4 min) - the row the model silently dropped</li>
       </ol>
       <p><b>THEN</b></p>
       <ul>
         <li>Ask: how would you have caught this <b>without</b> the id column? (count rows before and after; compare values to the raw data you kept)</li>
-        <li>Optional: paste <code>ai_input</code> into a model live and run "clean this up and make it tidy" - the output varies run to run</li>
+        <li>Optional, if you're comfortable: paste <code>ai_input</code> into the chat window again live so they see the output change run to run</li>
         <li>Reiterate: AI moves your work to specifying the change and verifying the result; it still doesn't count reliably</li>
         <li>&rarr; slide 21</li>
       </ul>
