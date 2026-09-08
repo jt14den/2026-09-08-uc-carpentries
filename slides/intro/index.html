@@ -47,7 +47,7 @@
     background: var(--gradbar);
   }
 
-  /* ---- section header (slides 2 & 3) ---- */
+  /* ---- section header ---- */
   .slide-head {
     display: flex; align-items: center; gap: 18px;
     margin: 0 0 36px;
@@ -95,6 +95,7 @@
     padding: 20px 28px; border-radius: 8px;
     display: inline-block;
   }
+  .callout.small { font-size: 22px; padding: 16px 24px; }
 
   /* ---- title slide: hero on top, text below ---- */
   .title-slide {
@@ -128,6 +129,9 @@
     font-size: 15px; color: #8895a7; font-weight: 700;
   }
 
+  /* ---- zoom reactions how-to ---- */
+  .zoom-fig { display: block; width: 100%; max-width: 1120px; margin: 0 auto; }
+
   @media (max-width: 800px) {
     .panels { grid-template-columns: 1fr; gap: 18px; }
     .title-slide h1 { font-size: 52px; }
@@ -151,11 +155,47 @@
     <aside class="notes">
       Holding slide. Welcome people by name as they arrive. Point them at the Etherpad
       (linked on the site) and, for a hands-on session, the practice data / "make a copy"
-      link. Remind them every session stands alone: register once, attend any.
+      link. Remind them every session stands alone: register once, attend any. If they
+      haven't done the pre-workshop survey, the link is on the site.
     </aside>
   </section>
 
-  <!-- 2 · HOW WE LEARN TOGETHER -->
+  <!-- 2 · CODE OF CONDUCT -->
+  <section data-background-color="#ffffff">
+   <div class="content-mid">
+    <div class="slide-head"><h2>Code of Conduct</h2></div>
+    <div class="panels">
+      <div class="panel">
+        <h3>We agree to</h3>
+        <ul>
+          <li>Use <b>welcoming and inclusive</b> language</li>
+          <li>Be <b>respectful</b> of different viewpoints and experiences</li>
+          <li>Accept <b>constructive criticism</b> gracefully</li>
+          <li>Show <b>courtesy and respect</b> toward everyone here</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>If something's wrong</h3>
+        <ul>
+          <li>Tell an <b>instructor</b> or the <b>host</b> &mdash; chat DM or email, privately</li>
+          <li>Or report to the <b>CoC Committee</b>: <b>coc@carpentries.org</b></li>
+          <li>All reports are <b>kept confidential</b> and taken seriously</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout small">Full text &amp; report form: docs.carpentries.org/policies/coc</div>
+   </div>
+    <aside class="notes">
+      Read this early, don't rush it. The Carpentries has a Code of Conduct and it applies
+      to everyone in this room &mdash; instructors, helpers, learners. The short version:
+      be kind, assume good faith, make room for people who are new to this. If anything
+      makes you uncomfortable, you can tell any of us privately (a chat DM is fine), or go
+      straight to the Code of Conduct Committee. It is on the workshop site and linked in
+      the Etherpad.
+    </aside>
+  </section>
+
+  <!-- 3 · HOW WE LEARN TOGETHER -->
   <section data-background-color="#ffffff">
    <div class="content-mid">
     <div class="slide-head"><h2>How we learn together</h2></div>
@@ -185,7 +225,7 @@
     </aside>
   </section>
 
-  <!-- 3 · ZOOM TOOLS & SUPPORT -->
+  <!-- 4 · ZOOM TOOLS & SUPPORT -->
   <section data-background-color="#ffffff">
    <div class="content-mid">
     <div class="slide-head"><h2>Zoom tools &amp; support</h2></div>
@@ -195,7 +235,7 @@
         <ul>
           <li><b>Raise hand</b> for a verbal question</li>
           <li><b>Chat</b> for technical issues and quick help</li>
-          <li><b>Non-verbal icons</b> for yes / no / slower / faster</li>
+          <li><b>Reactions</b> for yes / no / slower / faster &mdash; next slide</li>
         </ul>
       </div>
       <div class="panel">
@@ -210,9 +250,86 @@
     <div class="callout">Questions help everyone. You are not interrupting.</div>
    </div>
     <aside class="notes">
-      Name your helpers. Show where the reaction icons live in this Zoom build. Reassure
-      people that the chat and Etherpad are the normal way to ask; they don't need to
-      unmute unless they want to.
+      Name your helpers for today. The chat and Etherpad are the normal way to ask; nobody
+      needs to unmute unless they want to. Next slide shows exactly where the reaction
+      buttons are.
+    </aside>
+  </section>
+
+  <!-- 5 · USING ZOOM REACTIONS -->
+  <section data-background-color="#ffffff">
+   <div class="content-mid">
+    <div class="slide-head"><h2>Using Zoom reactions</h2></div>
+    <svg class="zoom-fig" viewBox="0 0 1120 470" role="img"
+         aria-label="A cartoon of the Zoom toolbar with the Reactions button highlighted, and the tray of reaction icons we use: raise hand, green check for done or yes, red X for stuck or no, turtle for slower, rabbit for faster.">
+      <defs>
+        <marker id="arrow" markerWidth="14" markerHeight="14" refX="7" refY="7" orient="auto">
+          <path d="M1 1 L13 7 L1 13 L5 7 Z" fill="#1D4E79"/>
+        </marker>
+      </defs>
+
+      <!-- reactions tray (pop-up) -->
+      <g>
+        <rect x="150" y="20" width="560" height="150" rx="18" fill="#F5F7FA" stroke="#E2E8F0" stroke-width="2"/>
+        <!-- raise hand -->
+        <circle cx="220" cy="80" r="34" fill="#fff" stroke="#E2E8F0" stroke-width="2"/>
+        <text x="220" y="93" text-anchor="middle" font-size="34">&#x270B;</text>
+        <text x="220" y="145" text-anchor="middle" font-family="Lato" font-weight="700" font-size="17" fill="#1A202C">raise hand</text>
+        <!-- green check -->
+        <circle cx="330" cy="80" r="34" fill="#fff" stroke="#2F855A" stroke-width="3"/>
+        <text x="330" y="92" text-anchor="middle" font-size="34">&#x2705;</text>
+        <text x="330" y="145" text-anchor="middle" font-family="Lato" font-weight="900" font-size="17" fill="#2F855A">done / yes</text>
+        <!-- red X -->
+        <circle cx="440" cy="80" r="34" fill="#fff" stroke="#C53030" stroke-width="3"/>
+        <text x="440" y="92" text-anchor="middle" font-size="34">&#x274C;</text>
+        <text x="440" y="145" text-anchor="middle" font-family="Lato" font-weight="900" font-size="17" fill="#C53030">stuck / no</text>
+        <!-- turtle -->
+        <circle cx="550" cy="80" r="34" fill="#fff" stroke="#E2E8F0" stroke-width="2"/>
+        <text x="550" y="92" text-anchor="middle" font-size="32">&#x1F422;</text>
+        <text x="550" y="145" text-anchor="middle" font-family="Lato" font-weight="700" font-size="17" fill="#1A202C">slower</text>
+        <!-- rabbit -->
+        <circle cx="660" cy="80" r="34" fill="#fff" stroke="#E2E8F0" stroke-width="2"/>
+        <text x="660" y="92" text-anchor="middle" font-size="32">&#x1F407;</text>
+        <text x="660" y="145" text-anchor="middle" font-family="Lato" font-weight="700" font-size="17" fill="#1A202C">faster</text>
+        <!-- little pointer notch -->
+        <path d="M420 170 L450 170 L435 192 Z" fill="#F5F7FA" stroke="#E2E8F0" stroke-width="2"/>
+      </g>
+
+      <!-- arrow from button up to tray -->
+      <path d="M435 350 C435 300 435 260 435 210" fill="none" stroke="#1D4E79" stroke-width="4"
+            stroke-dasharray="2 10" stroke-linecap="round" marker-end="url(#arrow)"/>
+
+      <!-- zoom toolbar strip -->
+      <g>
+        <rect x="60" y="360" width="1000" height="86" rx="16" fill="#1A202C"/>
+        <!-- generic toolbar icons -->
+        <g fill="#CBD5E0" font-family="Lato" font-weight="700" font-size="14" text-anchor="middle">
+          <circle cx="130" cy="395" r="17" fill="#2D3748"/><text x="130" y="431">Mute</text>
+          <circle cx="220" cy="395" r="17" fill="#2D3748"/><text x="220" y="431">Video</text>
+          <circle cx="320" cy="395" r="17" fill="#2D3748"/><text x="320" y="431">Participants</text>
+          <circle cx="420" cy="395" r="17" fill="#2D3748"/><text x="420" y="431">Chat</text>
+          <circle cx="520" cy="395" r="17" fill="#2D3748"/><text x="520" y="431">Share</text>
+          <circle cx="720" cy="395" r="17" fill="#2D3748"/><text x="720" y="431">Record</text>
+          <circle cx="900" cy="395" r="17" fill="#2D3748"/><text x="900" y="431">More</text>
+        </g>
+        <!-- REACTIONS button, highlighted -->
+        <rect x="588" y="366" width="96" height="74" rx="12" fill="#2D3748" stroke="#FFD100" stroke-width="4"/>
+        <text x="636" y="392" text-anchor="middle" font-size="26">&#x1F44D;</text>
+        <text x="636" y="424" text-anchor="middle" font-family="Lato" font-weight="900" font-size="14" fill="#FFD100">Reactions</text>
+      </g>
+
+      <text x="60" y="465" font-family="Lato" font-size="17" fill="#647082">Bottom of your Zoom window &mdash; click <tspan font-weight="900" fill="#1A202C">Reactions</tspan>. On a phone: tap the screen, then <tspan font-weight="900" fill="#1A202C">&hellip;&nbsp;More</tspan> &rarr; <tspan font-weight="900" fill="#1A202C">Reactions</tspan>.</text>
+    </svg>
+    <div class="callout small" style="margin-top:22px;">Green check = &ldquo;I've got it.&rdquo; &nbsp; Red X = &ldquo;I'm stuck&rdquo; &mdash; a helper will DM you.</div>
+   </div>
+    <aside class="notes">
+      Actually do this live: share your screen, hover the Reactions button, open the tray,
+      and click the green check so everyone sees it appear on your video tile. Ask the
+      whole room to send a green check right now as a test &mdash; it tells you the signal
+      is working and warms them up to using it. Then: during exercises, green check when
+      you're done, red X if you're stuck and a helper will reach out. Slower / faster are
+      always welcome. Icons may sit under &ldquo;More&rdquo; depending on the Zoom build
+      and whether the host enabled non-verbal feedback &mdash; check yours before class.
     </aside>
   </section>
 
