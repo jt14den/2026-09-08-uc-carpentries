@@ -77,10 +77,11 @@ PART 2  (Ep 4-6)
 -------------------------------------------------------------------
 CHALLENGES     (we do these together -- put your answer under your name)
 -------------------------------------------------------------------
+Short and timed -- an instructor calls time and shows the answer.
 
 --- PART 1 (Episodes 2-3) ---
 
-C1.  ABSOLUTE VS RELATIVE PATHS
+C1.  ABSOLUTE VS RELATIVE PATHS   (~3 min)
 Starting from  /Users/nelle/data , which of these commands could Nelle
 use to get to her home directory,  /Users/nelle ?  (more than one works)
    1. cd .             4. cd ../..          7. cd ~/data/..
@@ -89,14 +90,14 @@ use to get to her home directory,  /Users/nelle ?  (more than one works)
    - name:
    - name:
 
-C2.  LISTING IN REVERSE CHRONOLOGICAL ORDER
+C2.  LISTING IN REVERSE CHRONOLOGICAL ORDER   (~2 min)
 ls -t  lists items by time of last change instead of by name.
 ls -r  lists them in reverse order.  Combine them ( ls -t -r ; add -l
 to see the dates ) -- which file is displayed LAST?
    - name:
    - name:
 
-C3.  RENAMING FILES
+C3.  RENAMING FILES   (~1 min)
 You made a file and named it  statstics.txt  -- you meant
 statistics.txt .  Which command fixes the name?
    1. cp statstics.txt statistics.txt      3. mv statstics.txt .
@@ -104,7 +105,7 @@ statistics.txt .  Which command fixes the name?
    - name:
    - name:
 
-C4.  LIST FILENAMES MATCHING A PATTERN
+C4.  LIST FILENAMES MATCHING A PATTERN   (~3 min)
 Run in the  alkanes  directory, which  ls  command(s) produce exactly
 this output:   ethane.pdb   methane.pdb
    1. ls *t*ane.pdb      3. ls *t??ne.pdb

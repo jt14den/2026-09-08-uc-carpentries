@@ -180,18 +180,18 @@ Show **slide 6 (tree)** ~1 min, then terminal. Be in `~/Desktop/shell-lesson-dat
 
 ### 6 · Navigation exercise — 9:44 → 9:51 · Episode 2 · them
 
-Prompts (C1, C2) are in the pad. ~7 min. Tab completion first, then C1 as a chat/pad
-poll, C2 if there's time.
+Prompts (C1, C2) are in the pad. ~7 min total — **tab completion 2 min · C1 3 min · C2
+2 min**. C2 is the drop if you're behind; call time out loud and move on regardless.
 
-- **Tab completion** — `ls nor`+Tab → finishes `north-pacific-gyre/`; `ls north-pacific-gyre/goo`+Tab Tab → the two `.sh` files
-- **C1 · Absolute vs Relative Paths** — from `/Users/nelle/data`, which commands reach
+- **Tab completion (~2 min)** — `ls nor`+Tab → finishes `north-pacific-gyre/`; `ls north-pacific-gyre/goo`+Tab Tab → the two `.sh` files
+- **C1 · Absolute vs Relative Paths (~3 min)** — from `/Users/nelle/data`, which commands reach
   `/Users/nelle`? `cd .` / `cd /` / `cd /home/nelle` / `cd ../..` / `cd ~` / `cd home` /
   `cd ~/data/..` / `cd` / `cd ..`
   → **`cd ~` (5), `cd ~/data/..` (7), `cd` (8), `cd ..` (9)**. `cd .` stays put · `cd /` →
   root · `cd /home/nelle` wrong path (it's `/Users/nelle`) · `cd ../..` → `/Users` ·
   `cd home` would need a `home/` dir here.
-- **C2 · Listing in Reverse Chronological Order** — `ls -t` sorts by time of last change,
-  `ls -r` reverses; combine as `ls -t -r` (add `-l` to see dates) — which file shows last?
+- **C2 · Listing in Reverse Chronological Order (~2 min, cut first)** — `ls -t` sorts by
+  time of last change, `ls -r` reverses; combine as `ls -t -r` (add `-l` to see dates) — which file shows last?
   → **`-rt` puts the most recently changed file last** — handy for spotting your latest
   edit or a fresh output file.
 - **Q2 (if extra time)** reach `exercise-data/alkanes` relative, leave, return absolute
