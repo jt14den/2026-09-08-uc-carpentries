@@ -48,70 +48,91 @@ WHO'S HERE   (add yourself:  name  --  role, institution)
 -------------------------------------------------------------------
 TODAY  (Episodes 1-6)
 -------------------------------------------------------------------
+Challenges are in the flow, where we hit them.  Each is short and timed --
+an instructor calls time and shows the answer.  Put your answer under your name.
+
+=================================================================
 PART 1  (Ep 1-3)
+=================================================================
+
 1.  Open your shell.  Why the shell: do one thing to 400 files (Nelle's 1520 files)
+
 2.  Navigating: pwd, ls and its options, man / --help
+
 3.  Moving around: cd, .. , cd alone, cd - , absolute vs relative paths, ~
-    -- challenges C1, C2 (see CHALLENGES below)
+
+   -------------------------------------------------------------
+   CHALLENGE C1 -- Absolute vs Relative Paths   (~3 min)
+   -------------------------------------------------------------
+   Starting from  /Users/nelle/data , which of these commands could
+   Nelle use to get to her home directory,  /Users/nelle ?
+   (more than one works)
+      1. cd .             4. cd ../..          7. cd ~/data/..
+      2. cd /             5. cd ~              8. cd
+      3. cd /home/nelle   6. cd home           9. cd ..
+      - name:
+      - name:
+
+   -------------------------------------------------------------
+   CHALLENGE C2 -- Listing in Reverse Chronological Order   (~2 min)
+   -------------------------------------------------------------
+   ls -t  lists items by time of last change instead of by name.
+   ls -r  lists them in reverse order.  Combine them ( ls -t -r ;
+   add -l to see the dates ) -- which file is displayed LAST?
+      - name:
+      - name:
+
     *** break ***
+
 4.  Command shape: command / option / argument
+
 5.  Making things: nano (a text file), mkdir
-6.  mv (rename / move), cp (copy, -r for folders), rm (NO UNDO)   -- challenge C3
-7.  Wildcards:  *  and  ?   -- challenge C4
+
+6.  mv (rename / move), cp (copy, -r for folders), rm (NO UNDO)
+
+   -------------------------------------------------------------
+   CHALLENGE C3 -- Renaming Files   (~1 min)
+   -------------------------------------------------------------
+   You made a file and named it  statstics.txt  -- you meant
+   statistics.txt .  Which command fixes the name?
+      1. cp statstics.txt statistics.txt    3. mv statstics.txt .
+      2. mv statstics.txt statistics.txt    4. cp statstics.txt .
+      - name:
+      - name:
+
+7.  Wildcards:  *  and  ?
+
+   -------------------------------------------------------------
+   CHALLENGE C4 -- List Filenames Matching a Pattern   (~3 min)
+   -------------------------------------------------------------
+   Run in the  alkanes  directory, which  ls  command(s) produce
+   exactly this output:   ethane.pdb   methane.pdb
+      1. ls *t*ane.pdb      3. ls *t??ne.pdb
+      2. ls *t?ne.*         4. ls ethane.*
+      - name:
+      - name:
 
 *** handoff to Instructor 2 ***
 
+=================================================================
 PART 2  (Ep 4-6)
+=================================================================
+
 8.  Counting: wc, wc -l ;  redirect  >  and  >>
+
 9.  sort / sort -n , head , tail
+
 10. The pipe |  --  build:  wc -l *.pdb | sort -n | head -n 1
     -- exercise: find the 3 shortest files ; cut | sort | uniq
+
     *** break ***
+
 11. Loops:  for ... in ... ; do ... ; done   (creatures/*.dat)
     -- echo in front = a safe "dry run"
     -- exercise: trace a loop
+
 12. Shell scripts: save a pipeline as sorted.sh , run with  bash sorted.sh
     -- make it reusable with  "$@"
-
-
--------------------------------------------------------------------
-CHALLENGES     (we do these together -- put your answer under your name)
--------------------------------------------------------------------
-Short and timed -- an instructor calls time and shows the answer.
-
---- PART 1 (Episodes 2-3) ---
-
-C1.  ABSOLUTE VS RELATIVE PATHS   (~3 min)
-Starting from  /Users/nelle/data , which of these commands could Nelle
-use to get to her home directory,  /Users/nelle ?  (more than one works)
-   1. cd .             4. cd ../..          7. cd ~/data/..
-   2. cd /             5. cd ~              8. cd
-   3. cd /home/nelle   6. cd home           9. cd ..
-   - name:
-   - name:
-
-C2.  LISTING IN REVERSE CHRONOLOGICAL ORDER   (~2 min)
-ls -t  lists items by time of last change instead of by name.
-ls -r  lists them in reverse order.  Combine them ( ls -t -r ; add -l
-to see the dates ) -- which file is displayed LAST?
-   - name:
-   - name:
-
-C3.  RENAMING FILES   (~1 min)
-You made a file and named it  statstics.txt  -- you meant
-statistics.txt .  Which command fixes the name?
-   1. cp statstics.txt statistics.txt      3. mv statstics.txt .
-   2. mv statstics.txt statistics.txt      4. cp statstics.txt .
-   - name:
-   - name:
-
-C4.  LIST FILENAMES MATCHING A PATTERN   (~3 min)
-Run in the  alkanes  directory, which  ls  command(s) produce exactly
-this output:   ethane.pdb   methane.pdb
-   1. ls *t*ane.pdb      3. ls *t??ne.pdb
-   2. ls *t?ne.*         4. ls ethane.*
-   - name:
-   - name:
 
 
 -------------------------------------------------------------------
