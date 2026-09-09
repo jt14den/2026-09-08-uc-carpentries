@@ -18,12 +18,11 @@ The first part of this page is a reference you can use during and after the sess
 for anyone who wants to see how the session is put together or teach it themselves.
 
 - Full self-paced lesson: <https://swcarpentry.github.io/shell-novice/>
-- Collaborative notes (Etherpad): <https://pad.carpentries.org/2026-fall-uc-carpentries-shell>
+- Collaborative notes (Etherpad): <https://pad.carpentries.org/2026-fall-uc-shell-novice>
 - Practice data: **[shell-lesson-data.zip](https://swcarpentry.github.io/shell-novice/data/shell-lesson-data.zip)** — download to your Desktop and unzip it there; you should end up with a folder called `shell-lesson-data`
 - Setup (a Unix-like shell): <https://swcarpentry.github.io/shell-novice/#setup>
-- Slides: <{{ '/slides/shell/' | relative_url }}> (instructor script: `script.html`)
-- Instructor run card, one page: [RUN-CARD.md]({{ '/slides/shell/RUN-CARD.md' | relative_url }})
-- Full slide-by-slide script, rendered: [script.html]({{ '/slides/shell/script.html' | relative_url }}) (plain-markdown source: [SCRIPT.md]({{ '/slides/shell/SCRIPT.md' | relative_url }}))
+- Slides: <{{ '/slides/shell/' | relative_url }}>
+- Full slide-by-slide script, rendered: [script.html]({{ '/slides/shell/script.html' | relative_url }}) (plain-markdown source: [SCRIPT.md]({{ '/slides/shell/SCRIPT.md' | relative_url }})). Pre-flight checklist and cut points are in the [instructor guide](#instructor-guide) below.
 - Etherpad starter to paste into the live pad: [shell-etherpad.txt]({{ '/files/shell-etherpad.txt' | relative_url }})
 
 ---
@@ -312,18 +311,18 @@ the payoff of the Nelle narrative.
 The tradeoff: Ep 1–6 official time (~225 min) is well over the ~160 min of teaching time
 in a 3-hour slot with two breaks. So the pace is brisk. Where to spend the time: the
 navigating and pipes exercises (they're where novices actually get it). Where to cut if
-behind: the loop-trace exercise (slide 24), and the `$1`/`$2` aside in the scripts block
+behind: the loop-trace exercise (slide 25), and the `$1`/`$2` aside in the scripts block
 (do `"$@"` only).
 
 ### The two-instructor split
 
 | Part | Slides | Episodes | Clock | Instructor |
 |---|---|---|---|---|
-| **1** | 1–16 | 1–3 (intro, navigating, creating/moving/deleting files) | ~9:00–10:38 | suggested: Tim |
-| **2** | 17–28 | 4–6 (pipes & filters, loops, shell scripts) | ~10:38–12:00 | suggested: Frew |
+| **1** | 1–17 | 1–3 (intro, navigating, creating/moving/deleting files) | ~9:00–10:38 | suggested: Tim |
+| **2** | 18–29 | 4–6 (pipes & filters, loops, shell scripts) | ~10:38–12:00 | suggested: Frew |
 
-- Each part carries one break (after slide 9 in Part 1, after slide 20 in Part 2).
-- The handoff is at **slide 17** (start of Episode 4 / pipes), right after the wildcards
+- Each part carries one break (after slide 10 in Part 1, after slide 21 in Part 2).
+- The handoff is at **slide 18** (start of Episode 4 / pipes), right after the wildcards
   exercise. Instructor 2 re-anchors the room (`pwd` check in `alkanes`) and takes over.
 - Roughly 85 minutes of teaching each. Part 1 is conceptually heavier (paths, the
   filesystem tree); Part 2 is more mechanical but has more to cover, so it moves faster.
@@ -370,16 +369,32 @@ Five concepts.
 - **C4** a `for` loop repeats a command over a list; `echo` in front is a safe dry run
 - **C5** commands saved in a file are a script; `"$@"` lets the caller pick the files
 
+### Pre-flight (both instructors, before you teach)
+
+- [ ] Your own terminal open in `~/Desktop/shell-lesson-data`, large font
+- [ ] Terminal set for teaching: shell is **bash** (run `bash` if your default is zsh),
+  prompt shortened with `PS1='$ '`, colour output off so `ls` looks like a learner's
+- [ ] `shell-lesson-data` on your Desktop with `exercise-data/` (alkanes, animal-counts,
+  creatures, writing, `numbers.txt`) and `north-pacific-gyre/`
+- [ ] Run **your half** of the script once on the machine you'll teach from — especially
+  the Part 2 loop and script demos
+- [ ] Agree the handoff: who takes Part 1, who takes Part 2
+- [ ] Does `man` work on your machine? If not (some Git Bash), use `ls --help` on slide 7
+- [ ] `nano` (or `notepad` on Windows) for slides 12, 26, 27 — do the save-and-exit once
+- [ ] A scratch copy of `shell-lesson-data` you can delete and re-unzip between runs
+- [ ] Etherpad populated (paste `files/shell-etherpad.txt`); setup and data-download links
+  pinned at the top
+
 ### Prep — the things that trip people
 
 1. **`man` with no exit** — people get stuck in the pager. Say "press `q`" loudly on
-   slide 6, and again if anyone goes quiet.
+   slide 7, and again if anyone goes quiet.
 2. **`nano` save/exit** — `Ctrl-O` *then Enter* to confirm the name, *then* `Ctrl-X`.
    Practice it. Have the vim escape ready (`Esc` `:q!` `Enter`) for anyone in the wrong
    editor. On Windows, `notepad` is fine.
 3. **A long shell prompt** eating the shared screen — set `PS1='$ '` before you share.
 4. **`cd` to a sibling** — `cd` only sees directories inside the current one. The error
-   on slide 7 is deliberate; don't skip it.
+   on slide 8 is deliberate; don't skip it.
 5. **`>` overwriting silently** — flag it every time.
 6. **The loop `>` prompt** — when learners press Enter mid-loop and see `>`, they think
    it's broken. It's the shell waiting for `done`. If they're lost, `Ctrl-C` and restart

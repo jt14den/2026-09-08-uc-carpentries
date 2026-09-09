@@ -2,6 +2,8 @@
 
 **Rendered version (bullets, badges, nav): [script.html](script.html)** - `/slides/shell/script.html`. This `.md` is the plain-text source.
 
+**Pre-flight checklist** (both instructors, before you teach): see the instructor guide on the [session notes page](../../shell-notes/#instructor-guide).
+
 Times are clock time (PT); session runs 9:00 am - 12:00 pm. Open the deck alongside this on a second screen.
 
 **Lesson:** Software Carpentry, [The Unix Shell](https://swcarpentry.github.io/shell-novice/). **Today: Episodes 1-6** (Introducing the Shell, Navigating, Working With Files, Pipes and Filters, Loops, Shell Scripts). Episode 7 (Finding Things / `grep` / `find`) is dropped - the standard cut for a single session.
@@ -14,12 +16,12 @@ Two instructors (Tim + James Frew), two parts, handoff after the wildcards block
 
 | Part | Slides | Episodes | Clock | Instructor |
 |---|---|---|---|---|
-| **1** | 1-16 | 1-3 (intro, navigating, creating/moving/deleting files) | ~9:00-10:38 | Instructor 1 (suggested: Tim) |
-| **2** | 17-28 | 4-6 (pipes & filters, loops, shell scripts) | ~10:38-12:00 | Instructor 2 (suggested: Frew) |
+| **1** | 1-17 | 1-3 (intro, navigating, creating/moving/deleting files) | ~9:00-10:38 | Instructor 1 (suggested: Tim) |
+| **2** | 18-29 | 4-6 (pipes & filters, loops, shell scripts) | ~10:38-12:00 | Instructor 2 (suggested: Frew) |
 
-**Pace is brisk.** Official time for Ep 1-6 is ~225 min against ~160 min of teaching time. The compressible end is loops + scripts (Ep 5-6): if Part 2 is behind at the second break, cut the loop exercise (slide 24) and the `$1`/`$2` aside (slide 26), and demo `"$@"` only. Trim exercises before demos.
+**Pace is brisk.** Official time for Ep 1-6 is ~225 min against ~160 min of teaching time. The compressible end is loops + scripts (Ep 5-6): if Part 2 is behind at the second break, cut the loop exercise (slide 25) and the `$1`/`$2` aside (slide 27), and demo `"$@"` only. Trim exercises before demos.
 
-Breaks: after slide 9 (~9:51, 8 min) and after slide 20 (~11:08, 8 min).
+Breaks: after slide 10 (~9:51, 8 min) and after slide 21 (~11:08, 8 min).
 
 ---
 
@@ -65,10 +67,27 @@ ls
 
 ---
 
-## 3. Why type when you can click?
+## 3. Why the command line?
+<sub>Why the shell</sub>
+
+**9:08-9:11 · why the command line · SWC Episode 1**
+
+**SAY**
+
+- Short slide, framing not depth. The shell went from a power-user tool to the layer almost everything else runs on - containers are Linux underneath, HPC schedulers want Bash, and CI is mostly shell scripts.
+- The newer reason: AI coding agents act by running shell commands. To check what Claude Code did in your repo, or what a cluster job actually ran, you're reading the same commands we cover today.
+- Optional: your own example of driving an agent or a cluster job from the terminal.
+
+**THEN** - keep it to ~3 min. -> slide 4
+
+> *slide footnote:* the shell is the layer HPC schedulers and AI agents both sit on top of
+
+---
+
+## 4. Why type when you can click?
 <sub>Concept 1  ·  **DISCUSS**</sub>
 
-**9:08-9:14 · why the shell · DISCUSS · SWC Episode 1**
+**9:11-9:14 · why type when you can click · DISCUSS · SWC Episode 1**
 
 **SAY**
 
@@ -77,13 +96,13 @@ ls
 
 **DO** - read 3-4 chat answers aloud. Common: batch renaming, find-and-replace across many docs, "which of these 200 files mentions X".
 
-**THEN** - keep to ~5 min, the pace is tight today. -> slide 4
+**THEN** - keep it tight, ~3 min. -> slide 5
 
 > *slide footnote:* Unix's design rule: **small pieces, loosely joined** - many tiny tools that each do one job well and combine
 
 ---
 
-## 4. Where am I? What's here?
+## 5. Where am I? What's here?
 <sub>Navigating  ·  **DEMO**</sub>
 
 **9:14-9:20 · pwd / ls · DEMO · SWC Episode 2**
@@ -103,13 +122,13 @@ ls exercise-data
 ls exercise-data/alkanes
 ```
 
-**THEN** -> slide 5
+**THEN** -> slide 6
 
 > *slide footnote:* the filesystem is a **tree**: the **root** `/` at the top; your **home directory** is where a new shell starts
 
 ---
 
-## 5. Options change what a command does
+## 6. Options change what a command does
 <sub>Navigating  ·  **DEMO**</sub>
 
 **9:20-9:27 · ls options · DEMO · SWC Episode 2**
@@ -132,13 +151,13 @@ ls -Fa
 
 **Quick check (~1 min):** chat - "what does `ls -lh` add over `ls -l`?" (human-readable sizes)
 
-**THEN** -> slide 6
+**THEN** -> slide 7
 
 > *slide footnote:* an `-F` is an **option** (also **flag** / **switch**); a name to act on is an **argument**
 
 ---
 
-## 6. How do I find the options?
+## 7. How do I find the options?
 <sub>Navigating  ·  **DEMO**</sub>
 
 **9:27-9:32 · getting help · DEMO · SWC Episode 2**
@@ -156,13 +175,13 @@ ls --help          # or: man ls   (q to quit)
 ls -j              # error for an unknown option
 ```
 
-**THEN** -> slide 7
+**THEN** -> slide 8
 
 > *slide footnote:* a **manual page** (man page) is the reference doc shipped with the tool
 
 ---
 
-## 7. Moving around: `cd`
+## 8. Moving around: `cd`
 <sub>Navigating  ·  **DEMO**</sub>
 
 **9:32-9:38 · cd · DEMO · SWC Episode 2**
@@ -187,13 +206,13 @@ cd
 cd Desktop/shell-lesson-data
 ```
 
-**THEN** - everyone back in `shell-lesson-data`. -> slide 8
+**THEN** - everyone back in `shell-lesson-data`. -> slide 9
 
 > *slide footnote:* `.` = the current directory, `..` = its parent
 
 ---
 
-## 8. Two ways to name a place
+## 9. Two ways to name a place
 <sub>Navigating  ·  **DEMO**</sub>
 
 **9:38-9:44 · paths · DEMO · SWC Episode 2**
@@ -214,13 +233,13 @@ cd -
 cd -
 ```
 
-**THEN** -> slide 9
+**THEN** -> slide 10
 
 > *slide footnote:* a path is an address; **absolute** from `/`, **relative** from where you stand
 
 ---
 
-## 9. Tab completion, and a walk around
+## 10. Tab completion, and a walk around
 <sub>Navigating  ·  **EXERCISE**</sub>
 
 **9:44-9:51 · navigation exercise · EXERCISE · SWC Episode 2**
@@ -234,13 +253,13 @@ cd -
 
 **Answers:** `cd ~`, `cd`, and `cd ..` reach `/Users/you`. `cd .` stays put, `cd ../..` goes to `/Users`. Relative: `cd exercise-data/alkanes`. Absolute back: `cd ~/Desktop/shell-lesson-data/exercise-data/alkanes`.
 
-**THEN** - reconvene, everyone in `shell-lesson-data`, then **BREAK, 8 min** (back ~10:00). -> slide 10
+**THEN** - reconvene, everyone in `shell-lesson-data`, then **BREAK, 8 min** (back ~10:00). -> slide 11
 
 > *slide footnote:* if Tab does nothing, the name isn't there or you're not where you think
 
 ---
 
-## 10. The shape of a command
+## 11. The shape of a command
 <sub>Navigating · recap</sub>
 
 **10:00-10:03 · command syntax · SWC Episode 2 close**
@@ -251,13 +270,13 @@ cd -
 - Re-anchor: "run `pwd`, you should be in `shell-lesson-data`."
 - Then straight into creating files.
 
-**THEN** -> slide 11
+**THEN** -> slide 12
 
 > *slide footnote:* options and arguments together are **parameters**; options that take no value are **flags** or **switches**
 
 ---
 
-## 11. Create a file with `nano`
+## 12. Create a file with `nano`
 <sub>Concept 2 · files  ·  **DEMO**</sub>
 
 **10:03-10:09 · nano · DEMO · SWC Episode 3**
@@ -279,13 +298,13 @@ nano draft.txt
 ls
 ```
 
-**THEN** -> slide 12
+**THEN** -> slide 13
 
 > *slide footnote:* a **plain-text** file is just characters - that's what shell tools expect
 
 ---
 
-## 12. Make directories: `mkdir`
+## 13. Make directories: `mkdir`
 <sub>Files  ·  **DEMO**</sub>
 
 **10:09-10:15 · mkdir · DEMO · SWC Episode 3**
@@ -305,13 +324,13 @@ mkdir -p ../project/data ../project/results
 ls -F ../project
 ```
 
-**THEN** -> slide 13
+**THEN** -> slide 14
 
 > *slide footnote:* consistent, predictable names are what make wildcards and loops work later
 
 ---
 
-## 13. Rename and move: `mv`
+## 14. Rename and move: `mv`
 <sub>Files  ·  **DEMO**</sub>
 
 **10:15-10:21 · mv · DEMO · SWC Episode 3**
@@ -333,13 +352,13 @@ ls thesis
 ls quotes.txt
 ```
 
-**THEN** -> slide 14
+**THEN** -> slide 15
 
 > *slide footnote:* `.` as a target means "here"; `mv` is one command for both renaming and relocating
 
 ---
 
-## 14. Copy: `cp`
+## 15. Copy: `cp`
 <sub>Files  ·  **DEMO**</sub>
 
 **10:21-10:26 · cp · DEMO · SWC Episode 3**
@@ -360,13 +379,13 @@ cp -r thesis thesis_backup
 ls thesis thesis_backup
 ```
 
-**THEN** -> slide 15
+**THEN** -> slide 16
 
 > *slide footnote:* a copy is a working duplicate, not a snapshot in time - versioning is Git, day two
 
 ---
 
-## 15. Delete: `rm` (carefully)
+## 16. Delete: `rm` (carefully)
 <sub>Files  ·  **DEMO**</sub>
 
 **10:26-10:31 · rm · DEMO · SWC Episode 3**
@@ -386,13 +405,13 @@ rm thesis                # error: is a directory
 rm -r thesis thesis_backup ../project
 ```
 
-**THEN** - tidy up the practice files. -> slide 16
+**THEN** - tidy up the practice files. -> slide 17
 
 > *slide footnote:* the shell **unlinks** the file - the disk space is reusable immediately
 
 ---
 
-## 16. Wildcards: act on many files at once
+## 17. Wildcards: act on many files at once
 <sub>Files  ·  **DEMO** **EXERCISE**</sub>
 
 **10:31-10:38 · wildcards · DEMO + EXERCISE · SWC Episode 3**
@@ -417,7 +436,7 @@ ls *.pdf          # error
 
 **Answer:** `ls *t??ne.pdb` - two characters between `t` and `ne`.
 
-**END OF PART 1.** Reconvene, everyone in `alkanes`. Hand to Instructor 2 (~10:38). -> slide 17
+**END OF PART 1.** Reconvene, everyone in `alkanes`. Hand to Instructor 2 (~10:38). -> slide 18
 
 > *slide footnote:* wildcard expansion is **globbing**; a pattern that matches nothing is passed through unchanged
 
@@ -425,7 +444,7 @@ ls *.pdf          # error
 
 # PART 2 — Instructor 2 — Episodes 4-6
 
-## 17. Count with `wc`, save with `>`
+## 18. Count with `wc`, save with `>`
 <sub>Concept 3 · pipes & filters  ·  **DEMO**</sub>
 
 **10:38-10:46 · wc + redirect · START OF PART 2 · DEMO · SWC Episode 4**
@@ -450,13 +469,13 @@ wc -l *.pdb > lengths.txt
 cat lengths.txt
 ```
 
-**THEN** -> slide 18
+**THEN** -> slide 19
 
 > *slide footnote:* redirecting to a file a command is also reading corrupts it - never `sort x > x`
 
 ---
 
-## 18. `sort`, `head`, `tail`, `>>`
+## 19. `sort`, `head`, `tail`, `>>`
 <sub>Pipes & filters  ·  **DEMO**</sub>
 
 **10:46-10:53 · sort/head/tail · DEMO · SWC Episode 4**
@@ -479,13 +498,13 @@ echo appended >> sorted-lengths.txt
 cat sorted-lengths.txt
 ```
 
-**THEN** -> slide 19
+**THEN** -> slide 20
 
 > *slide footnote:* `sort -n` reads it as numbers, plain `sort` reads it as text
 
 ---
 
-## 19. The pipe: `|`
+## 20. The pipe: `|`
 <sub>Pipes & filters  ·  **DEMO**</sub>
 
 **10:53-11:00 · the pipe · DEMO · SWC Episode 4**
@@ -505,13 +524,13 @@ wc -l *.pdb | sort -n
 wc -l *.pdb | sort -n | head -n 1
 ```
 
-**THEN** -> slide 20
+**THEN** -> slide 21
 
 > *slide footnote:* tools that read **standard input** and write **standard output** snap together - **pipes and filters**
 
 ---
 
-## 20. Build a pipeline
+## 21. Build a pipeline
 <sub>Pipes & filters  ·  **EXERCISE**</sub>
 
 **11:00-11:08 · pipeline exercise · EXERCISE · SWC Episode 4**
@@ -529,13 +548,13 @@ wc -l *.pdb | sort -n | head -n 1
 
 **Nelle (tell fast, ~1 min):** she ran `wc -l *.txt | sort -n | head -n 5` on 17 output files, one was 240 lines not 300 - machine left on over the weekend. `tail -n 5` caught a `Z` in a filename (her lab's "missing info" code).
 
-**THEN** - reconvene, then **BREAK, 8 min** (back ~11:16). -> slide 21
+**THEN** - reconvene, then **BREAK, 8 min** (back ~11:16). -> slide 22
 
 > *slide footnote:* `cut -d , -f 2` pulls column 2; `uniq` collapses *adjacent* duplicates, so `sort` comes first
 
 ---
 
-## 21. Loops: do it to the whole list
+## 22. Loops: do it to the whole list
 <sub>Concept 4 · automation</sub>
 
 **11:16-11:22 · the loop idea · SWC Episode 5**
@@ -555,13 +574,13 @@ do
 done
 ```
 
-**THEN** -> slide 22, a real one
+**THEN** -> slide 23, a real one
 
 > *slide footnote:* this is a **for loop**; a variable walking a list is the same shape in every programming language
 
 ---
 
-## 22. A real loop
+## 23. A real loop
 <sub>Automation  ·  **DEMO**</sub>
 
 **11:22-11:30 · a real loop · DEMO · SWC Episode 5**
@@ -583,13 +602,13 @@ do
 done
 ```
 
-**THEN** -> slide 23
+**THEN** -> slide 24
 
 > *slide footnote:* each pass is an **iteration**; the classification is line 2 of every file, so `head -n 2 | tail -n 1` pulls it out
 
 ---
 
-## 23. Check before you run
+## 24. Check before you run
 <sub>Automation  ·  **DEMO**</sub>
 
 **11:30-11:37 · dry run + backup loop · DEMO · SWC Episode 5**
@@ -615,18 +634,18 @@ done
 ls
 ```
 
-**THEN** -> slide 24
+**THEN** -> slide 25
 
 > *slide footnote:* a **dry run** - print what would happen before doing it - is a habit worth keeping for anything destructive
 
 ---
 
-## 24. Trace the loop
+## 25. Trace the loop
 <sub>Automation  ·  **EXERCISE**</sub>
 
 **11:37-11:43 · loop exercise · EXERCISE · SWC Episode 5**
 
-*(If Part 2 is behind: skip this, go straight to slide 25.)*
+*(If Part 2 is behind: skip this, go straight to slide 26.)*
 
 **Task (~6 min):** In `alkanes`, what does each print, and why are they different?
 
@@ -644,13 +663,13 @@ done
 
 **Also mention:** up-arrow to recall the loop, `history` to see recent commands, `!123` to re-run line 123.
 
-**THEN** -> slide 25
+**THEN** -> slide 26
 
 > *slide footnote:* `$f` is the loop variable; `*.pdb` is expanded by the shell every time it's seen
 
 ---
 
-## 25. Save commands as a script
+## 26. Save commands as a script
 <sub>Concept 5 · scripts  ·  **DEMO**</sub>
 
 **11:43-11:49 · scripts: save a pipeline · DEMO · SWC Episode 6**
@@ -673,13 +692,13 @@ nano sorted.sh
 bash sorted.sh
 ```
 
-**THEN** -> slide 26
+**THEN** -> slide 27
 
 > *slide footnote:* a script is a small program; saving your pipeline makes the work **reproducible**
 
 ---
 
-## 26. Make the script take input
+## 27. Make the script take input
 <sub>Scripts  ·  **DEMO**</sub>
 
 **11:49-11:55 · scripts with arguments · DEMO · SWC Episode 6**
@@ -700,24 +719,24 @@ bash sorted.sh *.pdb
 bash sorted.sh ../creatures/*.dat
 ```
 
-**THEN** -> slide 27
+**THEN** -> slide 28
 
 > *slide footnote:* `"$@"` / `"$1"` are **positional parameters**; letting the caller choose the files is how every built-in command already works
 
 ---
 
-## 27. What the field calls this
+## 28. What the field calls this
 <sub>You now have the words</sub>
 
 **11:55-11:57 · vocab**
 
 - Don't read the slide. Point at 3-4: options vs arguments, paths, pipes, the for loop.
 - It's on the notes page.
-- -> slide 28
+- -> slide 29
 
 ---
 
-## 28. Recap
+## 29. Recap
 
 **11:57-12:00 · recap**
 
