@@ -198,13 +198,20 @@ Prompts (C1, C2) are in the pad. ~7 min total — **tab completion 2 min · C1 3
 - **C1 · Absolute vs Relative Paths (~3 min)** — from `/Users/nelle/data`, which commands reach
   `/Users/nelle`? `cd .` / `cd /` / `cd /home/nelle` / `cd ../..` / `cd ~` / `cd home` /
   `cd ~/data/..` / `cd` / `cd ..`
-  → **`cd ~` (5), `cd ~/data/..` (7), `cd` (8), `cd ..` (9)**. `cd .` stays put · `cd /` →
-  root · `cd /home/nelle` wrong path (it's `/Users/nelle`) · `cd ../..` → `/Users` ·
-  `cd home` would need a `home/` dir here.
+  - **Solution: 5, 7, 8, 9.**
+    1. No: `.` is the current directory.
+    2. No: `/` is the root directory.
+    3. No: Nelle's home is `/Users/nelle`, not `/home/nelle`.
+    4. No: goes up two levels, ends in `/Users`.
+    5. Yes: `~` is the user's home directory, here `/Users/nelle`.
+    6. No: would try to enter a `home` directory *inside* the current one.
+    7. Yes: unnecessarily complicated, but correct.
+    8. Yes: shortcut back to the user's home directory.
+    9. Yes: goes up one level.
 - **C2 · Listing in Reverse Chronological Order (~2 min, cut first)** — `ls -t` sorts by
   time of last change, `ls -r` reverses; combine as `ls -t -r` (add `-l` to see dates) — which file shows last?
-  → **`-rt` puts the most recently changed file last** — handy for spotting your latest
-  edit or a fresh output file.
+  - **Solution:** the most recently changed file is listed last when using `-rt`. Useful
+    for finding your most recent edits, or checking whether a new output file was written.
 - **Q2 (if extra time)** reach `exercise-data/alkanes` relative, leave, return absolute
   → `cd exercise-data/alkanes` · `cd ~/Desktop/shell-lesson-data/exercise-data/alkanes`
 
@@ -251,8 +258,12 @@ Be in `exercise-data/writing` (`cd ~/Desktop/shell-lesson-data/exercise-data/wri
 - **`mv`/`cp` overwrite silently** — `-i` to prompt
 - **C3 · Renaming Files** (pad, ~1 min) — fix `statstics.txt` → `statistics.txt`:
   `cp statstics.txt statistics.txt` / `mv statstics.txt statistics.txt` / `mv statstics.txt .` / `cp statstics.txt .`
-  → **`mv statstics.txt statistics.txt`.** The `cp` version leaves the misspelled file
-  behind; `mv … .` and `cp … .` give no new name (can't have two identical names).
+  - **Solution: `mv statstics.txt statistics.txt`.**
+    1. No: creates a correctly named file, but the misspelled one still exists and would
+       need deleting.
+    2. Yes: renames the file.
+    3. No: `.` says *where* to move it, not a new name — can't have two identical names.
+    4. No: same problem as 3, for `cp`.
 
 **CUT IF BEHIND:** skip the `cp` directory-error demo; do `rm` on a file only, describe `rm -r`.
 
@@ -268,8 +279,12 @@ Be in `exercise-data/writing` (`cd ~/Desktop/shell-lesson-data/exercise-data/wri
 - **C4 · List filenames matching a pattern** (pad, ~3 min) — in `alkanes`, which `ls`
   prints exactly `ethane.pdb  methane.pdb`?
   `ls *t*ane.pdb` / `ls *t?ne.*` / `ls *t??ne.pdb` / `ls ethane.*`
-  → **`ls *t??ne.pdb`** (3). `*t*ane.pdb` also catches octane + pentane · `*t?ne.*` gets
-  octane/pentane but nothing ending `thane.pdb` · `ethane.*` is ethane only.
+  - **Solution: 3 (`ls *t??ne.pdb`).**
+    1. `*t*ane.pdb` — `t` then anything then `ane.pdb`: gives `ethane methane octane pentane`.
+    2. `*t?ne.*` — `t`, one char, `ne.`, anything: gives `octane pentane`, misses anything
+       ending `thane.pdb`.
+    3. `*t??ne.pdb` — two chars between `t` and `ne` fixes option 2: `ethane methane`. Correct.
+    4. `ethane.*` — only files starting `ethane.`.
 
 **CHECKPOINT ~10:38 — everyone in `alkanes`. HANDOFF to Instructor 2.**
 Behind? Skip the mini-exercise, hand off after `ls *.pdf`.
