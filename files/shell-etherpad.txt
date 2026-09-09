@@ -2,10 +2,23 @@
   UC CARPENTRIES  ·  THE UNIX SHELL  ·  Wed Sep 9, 2026  ·  9:00-12:00 PT
 ===================================================================
 
-DATA  --  download to your Desktop, then unzip it there (folder: "shell-lesson-data"):
-https://swcarpentry.github.io/shell-novice/data/shell-lesson-data.zip
+SETUP  --  do both of these BEFORE we start
+-------------------------------------------------------------------
+1. A SHELL:
+   - Mac / Linux: you already have one (Terminal).  Mac: Cmd-Space, type
+     "terminal", Enter.
+   - Windows: install Git for Windows ("Git Bash"):  https://gitforwindows.org
+     Then: Start menu, type "git bash", Enter.  (Not Command Prompt / PowerShell.)
+   - Full setup + how to open a shell:
+     https://swcarpentry.github.io/shell-novice/#setup
 
-Check it works:
+2. THE DATA:
+   - Download:  https://swcarpentry.github.io/shell-novice/data/shell-lesson-data.zip
+   - Save it to your DESKTOP, then unzip it THERE.
+   - You should end up with a folder called  shell-lesson-data
+     containing  exercise-data  and  north-pacific-gyre
+
+Check it works -- open your shell and type:
     whoami
     cd ~/Desktop/shell-lesson-data
     ls          ->   exercise-data   north-pacific-gyre
@@ -16,6 +29,8 @@ Lesson: https://swcarpentry.github.io/shell-novice/   (we do Episodes 1-6 today)
 
 
 HOW THIS WORKS
+- ADD YOUR OS TO YOUR ZOOM NAME  --  "Sam (Mac)" / "Sam (Windows)".
+  It lets helpers see which setup instructions apply to you.
 - Work in your OWN terminal the whole time. An instructor drives one on screen.
 - We never type the "$" -- that's the prompt. Just type what comes after it.
 - Two instructors today, split in two halves with a break in each half.

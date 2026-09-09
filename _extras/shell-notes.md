@@ -19,9 +19,9 @@ for anyone who wants to see how the session is put together or teach it themselv
 
 - Full self-paced lesson: <https://swcarpentry.github.io/shell-novice/>
 - Collaborative notes (Etherpad): <https://pad.carpentries.org/2026-fall-uc-shell-novice>
-- Practice data: **[shell-lesson-data.zip](https://swcarpentry.github.io/shell-novice/data/shell-lesson-data.zip)** — download to your Desktop and unzip it there; you should end up with a folder called `shell-lesson-data`
-- Setup (a Unix-like shell): <https://swcarpentry.github.io/shell-novice/#setup>
-- Slides: [{{ '/slides/shell/' | relative_url }}]({{ '/slides/shell/' | relative_url }}) — 8 slides (title, get-to-the-prompt, why the shell, and the four diagrams: filesystem tree, command shape, the pipe, the loop). Everything else is live at the prompt.
+- **Install a shell** (do this before the session): <https://swcarpentry.github.io/shell-novice/#setup> — macOS/Linux already have one (Terminal); Windows needs **Git for Windows / "Git Bash"** from <https://gitforwindows.org>. How to open it: <https://swcarpentry.github.io/shell-novice/index.html#open-a-new-shell>
+- **Download the data**: **[shell-lesson-data.zip](https://swcarpentry.github.io/shell-novice/data/shell-lesson-data.zip)** → save to your **Desktop** → unzip it there → you should have a folder called `shell-lesson-data` (containing `exercise-data` and `north-pacific-gyre`)
+- Slides: [{{ '/slides/shell/' | relative_url }}]({{ '/slides/shell/' | relative_url }}) — 10 slides (title, open a shell, get to the prompt, the two "why" slides, and the four diagrams: filesystem tree, command shape, the pipe, the loop). Everything else is live at the prompt.
 - **[Live-coding spine](#live-coding-spine)** below — the command-by-command sequence, in order, by segment, with what to say and where to cut. This is what you teach from.
 - Older per-slide script ([script.html]({{ '/slides/shell/script.html' | relative_url }}) / [SCRIPT.md]({{ '/slides/shell/SCRIPT.md' | relative_url }})) is kept for reference but was written against the previous 29-slide deck; the spine supersedes it.
 - Etherpad starter to paste into the live pad: [shell-etherpad.txt]({{ '/files/shell-etherpad.txt' | relative_url }})
@@ -92,7 +92,7 @@ exercises, Ep 5–6 are cut hard. Cut points are marked **CUT IF BEHIND**.
 
 | # | Segment | Clock | Ep | Drive |
 |---|---|---|---|---|
-| 1 | Get to the prompt | 9:00–9:10 | 1 | you + all |
+| 1 | Open a shell + get to the prompt | 8:55–9:10 | 1 | you + all |
 | 2–3 | Why the shell (2 slides) | 9:10–9:16 | 1 | discuss |
 | 4 | Navigating: pwd / ls / options | 9:16–9:30 | 2 | you |
 | 5 | Navigating: cd / paths | 9:30–9:44 | 2 | you |
@@ -117,7 +117,7 @@ exercises, Ep 5–6 are cut hard. Cut points are marked **CUT IF BEHIND**.
 
 ---
 
-### 1 · Get to the prompt — 9:00 → 9:10 · slide 2
+### 1 · Open a shell, get to the prompt — 8:55 → 9:10 · slides 2–3
 
 The riskiest ten minutes. Screen-share your terminal.
 
@@ -133,14 +133,14 @@ data link, or breakout. Unzipped to Downloads → `cd ~/Downloads/shell-lesson-d
 
 ---
 
-### 2 · Why the command line? — 9:10 → 9:13 · slide 3 · discuss
+### 2 · Why the command line? — 9:10 → 9:13 · slide 4 · discuss
 
 - **So much runs on it** — installing software, servers, containers, HPC job scripts
 - **Your commands are the record** — re-runnable pipeline = a methods section a GUI never writes
 - **AI agents act by running shell commands** — checking their work is the same skill
 - your own example if you have one · ~3 min
 
-### 3 · Why type when you can click? — 9:13 → 9:16 · slide 4 · discuss
+### 3 · Why type when you can click? — 9:13 → 9:16 · slide 5 · discuss
 
 - **GUI**: fine for one file · **CLI**: write it once, run on 1 or 10,000
 - **Nelle** — back from a survey with **1520 files**, one program each, ~12h of clicking. Today's six episodes automate that. Check in with her each episode.
@@ -150,7 +150,7 @@ data link, or breakout. Unzipped to Downloads → `cd ~/Downloads/shell-lesson-d
 
 ### 4 · Navigating: pwd / ls / options — 9:16 → 9:30 · Episode 2
 
-Show **slide 5 (tree)** ~1 min, then terminal. Be in `~/Desktop/shell-lesson-data`.
+Show **slide 6 (tree)** ~1 min, then terminal. Be in `~/Desktop/shell-lesson-data`.
 
 - **Where am I** — `pwd`. Use it any time you're unsure.
 - **What's here** — `ls`, then `ls -F` → `/` marks a **directory**; `-F` is an **option**
@@ -193,9 +193,9 @@ If you're past 9:55: shorten the break to 5, skip the `cd -` demo next time.
 
 ---
 
-### 7 · Shape of a command — 10:00 → 10:03 · slide 6 · recap
+### 7 · Shape of a command — 10:00 → 10:03 · slide 7 · recap
 
-Show **slide 6**. `ls` = **command**, `-F` = **option**, `/` = **argument**. Spaces separate them.
+Show **slide 7**. `ls` = **command**, `-F` = **option**, `/` = **argument**. Spaces separate them.
 Miss the space (`ls-F`) → shell hunts for a command called `ls-F`.
 Re-anchor: **everyone `pwd`, should be in `shell-lesson-data`.**
 
@@ -270,9 +270,9 @@ Re-anchor: **`pwd`, should be `exercise-data/alkanes`.**
 
 ---
 
-### 13 · The pipe — 10:55 → 11:02 · slide 7 · Episode 4
+### 13 · The pipe — 10:55 → 11:02 · slide 8 · Episode 4
 
-Show **slide 7**. Build one stage at a time.
+Show **slide 8**. Build one stage at a time.
 
 - **`|` = left output straight into right, no temp file**
   - `sort -n lengths.txt | head -n 1`
@@ -296,9 +296,9 @@ Past 11:14? Cut segment 18 now; note it.
 
 ---
 
-### 15 · Loops: the idea — 11:18 → 11:24 · slide 8 · Episode 5
+### 15 · Loops: the idea — 11:18 → 11:24 · slide 9 · Episode 5
 
-Show **slide 8**. Read aloud: **for** each thing **in** the list, **do** these commands, **done**.
+Show **slide 9**. Read aloud: **for** each thing **in** the list, **do** these commands, **done**.
 
 - **loop variable** holds the current item; `$thing` reads its value
 - prompt changes to `>` while it waits for `done` — **not broken**
@@ -387,9 +387,9 @@ Be in `~/Desktop/shell-lesson-data/exercise-data/alkanes`.
 
 ---
 
-### 20 · Recap — 11:57 → 12:00 · slide 9
+### 20 · Recap — 11:57 → 12:00 · slide 10
 
-Show **slide 9** — two columns are the Ep 2–6 keypoints, point don't read. Vocabulary table
+Show **slide 10** — two columns are the Ep 2–6 keypoints, point don't read. Vocabulary table
 is further down this page. Feedback link in the Etherpad. **Episode 7 (`grep`/`find`) is at
 the bottom of this page** for anyone who wants it. Finishing early is fine.
 

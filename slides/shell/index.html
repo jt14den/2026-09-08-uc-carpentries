@@ -137,8 +137,8 @@
       </ul>
       <p><b>Two instructors, two parts</b> (Tim + James Frew; helpers Geoffrey Boushey + Jose Nino Muriel):</p>
       <ul>
-        <li><b>Part 1 - Episodes 1-3, ~9:00-10:38:</b> get everyone to the prompt, why the shell, navigating, creating / moving / deleting files, wildcards. Contains the first break. Diagrams: slides 5 and 6.</li>
-        <li><b>Part 2 - Episodes 4-6, ~10:38-12:00:</b> pipes &amp; filters, loops, shell scripts. Contains the second break. Diagrams: slides 7 and 8.</li>
+        <li><b>Part 1 - Episodes 1-3, ~9:00-10:38:</b> get everyone to the prompt, why the shell, navigating, creating / moving / deleting files, wildcards. Contains the first break. Diagrams: slides 6 and 7.</li>
+        <li><b>Part 2 - Episodes 4-6, ~10:38-12:00:</b> pipes &amp; filters, loops, shell scripts. Contains the second break. Diagrams: slides 8 and 9.</li>
         <li>Handoff after the wildcards exercise. Whoever is not driving watches the room, reads chat + pad aloud, keeps time.</li>
         <li><b>Pace is brisk.</b> Official time for Ep 1-6 is ~225 min against ~160 min of teaching time. Episode 7 (Finding Things / grep / find) is the standard cut. Trim exercises before demos; loops and scripts are the compressible end. Cut points are marked in the notes spine.</li>
         <li>Helpers watch chat + pad, DM anyone who posts a red x.</li>
@@ -147,7 +147,67 @@
     </aside>
   </section>
 
-  <!-- 2 · GET TO THE PROMPT -->
+  <!-- 2 · OPEN A SHELL -->
+  <section data-background-color="#ffffff">
+    <div class="content-mid">
+      <div class="toprow"><span class="tag">Before we start</span> <span class="badge demo">everyone</span></div>
+      <div class="slide-head"><h2>Open a shell</h2></div>
+      <div class="two">
+        <div>
+          <h4 style="font-size:16px;text-transform:uppercase;letter-spacing:.06em;color:var(--uc-blue-deep);margin:0 0 8px;">macOS &mdash; Terminal</h4>
+          <figure>
+            <svg viewBox="0 0 400 96" width="100%" role="img" aria-label="macOS Spotlight search box with the word terminal typed and a Terminal result">
+              <rect x="6" y="8" width="388" height="40" rx="10" fill="#fff" stroke="#CBD5E0" stroke-width="1.5"/>
+              <circle cx="32" cy="28" r="8" fill="none" stroke="#647082" stroke-width="2"/>
+              <line x1="38" y1="34" x2="45" y2="41" stroke="#647082" stroke-width="2"/>
+              <text x="58" y="35" font-family="Lato" font-size="19" fill="#1A202C">terminal</text>
+              <rect x="6" y="50" width="388" height="34" rx="8" fill="#2774AE"/>
+              <text x="22" y="72" font-family="Lato" font-size="15" fill="#fff">Terminal &mdash; Utilities</text>
+            </svg>
+          </figure>
+          <ul class="clean" style="margin-top:10px;">
+            <li>Press <kbd>&#8984;</kbd> + <kbd>Space</kbd>, type <code>terminal</code>, hit <kbd>Enter</kbd></li>
+            <li>Or: <b>Finder</b> &rarr; <b>Applications</b> &rarr; <b>Utilities</b> &rarr; <b>Terminal</b></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="font-size:16px;text-transform:uppercase;letter-spacing:.06em;color:var(--uc-blue-deep);margin:0 0 8px;">Windows &mdash; Git Bash</h4>
+          <figure>
+            <svg viewBox="0 0 400 96" width="100%" role="img" aria-label="Windows Start menu search with git bash typed and a Git Bash app result">
+              <rect x="6" y="8" width="388" height="40" rx="6" fill="#fff" stroke="#CBD5E0" stroke-width="1.5"/>
+              <rect x="16" y="20" width="16" height="16" fill="#2774AE"/>
+              <line x1="24" y1="20" x2="24" y2="36" stroke="#fff" stroke-width="1.5"/>
+              <line x1="16" y1="28" x2="32" y2="28" stroke="#fff" stroke-width="1.5"/>
+              <text x="44" y="34" font-family="Lato" font-size="19" fill="#1A202C">git bash</text>
+              <rect x="6" y="50" width="388" height="34" rx="6" fill="#2774AE"/>
+              <text x="22" y="72" font-family="Lato" font-size="15" fill="#fff">Git Bash &mdash; App</text>
+            </svg>
+          </figure>
+          <ul class="clean" style="margin-top:10px;">
+            <li>Click <b>Start</b> (or tap the <kbd>&#8862;</kbd> key), type <code>git bash</code>, hit <kbd>Enter</kbd></li>
+            <li>Or: right-click inside a folder &rarr; <b>Git Bash Here</b></li>
+            <li class="note-bad">No Git Bash? Install it &mdash; link below</li>
+          </ul>
+        </div>
+      </div>
+      <p class="zoomcue"><b>Add your OS to your Zoom name</b> - "Sam (Mac)" / "Sam (Windows)" - so helpers know which instructions apply</p>
+      <p class="zoomcue"><b>Setup / install:</b> swcarpentry.github.io/shell-novice/#setup &nbsp;&middot;&nbsp; <b>Linux:</b> your normal terminal, nothing to install</p>
+      <div class="term">a <b>shell</b> / terminal / console / command line - all the same thing: a window where you type commands and read text back</div>
+    </div>
+    <aside class="notes">
+      <p><b>8:55-9:00 (holding) into 9:00 · open a shell · the #1 stumbling block - walk the room through it</b></p>
+      <p><b>SAY</b></p>
+      <ul>
+        <li>Before we do anything, everyone needs a shell window open. Mac and Windows are different - I'll show both.</li>
+        <li><b>Mac:</b> Spotlight (Cmd-Space), type "terminal", Enter. It lives in Applications &rarr; Utilities if search fails.</li>
+        <li><b>Windows:</b> we use <b>Git Bash</b> (installed with Git for Windows). Start menu, type "git bash", Enter. Not the built-in Command Prompt or PowerShell - those aren't bash.</li>
+        <li>You'll get a window with a <code>$</code> or a <code>&gt;</code> prompt. That's success. We fix the look of it in a moment.</li>
+      </ul>
+      <p><b>THEN</b> - anyone without a working shell: helper takes them to a breakout with the setup link (<code>swcarpentry.github.io/shell-novice/#setup</code>). Chromebook / locked-down machine / nothing works: pair them with a neighbour for today, sort setup after. Don't hold the whole room. &rarr; slide 3</p>
+    </aside>
+  </section>
+
+  <!-- 3 · GET TO THE PROMPT -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <div class="toprow"><span class="tag">Before we start</span> <span class="badge demo">everyone</span></div>
@@ -156,8 +216,8 @@
         <div class="exbox">
           <h4>Everyone, right now</h4>
           <ol>
-            <li><b>Shell open?</b> Terminal (Mac) or Git Bash (Windows). You'll see a <code>$</code> - the <b>prompt</b>. Don't type it; type what comes after.</li>
-            <li><b>Data on your Desktop?</b> <code>shell-lesson-data.zip</code>, unzipped to a <code>shell-lesson-data</code> folder.</li>
+            <li><b>Shell open</b> (previous slide). You'll see a <code>$</code> - the <b>prompt</b>. Don't type it; type what comes after.</li>
+            <li><b>Data on your Desktop?</b> <code>shell-lesson-data.zip</code> from <code>swcarpentry.github.io/shell-novice/#setup</code>, unzipped to a <code>shell-lesson-data</code> folder.</li>
             <li>In your shell, type these two lines:</li>
           </ol>
           <div class="cmds" style="font-size:17px;"><span class="p">$ </span>cd ~/Desktop/shell-lesson-data
@@ -194,11 +254,11 @@ ls</pre>
       <p><b>THEN</b> - watch the chat. Do not move on until it is mostly green checks. Common failures:
       no <code>shell-lesson-data</code> folder (helper DMs the data link), unzipped to Downloads not Desktop
       (<code>cd ~/Downloads/shell-lesson-data</code> for now), Windows path (<code>cd ~/Desktop/shell-lesson-data</code>
-      still works in Git Bash). &rarr; slide 3</p>
+      still works in Git Bash). &rarr; slide 4</p>
     </aside>
   </section>
 
-  <!-- 3 · WHY THE COMMAND LINE -->
+  <!-- 4 · WHY THE COMMAND LINE -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <div class="toprow"><span class="tag">Why the shell</span></div>
@@ -226,11 +286,11 @@ ls</pre>
         <li>The newer reason: AI coding agents act by running shell commands. To check what Claude Code did in your repo, or what a cluster job actually ran, you're reading the same commands we cover today.</li>
         <li>Optional: your own example of driving an agent or a cluster job from the terminal.</li>
       </ul>
-      <p><b>THEN</b> - keep it to ~3 min. &rarr; slide 4</p>
+      <p><b>THEN</b> - keep it to ~3 min. &rarr; slide 5</p>
     </aside>
   </section>
 
-  <!-- 4 · WHY TYPE WHEN YOU CAN CLICK / NELLE -->
+  <!-- 5 · WHY TYPE WHEN YOU CAN CLICK / NELLE -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <div class="toprow"><span class="tag">Concept 1</span> <span class="badge discuss">discuss</span></div>
@@ -259,11 +319,11 @@ ls</pre>
         <li>Nelle Nemo, marine biologist, is the story that runs through this lesson. 1520 files, one program, by end of month. We meet her again in every episode - navigate, create, check length, chain commands, loop, script.</li>
       </ul>
       <p><b>DO</b> - read 3-4 chat answers aloud. Common: batch renaming, find-and-replace across many docs, "which of these 200 files mentions X".</p>
-      <p><b>THEN</b> - keep it tight, ~3 min. Then straight into navigating (live - notes spine, "Navigating"). &rarr; slide 5</p>
+      <p><b>THEN</b> - keep it tight, ~3 min. Then straight into navigating (live - notes spine, "Navigating"). &rarr; slide 6</p>
     </aside>
   </section>
 
-  <!-- 5 · FILESYSTEM IS A TREE -->
+  <!-- 6 · FILESYSTEM IS A TREE -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <span class="tag">Navigating · Episode 2</span>
@@ -310,11 +370,11 @@ ls</pre>
       <code>cd</code> in / <code>..</code> up / home / <code>cd -</code>, the deliberate sibling-directory error,
       absolute vs relative paths, <kbd>Tab</kbd> completion.</p>
       <p><b>Exercise (~7 min, ~9:44):</b> <code>ls nor</code> + Tab; which <code>cd</code> options reach home; the alkanes round-trip (one relative path in, one absolute path back). Answers in the notes spine.</p>
-      <p><b>THEN</b> - reconvene, everyone back in <code>shell-lesson-data</code>, then <b>BREAK, 8 min</b> (back ~10:00). Coming back: name the parts of a command once (command / option / argument), re-anchor with <code>pwd</code>, then into creating files. &rarr; slide 6</p>
+      <p><b>THEN</b> - reconvene, everyone back in <code>shell-lesson-data</code>, then <b>BREAK, 8 min</b> (back ~10:00). Coming back: name the parts of a command once (command / option / argument), re-anchor with <code>pwd</code>, then into creating files. &rarr; slide 7</p>
     </aside>
   </section>
 
-  <!-- 6 · SHAPE OF A COMMAND -->
+  <!-- 7 · SHAPE OF A COMMAND -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <span class="tag">Navigating · recap</span>
@@ -353,11 +413,11 @@ ls</pre>
         <li>Then straight into creating / moving / deleting files - live, notes spine, "Working with files (Episode 3)": <code>nano</code>, <code>mkdir</code> / <code>-p</code>, <code>mv</code>, <code>cp</code> (+ the <code>-r</code> error), <code>rm</code> (<b>say the no-undo danger twice</b>), then wildcards in <code>alkanes</code>.</li>
         <li><b>Handoff to Instructor 2 after the wildcards exercise</b> (~10:38), everyone in <code>alkanes</code>.</li>
       </ul>
-      <p>&rarr; slide 7</p>
+      <p>&rarr; slide 8</p>
     </aside>
   </section>
 
-  <!-- 7 · REDIRECT AND THE PIPE -->
+  <!-- 8 · REDIRECT AND THE PIPE -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <span class="tag">Pipes &amp; filters · Episode 4</span>
@@ -402,11 +462,11 @@ ls</pre>
       then build <code>wc -l *.pdb | sort -n | head -n 1</code> one stage at a time.</p>
       <p><b>Exercise (~8 min, ~11:00):</b> which pipeline finds the 3 shortest files;
       <code>cut -d , -f 2 animals.csv | sort | uniq</code> then <code>| wc -l</code>. Tell the Nelle "60 lines short" catch fast. Answers in the notes spine.</p>
-      <p><b>THEN</b> - reconvene, then <b>BREAK, 8 min</b> (back ~11:16). &rarr; slide 8</p>
+      <p><b>THEN</b> - reconvene, then <b>BREAK, 8 min</b> (back ~11:16). &rarr; slide 9</p>
     </aside>
   </section>
 
-  <!-- 8 · LOOPS -->
+  <!-- 9 · LOOPS -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <span class="tag">Automation · Episodes 5–6</span>
@@ -433,11 +493,11 @@ ls</pre>
         <li>Loop-trace exercise (<code>ls *.pdb</code> vs <code>ls $f</code> inside a loop) - <b>cut this if behind</b>.</li>
         <li>Scripts: <code>nano sorted.sh</code> = <code># comment</code> + <code>wc -l *.pdb | sort -n</code>, run with <code>bash sorted.sh</code>. Then change <code>*.pdb</code> to <code>"$@"</code> so the caller picks the files. Skip the <code>$1</code>/<code>$2</code> aside if short on time.</li>
       </ul>
-      <p><b>THEN</b> &rarr; slide 9, recap + feedback.</p>
+      <p><b>THEN</b> &rarr; slide 10, recap + feedback.</p>
     </aside>
   </section>
 
-  <!-- 9 · RECAP -->
+  <!-- 10 · RECAP -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <div class="slide-head"><h2>Recap</h2></div>
