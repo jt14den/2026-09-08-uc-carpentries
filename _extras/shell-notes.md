@@ -75,539 +75,241 @@ Each episode is one step toward automating that.
 
 ## Live-coding spine
 
-The whole session, command by command, in **teach-from order**. This is what you drive
-from — deck on one screen, this on the other.
+Cue notes for driving the session, not a script. Each line is **what to do** plus the
+**command**, with the point to flag while you type it. Verbalise as you go: name the
+command, say what you expect, run it, read the result back. Slides are for the diagrams
+only.
 
-**How to use it.** Each step is a bullet or two of *what to say* — said out loud while you
-type, the way we teach in Carpentries — then the command. Verbalise every keystroke:
-name the command, say what you expect, run it, then read the result back to the room.
-The slides are only for the diagrams; a step that says "show slide 5" means flip to the
-picture, talk over it, then come back to the terminal.
+Learners have `shell-lesson-data` on their **Desktop**. Commands follow Software Carpentry
+[The Unix Shell](https://swcarpentry.github.io/shell-novice/), Episodes 1–6, checked
+against the lesson data.
 
-Times are clock time (PT). Learners have `shell-lesson-data` on their **Desktop**, so
-paths use `~/Desktop/shell-lesson-data`. Commands follow Software Carpentry
-[The Unix Shell](https://swcarpentry.github.io/shell-novice/), Episodes 1–6.
+### Pace
 
-Legend: **DEMO** you drive · **EXERCISE** learners work · **DISCUSS** chat/pad.
+Official time for Ep 1–6 is ~225 min; you have ~164 (180 minus two breaks). So Ep 2 gets
+close to full time (it's where people actually learn to navigate), Ep 3 loses its
+exercises, Ep 5–6 are cut hard. Cut points are marked **CUT IF BEHIND**.
 
----
-
-### 1. Get everyone to the prompt · 9:00–9:10 · slide 2 · DEMO
-
-The riskiest ten minutes. Do not rush it. Screen-share your terminal now.
-
-- "This window is a **shell**. The `$` is the **prompt** — the shell telling you it's
-  ready. Yours might have your name and computer in front of it; ignore that, look for
-  the `$`. We never type the `$` — just what comes after it — then press Enter."
-- "Let's all check the computer knows who we are."
-
-```bash
-whoami
-```
-
-- "It prints your username. Now — where am I right now?"
-
-```bash
-pwd
-```
-
-- "`pwd` = print working directory. It printed an absolute path — your home folder.
-  Now let's all move into the lesson data on the Desktop."
-
-```bash
-cd ~/Desktop/shell-lesson-data
-ls
-```
-
-- "No error from `cd` — silence means it worked. `ls` lists what's here. You should see
-  **`exercise-data/`** and **`north-pacific-gyre/`**."
-- "Blank line back = it worked. `command not found` = a typo or it's not installed.
-  `No such file or directory` = the path is wrong, or you're not where you think."
-
-**Check:** everyone posts a green check in chat when they see those two folders, a red x
-if not. **Do not move on until the chat is mostly green.** Helpers DM the setup + data
-links to anyone stuck, or take them to a breakout. Common fixes: unzipped to Downloads
-→ `cd ~/Downloads/shell-lesson-data`; no folder at all → helper sends the data link.
+| # | Segment | Clock | Ep | Drive |
+|---|---|---|---|---|
+| 1 | Get to the prompt | 9:00–9:10 | 1 | you + all |
+| 2–3 | Why the shell (2 slides) | 9:10–9:16 | 1 | discuss |
+| 4 | Navigating: pwd / ls / options | 9:16–9:30 | 2 | you |
+| 5 | Navigating: cd / paths | 9:30–9:44 | 2 | you |
+| 6 | Navigation exercise | 9:44–9:51 | 2 | them |
+| — | **BREAK** | 9:51–10:00 | | |
+| 7 | Shape of a command (recap) | 10:00–10:03 | 2 | slide |
+| 8 | Creating: mkdir / nano | 10:03–10:15 | 3 | you |
+| 9 | mv / cp / rm | 10:15–10:32 | 3 | you |
+| 10 | Wildcards + mini-exercise | 10:32–10:38 | 3 | you + them |
+| — | **HANDOFF to Instructor 2** | ~10:38 | | |
+| 11 | wc + redirect | 10:38–10:48 | 4 | you |
+| 12 | sort / head / tail / >> | 10:48–10:55 | 4 | you |
+| 13 | The pipe | 10:55–11:02 | 4 | you |
+| 14 | Pipeline exercise + Nelle | 11:02–11:10 | 4 | them |
+| — | **BREAK** | 11:10–11:18 | | |
+| 15 | Loops: the idea | 11:18–11:24 | 5 | you |
+| 16 | A real loop | 11:24–11:32 | 5 | you |
+| 17 | Dry run + backup loop | 11:32–11:40 | 5 | you |
+| 18 | Loop-trace exercise | 11:40–11:45 | 5 | them — **CUT IF BEHIND** |
+| 19 | Scripts | 11:45–11:57 | 6 | you |
+| 20 | Recap | 11:57–12:00 | 6 | slide |
 
 ---
 
-### 2. Why the command line? · 9:10–9:13 · slide 3 · DISCUSS
+### 1 · Get to the prompt — 9:00 → 9:10 · slide 2
 
-Slide, not terminal.
+The riskiest ten minutes. Screen-share your terminal.
 
-- "Almost everything else runs on this: installing software, remote servers, containers,
-  HPC job scripts — they all assume shell basics."
-- "Your commands **are** the record. A pipeline you can re-run is a methods section a
-  GUI never writes down."
-- "The newer reason: AI coding agents act by running shell commands. To check what an
-  agent changed, or what a cluster job actually ran, you're reading the same commands
-  we cover today."
-- Give **your own** example if you have one — driving an agent, a cluster job, a batch
-  rename. Keep to ~3 min.
+- **The `$` is the prompt** — ready for input. Ignore anything before it. Don't type the `$`.
+- **Who am I** — `whoami`
+- **Where am I** — `pwd` (prints your home, an absolute path)
+- **Move to the data** — `cd ~/Desktop/shell-lesson-data` then `ls`
+  - room should see **`exercise-data/`** and **`north-pacific-gyre/`**
+- **Reading feedback** — blank line = worked · `command not found` = typo · `No such file or directory` = wrong path
 
----
-
-### 3. Why type when you can click? · 9:13–9:16 · slide 4 · DISCUSS
-
-Slide, not terminal.
-
-- "A GUI is great for one file. It scales badly to a hundred."
-- "A CLI lets you write the instructions once and run them on 1, 100, or 10,000 files."
-- "Meet **Nelle** — marine biologist, back from a six-month survey with **1520 sample
-  files**, each needing the same analysis program. By hand that's ~12 hours of clicking.
-  Today's six episodes are the steps that let her computer do it while she writes her
-  paper. We'll check in with Nelle at the end of every episode."
-- Chat prompt: "one repetitive file task that has eaten an afternoon of your time."
-  Read 3–4 answers aloud. Then straight into the terminal.
+**CHECKPOINT — do not move on until chat is mostly green checks.** Red x → helper DMs the
+data link, or breakout. Unzipped to Downloads → `cd ~/Downloads/shell-lesson-data`.
 
 ---
 
-### 4. Navigating: `pwd`, `ls`, options · 9:16–9:30 · Episode 2 · DEMO
+### 2 · Why the command line? — 9:10 → 9:13 · slide 3 · discuss
 
-**Be in:** `~/Desktop/shell-lesson-data`. **Show slide 5 (the tree)** for a minute first:
-root `/` at the top, `~` your home, where you are now, `.` here, `..` one up. Then back
-to the terminal.
+- **So much runs on it** — installing software, servers, containers, HPC job scripts
+- **Your commands are the record** — re-runnable pipeline = a methods section a GUI never writes
+- **AI agents act by running shell commands** — checking their work is the same skill
+- your own example if you have one · ~3 min
 
-- "First rule: you are always *somewhere*. When in doubt —"
+### 3 · Why type when you can click? — 9:13 → 9:16 · slide 4 · discuss
 
-```bash
-pwd
-```
-
-- "Now, what's in here?"
-
-```bash
-ls
-```
-
-- "I can ask `ls` to tell me *what kind* of thing each one is."
-
-```bash
-ls -F
-```
-
-- "The `/` after a name means it's a directory. `-F` is an **option** — it changes what
-  the command does. I can list somewhere else without moving there:"
-
-```bash
-ls -F exercise-data
-```
-
-- "Let's actually go in."
-
-```bash
-cd exercise-data
-pwd
-ls -F
-```
-
-- "Options can be combined and they're case-sensitive — watch:"
-
-```bash
-ls -s exercise-data      # (say it after cd-ing back) show sizes
-ls -S exercise-data      # capital S — sort by size — completely different
-```
-
-- "Nobody memorises options. You look them up. Two ways, and only one may work on your
-  machine — that's normal:"
-
-```bash
-ls --help                # Linux, Git Bash
-man ls                   # macOS, Linux
-```
-
-- **Say loudly:** "To get out of `man`, press **`q`**. Space or `b` to page up and down,
-  `/` to search, `q` to quit. Everybody press `q` now."
-- "And an option that doesn't exist gives a clear error, not a crash:"
-
-```bash
-ls -j
-```
-
-**Trip hazard:** people stuck in `man`. Say "press `q`" again any time the room goes quiet.
+- **GUI**: fine for one file · **CLI**: write it once, run on 1 or 10,000
+- **Nelle** — back from a survey with **1520 files**, one program each, ~12h of clicking. Today's six episodes automate that. Check in with her each episode.
+- chat: *one repetitive file task that ate an afternoon* — read 3–4 aloud, then terminal
 
 ---
 
-### 5. Navigating: `cd` and paths · 9:30–9:44 · Episode 2 · DEMO
+### 4 · Navigating: pwd / ls / options — 9:16 → 9:30 · Episode 2
 
-**Be in:** `exercise-data`.
+Show **slide 5 (tree)** ~1 min, then terminal. Be in `~/Desktop/shell-lesson-data`.
 
-- "`cd` moves you. No output = it worked."
-
-```bash
-cd creatures
-pwd
-```
-
-- "`..` means the parent directory — one level up."
-
-```bash
-cd ..
-pwd
-```
-
-- "Here's a mistake people make. I'm in `exercise-data`. Let me try to jump to
-  `shell-lesson-data`:"
-
-```bash
-cd shell-lesson-data
-```
-
-- "Error — `cd` only sees directories *inside* where I am. `shell-lesson-data` is my
-  parent, not my child. Read the error aloud. To get there I go up:"
-
-```bash
-cd ..
-pwd
-```
-
-- "`cd` with nothing takes you all the way home — your escape hatch."
-
-```bash
-cd
-pwd
-```
-
-- "Two ways to name a place. **Relative** — from where I am. **Absolute** — from the
-  root `/`, means the same thing anywhere. `~` is shorthand for home."
-
-```bash
-cd ~/Desktop/shell-lesson-data/exercise-data
-cd creatures
-cd ~/Desktop/shell-lesson-data
-```
-
-- "And `cd -` is the undo for `cd` — back to where you just were."
-
-```bash
-cd -            # back to creatures
-cd -            # back again
-```
-
-**End with everyone in `shell-lesson-data`.** Run `pwd` together to confirm.
+- **Where am I** — `pwd`. Use it any time you're unsure.
+- **What's here** — `ls`, then `ls -F` → `/` marks a **directory**; `-F` is an **option**
+- **List elsewhere without moving** — `ls -F exercise-data`
+- **Go in** — `cd exercise-data` · `pwd` · `ls -F`
+- **Hidden names** — `ls -F -a` → `.` (here) and `..` (up)
+- **Case matters** — `ls -s exercise-data` (sizes) vs `ls -S exercise-data` (sort by size) — different options
+- **Look them up** — `man ls` *or* `ls --help` (only one may work — normal)
+  - **SAY LOUD: `q` quits `man`.** Repeat whenever the room goes quiet.
+- **Unknown option = clean error, not a crash** — `ls -j`
 
 ---
 
-### 6. Navigation exercise · 9:44–9:51 · Episode 2 · EXERCISE → BREAK
+### 5 · Navigating: cd / paths — 9:30 → 9:44 · Episode 2
 
-Post the prompts in the pad. ~7 min.
+- **Move in, check** — `cd creatures` · `pwd`
+- **Up one** — `cd ..` (`..` = parent, `.` = here)
+- **Deliberate mistake** — from `exercise-data`: `cd shell-lesson-data` → **error**. `cd` only sees directories *inside* where you are. Read it aloud.
+- **Home = escape hatch** — `cd` (nothing) · `pwd`
+- **Relative vs absolute** — relative is from here; absolute starts at `/`, same everywhere; `~` = home
+  - `cd ~/Desktop/shell-lesson-data/exercise-data` · `cd creatures` · `cd ~/Desktop/shell-lesson-data`
+- **Undo for cd** — `cd -` (back to where you just were), again `cd -`
 
-```bash
-ls nor                      # then press Tab — the shell finishes north-pacific-gyre/
-ls north-pacific-gyre/goo   # Tab Tab — shows goodiff.sh / goostats.sh
-```
-
-1. From `/Users/you/data`, which of these reach home? `cd .` / `cd ~` / `cd ../..` /
-   `cd` / `cd ..`
-   **Answer:** `cd ~`, `cd`, and `cd ..` reach `/Users/you`. `cd .` stays put;
-   `cd ../..` goes to `/Users`.
-2. Get to `exercise-data/alkanes` with one **relative** path, then leave and come back
-   with one **absolute** path.
-   **Answer:** `cd exercise-data/alkanes` in; `cd ~/Desktop/shell-lesson-data/exercise-data/alkanes` back.
-
-Learners post answers in chat, green check on the round-trip. Reconvene in
-`shell-lesson-data`, then **BREAK 8 min** (back ~10:00).
+**End: everyone runs `pwd`, all in `shell-lesson-data`.**
 
 ---
 
-### 7. The shape of a command · 10:00–10:03 · slide 6 · recap
+### 6 · Navigation exercise — 9:44 → 9:51 · Episode 2 · them
 
-Coming back from the break — **show slide 6**.
+Prompts in the pad. ~7 min.
 
-- "Name the parts once: `ls` is the **command**, `-F` is an **option**, `/` is an
-  **argument** — the thing it acts on. Separated by spaces. Miss the space — `ls-F` —
-  and the shell hunts for a command called `ls-F`."
-- Re-anchor: "everyone run `pwd` — you should be in `shell-lesson-data`." Then into the
-  terminal for file creation.
+- **Tab completion** — `ls nor`+Tab → finishes `north-pacific-gyre/`; `ls north-pacific-gyre/goo`+Tab Tab → the two `.sh` files
+- **Q1** from `/Users/you/data`, which reach home: `cd .` / `cd ~` / `cd ../..` / `cd` / `cd ..`?
+  → **`cd ~`, `cd`, `cd ..`** reach `/Users/you`. `cd .` stays. `cd ../..` → `/Users`.
+- **Q2** reach `exercise-data/alkanes` relative, leave, return absolute
+  → `cd exercise-data/alkanes` · `cd ~/Desktop/shell-lesson-data/exercise-data/alkanes`
 
----
-
-### 8. Creating things: `mkdir` and `nano` · 10:03–10:15 · Episode 3 · DEMO
-
-- "Let's go where there's some text to work with."
-
-```bash
-cd ~/Desktop/shell-lesson-data/exercise-data/writing
-ls -F
-```
-
-- "Two files. I want somewhere to keep thesis drafts, so I'll make a directory."
-
-```bash
-mkdir thesis
-ls -F
-```
-
-- "`thesis/` — new, with the slash. `mkdir` said nothing: silence = success. And I can
-  build a whole nested path in one go:"
-
-```bash
-mkdir -p ../project/data ../project/results
-ls -F ../project
-```
-
-- "Without `-p`, `mkdir` fails if the middle directories don't exist yet. Now let's
-  make a *file*. `nano` is a plain-text editor that runs inside the shell."
-
-```bash
-cd thesis
-nano draft.txt
-```
-
-- **Slowly:** "Type a couple of lines. Now to save: **Ctrl-O**, then **Enter** to
-  confirm the name, then **Ctrl-X** to leave. The bottom bar shows the keys — `^` means
-  Ctrl."
-
-```bash
-ls
-```
-
-- "There's `draft.txt`. On Windows, `notepad draft.txt` works the same way."
-
-**Trip hazard:** the `nano` save/exit dance. If someone lands in `vim`: `Esc`, then
-`:q!`, then Enter. **Names:** try `mkdir north pacific gyre` then `ls` — you get *three*
-directories, because spaces separate arguments. Good names: no spaces, don't start with
-`-`, stick to letters / numbers / `. - _`.
+**CHECKPOINT ~9:51 — reconvene in `shell-lesson-data`, then BREAK 8 min (back 10:00).**
+If you're past 9:55: shorten the break to 5, skip the `cd -` demo next time.
 
 ---
 
-### 9. `mv`, `cp`, `rm` · 10:15–10:32 · Episode 3 · DEMO
+### 7 · Shape of a command — 10:00 → 10:03 · slide 6 · recap
 
-**Be in:** `exercise-data/writing`.
-
-```bash
-cd ~/Desktop/shell-lesson-data/exercise-data/writing
-```
-
-- "`mv` is one command for two jobs. Two file names = **rename**."
-
-```bash
-mv thesis/draft.txt thesis/quotes.txt
-ls thesis
-```
-
-- "A directory as the target = **move into it**. `.` means 'here'."
-
-```bash
-mv thesis/quotes.txt .
-ls thesis
-ls quotes.txt
-```
-
-- "`cp` is the same, but the original stays put."
-
-```bash
-cp quotes.txt thesis/quotations.txt
-ls quotes.txt thesis/quotations.txt
-```
-
-- "Copying a *directory* needs `-r`. Watch it fail first:"
-
-```bash
-cp thesis thesis_backup
-cp -r thesis thesis_backup
-ls thesis thesis_backup
-```
-
-- **Say the danger, then say it again:** "`rm` deletes. **No Trash. No 'are you sure'.
-  No undo.**"
-
-```bash
-rm quotes.txt
-ls quotes.txt
-```
-
-- "Gone. `rm` won't touch a directory on its own —"
-
-```bash
-rm thesis
-```
-
-- "— error, 'is a directory'. `rm -r` deletes a directory *and everything in it*, no
-  prompt. This is how people lose a project. `ls` first, then delete."
-
-```bash
-rm -r thesis thesis_backup ../project
-```
-
-**Trip hazard:** `mv` and `cp` overwrite an existing target silently — mention `-i` to
-prompt.
+Show **slide 6**. `ls` = **command**, `-F` = **option**, `/` = **argument**. Spaces separate them.
+Miss the space (`ls-F`) → shell hunts for a command called `ls-F`.
+Re-anchor: **everyone `pwd`, should be in `shell-lesson-data`.**
 
 ---
 
-### 10. Wildcards · 10:32–10:38 · Episode 3 · DEMO + EXERCISE → HANDOFF
+### 8 · Creating: mkdir / nano — 10:03 → 10:15 · Episode 3
 
-```bash
-cd ~/Desktop/shell-lesson-data/exercise-data/alkanes
-```
+- **Go where there's text** — `cd exercise-data/writing` · `ls -F` (haiku.txt, LittleWomen.txt)
+- **Make a directory** — `mkdir thesis` · `ls -F` → new `thesis/`. **Silence = success.**
+- **Nested in one go** — `mkdir -p ../project/data ../project/results` · `ls -F ../project`
+  - without **`-p`** it fails on missing parents
+- **Make a file** — `cd thesis` · `nano draft.txt`
+  - type 2 lines · **`Ctrl-O`, Enter, `Ctrl-X`** — say it slowly, `^` = Ctrl
+  - `ls` → `draft.txt`. Windows: `notepad draft.txt`
+- **Names** — `mkdir north pacific gyre` → **three** dirs (spaces split args). No spaces, don't lead with `-`.
 
-- "Six `.pdb` files. I want to act on several at once. `*` matches zero or more
-  characters."
-
-```bash
-ls *.pdb
-ls p*.pdb
-```
-
-- "`?` matches exactly one character."
-
-```bash
-ls ?ethane.pdb
-ls ???ane.pdb
-```
-
-- "Key idea: the **shell** expands the pattern to a list of names *before* `ls` runs.
-  `ls` never sees the `*`. And a pattern that matches nothing is passed through
-  unchanged, which is why this errors:"
-
-```bash
-ls *.pdf
-```
-
-**Exercise (~4 min):** which pattern lists **only** `ethane.pdb` and `methane.pdb`?
-`*t*ane.pdb` / `*t?ne.*` / `*t??ne.pdb` / `ethane.*`
-**Answer:** `*t??ne.pdb` — two characters between `t` and `ne`.
-
-**HANDOFF to Instructor 2** (~10:38). Everyone stays in `alkanes`.
+Stuck in `vim`: `Esc` `:q!` Enter.
 
 ---
 
-### 11. `wc` and redirecting to a file · 10:38–10:48 · Episode 4 · DEMO — Instructor 2 starts
+### 9 · mv / cp / rm — 10:15 → 10:32 · Episode 3
 
-**Re-anchor:** "run `pwd` — you should be in `exercise-data/alkanes`."
+Be in `exercise-data/writing` (`cd ~/Desktop/shell-lesson-data/exercise-data/writing`).
 
-- "`wc` = word count: lines, words, characters."
+- **Rename** (two names) — `mv thesis/draft.txt thesis/quotes.txt` · `ls thesis`
+- **Move** (dir target) — `mv thesis/quotes.txt .` · `ls thesis` · `ls quotes.txt` (`.` = here)
+- **Copy** (original stays) — `cp quotes.txt thesis/quotations.txt` · `ls quotes.txt thesis/quotations.txt`
+- **Copy a directory needs `-r`** — `cp thesis thesis_backup` (**error**), then `cp -r thesis thesis_backup` · `ls thesis thesis_backup`
+- **`rm` = gone. No Trash. No undo.** (say it twice)
+  - `rm quotes.txt` · `ls quotes.txt` (gone)
+  - `rm thesis` → **error, is a directory**
+  - `rm -r thesis thesis_backup ../project` — this is how people lose a project. `ls` first.
+- **`mv`/`cp` overwrite silently** — `-i` to prompt
 
-```bash
-wc cubane.pdb
-wc *.pdb
-```
-
-- "Usually I just want the line count."
-
-```bash
-wc -l *.pdb
-```
-
-- "I want to keep that. `>` sends the output to a **file** instead of the screen."
-
-```bash
-wc -l *.pdb > lengths.txt
-```
-
-- "Nothing printed — it went into the file. Let's look:"
-
-```bash
-cat lengths.txt
-```
-
-- **Warn:** "`>` overwrites the target with **no prompt**. And `wc -l` with no filename
-  just sits there waiting for you to type input — `Ctrl-C` gets you out."
+**CUT IF BEHIND:** skip the `cp` directory-error demo; do `rm` on a file only, describe `rm -r`.
 
 ---
 
-### 12. `sort`, `head`, `tail`, `>>` · 10:48–10:55 · Episode 4 · DEMO
+### 10 · Wildcards — 10:32 → 10:38 · Episode 3
 
-- "Quick detour to show why `sort` has a `-n`. There's a file of plain numbers:"
+- `cd ~/Desktop/shell-lesson-data/exercise-data/alkanes` (6 `.pdb` files)
+- **`*` = zero or more chars** — `ls *.pdb` · `ls p*.pdb`
+- **`?` = exactly one** — `ls ?ethane.pdb` (→ methane) · `ls ???ane.pdb`
+- **The shell expands it before `ls` runs** — `ls` never sees the `*`
+- **No match = error** — `ls *.pdf`
+- **Mini-exercise (~3 min)** — which lists only `ethane.pdb` + `methane.pdb`?
+  `*t*ane.pdb` / `*t?ne.*` / `*t??ne.pdb` / `ethane.*` → **`*t??ne.pdb`**
 
-```bash
-sort ../numbers.txt        # text sort — puts "10" before "2"
-sort -n ../numbers.txt     # numeric sort — the way you'd expect
-```
-
-- "Now sort our lengths file numerically:"
-
-```bash
-sort -n lengths.txt
-sort -n lengths.txt > sorted-lengths.txt
-```
-
-- "`head` gives the first lines, `tail` the last. First line of the sorted file = the
-  shortest."
-
-```bash
-head -n 1 sorted-lengths.txt
-```
-
-- "`>` replaces. `>>` **appends**."
-
-```bash
-echo appended >> sorted-lengths.txt
-cat sorted-lengths.txt
-```
-
-- "None of these changed the input — they read it and wrote new output."
+**CHECKPOINT ~10:38 — everyone in `alkanes`. HANDOFF to Instructor 2.**
+Behind? Skip the mini-exercise, hand off after `ls *.pdf`.
 
 ---
 
-### 13. The pipe `|` · 10:55–11:02 · slide 7 · Episode 4 · DEMO
+### 11 · wc + redirect — 10:38 → 10:48 · Episode 4 · Instructor 2
 
-**Show slide 7 (the pipe diagram).** Build the pipeline one stage at a time.
+Re-anchor: **`pwd`, should be `exercise-data/alkanes`.**
 
-- "We just used a temp file to get from `wc` to `sort` to `head`. The pipe removes it.
-  `|` sends the output of the left command straight into the right one."
-
-```bash
-sort -n lengths.txt | head -n 1
-```
-
-- "No temp file. Now do the whole thing without `lengths.txt` at all:"
-
-```bash
-wc -l *.pdb | sort -n
-wc -l *.pdb | sort -n | head -n 1
-```
-
-- "Read it left to right: count the lines, sort them, take the first. That's the
-  shortest file, in one line."
+- **`wc` = lines, words, chars** — `wc cubane.pdb` · `wc *.pdb`
+- **Just lines** — `wc -l *.pdb`
+- **`>` sends output to a file** — `wc -l *.pdb > lengths.txt` (nothing prints) · `cat lengths.txt`
+- **`>` overwrites, no prompt.** `wc -l` alone hangs waiting for input → `Ctrl-C`
 
 ---
 
-### 14. Pipeline exercise + Nelle · 11:02–11:10 · Episode 4 · EXERCISE → BREAK
+### 12 · sort / head / tail / >> — 10:48 → 10:55 · Episode 4
 
-```bash
-cd ../animal-counts
-cut -d , -f 2 animals.csv
-cut -d , -f 2 animals.csv | sort | uniq
-cut -d , -f 2 animals.csv | sort | uniq | wc -l
-```
-
-- **Prompt:** which pipeline finds the **3 shortest** `.pdb` files?
-  `wc -l * | sort -n | head -n 3` or `wc -l * | head -n 3 | sort -n`?
-  **Answer:** the first. `head` before `sort` grabs the wrong 3.
-- Walk the `cut` pipeline: column 2 is the animal; `sort` groups identical names;
-  `uniq` collapses *adjacent* runs (so `sort` must come first); `wc -l` counts distinct
-  animals — **5** (deer, rabbit, raccoon, fox, bear).
-
-- **Nelle, ~1 min:** she ran `wc -l *.txt | sort -n | head -n 5` on 17 output files —
-  one was 240 lines, not 300 (instrument left off over a weekend). `tail` and
-  `ls *Z.txt` caught a `Z` in a filename, her lab's "missing data" code.
-
-Reconvene, then **BREAK 8 min** (back ~11:18).
+- **Why `-n`** — `sort ../numbers.txt` (text: "10" before "2") vs `sort -n ../numbers.txt`
+- **Sort our file** — `sort -n lengths.txt` · `sort -n lengths.txt > sorted-lengths.txt`
+- **First / last lines** — `head -n 1 sorted-lengths.txt` (= shortest)
+- **`>>` appends** (vs `>` replaces) — `echo appended >> sorted-lengths.txt` · `cat sorted-lengths.txt`
+- none of these change the input file
 
 ---
 
-### 15. Loops: the idea · 11:18–11:24 · slide 8 · Episode 5 · DEMO
+### 13 · The pipe — 10:55 → 11:02 · slide 7 · Episode 4
 
-**Show slide 8 (the loop form).** Read it aloud slowly:
+Show **slide 7**. Build one stage at a time.
 
-- "**for** each thing **in** this list: **do** the following, using that thing. **done**."
-- "`for` runs the block once per item. The **loop variable** holds the current item;
-  `$filename` reads its value — same `$` idea as the prompt, different job. Indentation
-  is for humans, the shell doesn't need it."
-
-```bash
-cd ~/Desktop/shell-lesson-data/exercise-data/creatures
-head -n 5 basilisk.dat minotaur.dat unicorn.dat
-```
-
-- "Three files, same structure. I want line 2 — the classification — from each."
+- **`|` = left output straight into right, no temp file**
+  - `sort -n lengths.txt | head -n 1`
+  - `wc -l *.pdb | sort -n`
+  - `wc -l *.pdb | sort -n | head -n 1`
+- read it left to right: count → sort → take first = shortest file, one line
 
 ---
 
-### 16. A real loop · 11:24–11:32 · Episode 5 · DEMO
+### 14 · Pipeline exercise + Nelle — 11:02 → 11:10 · Episode 4 · them
 
-Type it **line by line**. Point at the prompt changing to `>`.
+- `cd ../animal-counts`
+  - `cut -d , -f 2 animals.csv` → `cut … | sort | uniq` → `cut … | sort | uniq | wc -l`
+- **Q** which finds the **3 shortest**? `wc -l * | sort -n | head -n 3` vs `… | head -n 3 | sort -n`
+  → **first**. `head` before `sort` grabs the wrong 3.
+- **`cut` = column 2, `sort` groups, `uniq` collapses adjacent** (so sort first), `wc -l` = **5** distinct animals
+- **Nelle (~1 min)** — `wc -l *.txt | sort -n | head -n 5` on 17 files caught one at **240 lines not 300** (instrument off over a weekend); `ls *Z.txt` caught a stray `Z` filename
+
+**CHECKPOINT ~11:10 — reconvene, BREAK 8 min (back 11:18).**
+Past 11:14? Cut segment 18 now; note it.
+
+---
+
+### 15 · Loops: the idea — 11:18 → 11:24 · slide 8 · Episode 5
+
+Show **slide 8**. Read aloud: **for** each thing **in** the list, **do** these commands, **done**.
+
+- **loop variable** holds the current item; `$thing` reads its value
+- prompt changes to `>` while it waits for `done` — **not broken**
+- `cd ~/Desktop/shell-lesson-data/exercise-data/creatures`
+- `head -n 5 basilisk.dat minotaur.dat unicorn.dat` — 3 files, same shape; want line 2 from each
+
+---
+
+### 16 · A real loop — 11:24 → 11:32 · Episode 5
+
+Type it **line by line**, point at the `>` prompt.
 
 ```bash
 for filename in basilisk.dat minotaur.dat unicorn.dat
@@ -617,24 +319,14 @@ do
 done
 ```
 
-- "See the prompt flip to `>` — that's the shell waiting for `done`, not a bug."
-- **Narrate one full pass:** "Pass one: `$filename` is `basilisk.dat`. `echo` prints
-  it. `head -n 2` gives the first two lines, `tail -n 1` keeps the second — the
-  classification. Then pass two, minotaur. Then unicorn. List's done, loop stops."
+- **narrate pass 1**: `$filename` = `basilisk.dat` → echo it → `head -n 2 | tail -n 1` = the classification line. then minotaur, unicorn. list ends, loop stops.
 
 ---
 
-### 17. Dry run + a backup loop · 11:32–11:40 · Episode 5 · DEMO
+### 17 · Dry run + backup loop — 11:32 → 11:40 · Episode 5
 
-- "A loop does many things at once — or many *mistakes* at once. So check first. You
-  might think this works:"
-
-```bash
-cp *.dat original-*.dat
-```
-
-- "It doesn't — the shell expands both sides and `cp` gets confused. A loop is the fix.
-  Put `echo` in front to **preview** the commands without running them:"
+- **`cp *.dat original-*.dat` fails** — shell expands both sides. A loop is the fix.
+- **Preview with `echo` in front:**
 
 ```bash
 for filename in *.dat
@@ -643,114 +335,63 @@ do
 done
 ```
 
-- "Read those three `cp` lines. Look right? Drop the `echo` and run it for real."
-
-```bash
-for filename in *.dat
-do
-    cp $filename original-$filename
-done
-ls
-```
-
-- "A dry run — print what *would* happen before doing it — is a habit worth keeping for
-  anything destructive."
-
-**Trip hazard:** learners press Enter mid-loop, see `>`, think it's frozen. It's
-waiting for `done`. If they're lost: `Ctrl-C`, start the loop again.
+- read the 3 `cp` lines → **drop the `echo`, run for real** → `ls`
+- **dry run = print before you do** — keep the habit for anything destructive
+- learners see `>` and think it froze → it's waiting for `done` → `Ctrl-C`, restart
 
 ---
 
-### 18. Loop-trace exercise · 11:40–11:45 · Episode 5 · EXERCISE — **cut if behind**
+### 18 · Loop-trace exercise — 11:40 → 11:45 · Episode 5 · them · **CUT IF BEHIND**
 
-```bash
-cd ../alkanes
-```
+`cd ../alkanes`
 
 ```bash
 for datafile in *.pdb
 do
     ls *.pdb
 done
-
-for datafile in *.pdb
-do
-    ls $datafile
-done
 ```
+vs `ls $datafile` in the body.
 
-**Answer:** the first prints the full list six times — it re-runs `ls *.pdb` every
-pass and ignores the variable. The second prints one filename per pass — it uses
-`$datafile`. The loop variable is what carries the current item into the body. Mention
-`↑` to recall the whole loop, `history` and `!123` to re-run a past line.
+→ first prints the full list **6 times** (re-globs, ignores the variable); second prints
+**one file per pass** (uses `$datafile`). Also: `↑` recalls the loop, `history` + `!123` re-runs.
 
 ---
 
-### 19. Shell scripts · 11:45–11:57 · Episode 6 · DEMO
+### 19 · Scripts — 11:45 → 11:57 · Episode 6
 
-**Be in:** `~/Desktop/shell-lesson-data/exercise-data/alkanes`.
+Be in `~/Desktop/shell-lesson-data/exercise-data/alkanes`.
 
-- "We keep retyping the same commands. Put them in a file once — that's a **script**."
+- **A script = commands in a file, run with `bash`**
+  - `nano middle.sh` → one line: `head -n 15 octane.pdb | tail -n 5` → save → `bash middle.sh`
+- **Let the caller pick the file** — reopen, change `octane.pdb` → `"$1"` (first argument)
+  - `bash middle.sh octane.pdb` · `bash middle.sh pentane.pdb`
+- **`#` = comment** — add one at the top saying what it does
 
-```bash
-nano middle.sh
-```
+**If time — save the Episode 4 pipeline:**
+- `nano sorted.sh` →
+  ```
+  # Sort filenames by their length.
+  # Usage: bash sorted.sh one_or_more_filenames
+  wc -l "$@" | sort -n
+  ```
+- `bash sorted.sh *.pdb` · `bash sorted.sh *.pdb ../creatures/*.dat`
+- **`"$@"` = all the arguments** → caller picks the files, like a built-in command
 
-- "Type one line: `head -n 15 octane.pdb | tail -n 5`. Save — Ctrl-O, Enter, Ctrl-X.
-  Run it with `bash`:"
+**CUT IF BEHIND:** `middle.sh` with `"$1"` only; skip `"$2"`/`"$3"` and `sorted.sh`.
 
-```bash
-bash middle.sh
-```
+**Mention, don't demo:** Nelle wraps her whole loop in `do-stats.sh` with `for datafile in "$@"` — one script, all 1520 files.
 
-- "Same output as typing the command. But it's stuck on `octane.pdb`. Let's let the
-  caller choose the file. Re-open it:"
-
-```bash
-nano middle.sh
-```
-
-- "Change `octane.pdb` to `\"$1\"` — that means 'the first argument the caller typed'.
-  Save. Now:"
-
-```bash
-bash middle.sh octane.pdb
-bash middle.sh pentane.pdb
-```
-
-- "A line starting with `#` is a **comment** — for the human reading it, ignored by the
-  shell. Add one at the top saying what the script does."
-
-**If time — save the pipeline from Episode 4 as its own script:**
-
-```bash
-nano sorted.sh
-#   # Sort filenames by their length.
-#   # Usage: bash sorted.sh one_or_more_filenames
-#   wc -l "$@" | sort -n
-bash sorted.sh *.pdb
-bash sorted.sh *.pdb ../creatures/*.dat
-```
-
-- "`\"$@\"` is *all* the arguments — so the caller picks the files, exactly the way
-  built-in commands work. Saving the pipeline saves the method: run it again next month
-  on new data, same steps."
-
-**Cut if behind:** do `middle.sh` with `\"$1\"` only, skip the `\"$2\"`/`\"$3\"` version,
-skip `sorted.sh`.
-
-**Nelle (mention, don't demo):** she wraps her whole processing loop in `do-stats.sh`
-with `for datafile in \"$@\"` — one script, run on all 1520 files, and
-`bash do-stats.sh NENE*A.txt NENE*B.txt | wc -l` checks the count came out right.
+**Not covering (in the full lesson):** nested loops, `history`/`!!`, `$2`/`$3` in scripts,
+`longest.sh`, `bash -x` debugging. All on the self-paced lesson.
 
 ---
 
-### 20. Recap · 11:57–12:00 · slide 9
+### 20 · Recap — 11:57 → 12:00 · slide 9
 
-**Show slide 9.** Point at the two columns — keypoints from Episodes 2–6 — don't read
-them. The vocabulary table is further down this page. Feedback link is in the Etherpad.
-Episode 7 (Finding Things — `grep`, `find`) is at the bottom of this page for anyone who
-wants it, and could be a later session. **Finishing early is fine — don't add Episode 7.**
+Show **slide 9** — two columns are the Ep 2–6 keypoints, point don't read. Vocabulary table
+is further down this page. Feedback link in the Etherpad. **Episode 7 (`grep`/`find`) is at
+the bottom of this page** for anyone who wants it. Finishing early is fine.
 
 ---
 
@@ -945,6 +586,10 @@ to Git, Python, and working on a server.
 ---
 
 ## Run sheet
+
+> The [Live-coding spine](#live-coding-spine) above has the current pace table with
+> clock times and checkpoints — teach from that. This table is the older elapsed-time
+> view, kept as a second glance.
 
 180 minutes. **Two instructors**, split in two parts; handoff after the wildcards
 exercise. Episodes 1–6. Official lesson time for those six episodes is ~225 min against
