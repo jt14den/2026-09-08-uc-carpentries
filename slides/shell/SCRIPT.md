@@ -1,5 +1,11 @@
 # The Unix Shell - full instructor script
 
+> **Superseded.** This script was written against the earlier 29-slide deck. The deck is
+> now 8 slides (title, get-to-the-prompt, why, and four diagrams), and the command-by-command
+> teaching flow lives in the **[Live-coding spine](../../shell-notes/#live-coding-spine)**
+> on the session notes page. Teach from the spine. This file is kept for reference only —
+> its SAY / TYPE notes per command are still accurate, but the slide numbers are not.
+
 **Rendered version (bullets, badges, nav): [script.html](script.html)** - `/slides/shell/script.html`. This `.md` is the plain-text source.
 
 **Pre-flight checklist** (both instructors, before you teach): see the instructor guide on the [session notes page](../../shell-notes/#instructor-guide).
