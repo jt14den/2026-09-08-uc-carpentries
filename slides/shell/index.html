@@ -137,8 +137,8 @@
       </ul>
       <p><b>Two instructors, two parts</b> (Tim + James Frew; helpers Geoffrey Boushey + Jose Nino Muriel):</p>
       <ul>
-        <li><b>Part 1 - Episodes 1-3, ~9:00-10:38:</b> get everyone to the prompt, why the shell, navigating, creating / moving / deleting files, wildcards. Contains the first break. Diagrams: slides 4 and 5.</li>
-        <li><b>Part 2 - Episodes 4-6, ~10:38-12:00:</b> pipes &amp; filters, loops, shell scripts. Contains the second break. Diagrams: slides 6 and 7.</li>
+        <li><b>Part 1 - Episodes 1-3, ~9:00-10:38:</b> get everyone to the prompt, why the shell, navigating, creating / moving / deleting files, wildcards. Contains the first break. Diagrams: slides 5 and 6.</li>
+        <li><b>Part 2 - Episodes 4-6, ~10:38-12:00:</b> pipes &amp; filters, loops, shell scripts. Contains the second break. Diagrams: slides 7 and 8.</li>
         <li>Handoff after the wildcards exercise. Whoever is not driving watches the room, reads chat + pad aloud, keeps time.</li>
         <li><b>Pace is brisk.</b> Official time for Ep 1-6 is ~225 min against ~160 min of teaching time. Episode 7 (Finding Things / grep / find) is the standard cut. Trim exercises before demos; loops and scripts are the compressible end. Cut points are marked in the notes spine.</li>
         <li>Helpers watch chat + pad, DM anyone who posts a red x.</li>
@@ -198,17 +198,49 @@ ls</pre>
     </aside>
   </section>
 
-  <!-- 3 · WHY THE SHELL -->
+  <!-- 3 · WHY THE COMMAND LINE -->
+  <section data-background-color="#ffffff">
+    <div class="content-mid">
+      <div class="toprow"><span class="tag">Why the shell</span></div>
+      <div class="slide-head"><h2>Why the command line?</h2></div>
+      <div class="two">
+        <ul class="clean">
+          <li>So much runs on it - installing software, remote servers, containers, and <b>HPC job scripts</b> all assume shell basics</li>
+          <li>Your commands are the record - a pipeline you can re-run is a methods section a GUI never writes down</li>
+          <li>It's the glue between tools - an R script, a Python model, and someone's C binary all meet in the shell</li>
+          <li><b>AI coding agents work by typing shell commands</b> - reviewing what an agent changed needs the same skill</li>
+        </ul>
+        <div class="exbox">
+          <h4>Where it shows up</h4>
+          <p style="margin:0;">On an HPC cluster your job is a Bash script handed to a scheduler. Reproducibility tools - Snakemake, Nextflow, Docker, CI - are shell orchestrators. AI agents like Claude Code and Cursor run in a terminal you supervise.</p>
+        </div>
+      </div>
+      <p class="zoomcue"><b>On Zoom:</b> in the chat - where have you hit a wall that a terminal would have gotten you past?</p>
+      <div class="term">the shell is the layer HPC schedulers and AI agents both sit on top of</div>
+    </div>
+    <aside class="notes">
+      <p><b>9:10-9:13 · why the command line · DISCUSS · SWC Episode 1</b></p>
+      <p><b>SAY</b></p>
+      <ul>
+        <li>Short slide, framing not depth. The shell went from a power-user tool to the layer almost everything else runs on - containers are Linux underneath, HPC schedulers want Bash, CI is mostly shell scripts.</li>
+        <li>The newer reason: AI coding agents act by running shell commands. To check what Claude Code did in your repo, or what a cluster job actually ran, you're reading the same commands we cover today.</li>
+        <li>Optional: your own example of driving an agent or a cluster job from the terminal.</li>
+      </ul>
+      <p><b>THEN</b> - keep it to ~3 min. &rarr; slide 4</p>
+    </aside>
+  </section>
+
+  <!-- 4 · WHY TYPE WHEN YOU CAN CLICK / NELLE -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <div class="toprow"><span class="tag">Concept 1</span> <span class="badge discuss">discuss</span></div>
-      <div class="slide-head"><h2>Why work this way?</h2></div>
+      <div class="slide-head"><h2>Why type when you can click?</h2></div>
       <div class="two">
         <ul class="clean">
           <li>A <b>GUI</b> is great for one file. It scales badly to hundreds.</li>
-          <li>The commands you type <b>are</b> a record - a pipeline you can re-run is a methods section a GUI never writes down</li>
-          <li>It's the glue between tools - an R script, a Python model, someone's C binary all meet in the shell</li>
-          <li><b>HPC job scripts and AI coding agents both run on shell commands</b> - reviewing what an agent changed needs the same skill</li>
+          <li>A <b>CLI</b> lets you write instructions once and run them on 1, 100, or 10,000 files</li>
+          <li>The commands you type <b>are</b> a record - save them, re-run them, share them</li>
+          <li>It's the on-ramp to Python, R, Git, and working on a server</li>
         </ul>
         <div class="exbox">
           <h4>Nelle's problem</h4>
@@ -220,19 +252,18 @@ ls</pre>
       <div class="term">Unix's design rule: <b>small pieces, loosely joined</b> - many tiny tools that each do one job well and combine</div>
     </div>
     <aside class="notes">
-      <p><b>9:10-9:16 · why the shell · DISCUSS · SWC Episode 1</b></p>
+      <p><b>9:13-9:16 · why type when you can click · DISCUSS · SWC Episode 1</b></p>
       <p><b>SAY</b></p>
       <ul>
-        <li>Give your own recent example - a real thing you did last week or month with the shell (driving an agent, a cluster job, a batch rename).</li>
+        <li>Give your own recent example - a real thing you did last week or month with the shell.</li>
         <li>Nelle Nemo, marine biologist, is the story that runs through this lesson. 1520 files, one program, by end of month. We meet her again in every episode - navigate, create, check length, chain commands, loop, script.</li>
-        <li>The newer reason it matters: containers are Linux underneath, HPC schedulers want Bash, CI is mostly shell, and AI coding agents act by running shell commands.</li>
       </ul>
       <p><b>DO</b> - read 3-4 chat answers aloud. Common: batch renaming, find-and-replace across many docs, "which of these 200 files mentions X".</p>
-      <p><b>THEN</b> - keep it tight, ~5 min. Straight into navigating (live - notes spine, "Navigating"). &rarr; slide 4</p>
+      <p><b>THEN</b> - keep it tight, ~3 min. Then straight into navigating (live - notes spine, "Navigating"). &rarr; slide 5</p>
     </aside>
   </section>
 
-  <!-- 4 · FILESYSTEM IS A TREE -->
+  <!-- 5 · FILESYSTEM IS A TREE -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <span class="tag">Navigating · Episode 2</span>
@@ -279,11 +310,11 @@ ls</pre>
       <code>cd</code> in / <code>..</code> up / home / <code>cd -</code>, the deliberate sibling-directory error,
       absolute vs relative paths, <kbd>Tab</kbd> completion.</p>
       <p><b>Exercise (~7 min, ~9:44):</b> <code>ls nor</code> + Tab; which <code>cd</code> options reach home; the alkanes round-trip (one relative path in, one absolute path back). Answers in the notes spine.</p>
-      <p><b>THEN</b> - reconvene, everyone back in <code>shell-lesson-data</code>, then <b>BREAK, 8 min</b> (back ~10:00). Coming back: name the parts of a command once (command / option / argument), re-anchor with <code>pwd</code>, then into creating files. &rarr; slide 5</p>
+      <p><b>THEN</b> - reconvene, everyone back in <code>shell-lesson-data</code>, then <b>BREAK, 8 min</b> (back ~10:00). Coming back: name the parts of a command once (command / option / argument), re-anchor with <code>pwd</code>, then into creating files. &rarr; slide 6</p>
     </aside>
   </section>
 
-  <!-- 5 · SHAPE OF A COMMAND -->
+  <!-- 6 · SHAPE OF A COMMAND -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <span class="tag">Navigating · recap</span>
@@ -322,11 +353,11 @@ ls</pre>
         <li>Then straight into creating / moving / deleting files - live, notes spine, "Working with files (Episode 3)": <code>nano</code>, <code>mkdir</code> / <code>-p</code>, <code>mv</code>, <code>cp</code> (+ the <code>-r</code> error), <code>rm</code> (<b>say the no-undo danger twice</b>), then wildcards in <code>alkanes</code>.</li>
         <li><b>Handoff to Instructor 2 after the wildcards exercise</b> (~10:38), everyone in <code>alkanes</code>.</li>
       </ul>
-      <p>&rarr; slide 6</p>
+      <p>&rarr; slide 7</p>
     </aside>
   </section>
 
-  <!-- 6 · REDIRECT AND THE PIPE -->
+  <!-- 7 · REDIRECT AND THE PIPE -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <span class="tag">Pipes &amp; filters · Episode 4</span>
@@ -371,11 +402,11 @@ ls</pre>
       then build <code>wc -l *.pdb | sort -n | head -n 1</code> one stage at a time.</p>
       <p><b>Exercise (~8 min, ~11:00):</b> which pipeline finds the 3 shortest files;
       <code>cut -d , -f 2 animals.csv | sort | uniq</code> then <code>| wc -l</code>. Tell the Nelle "60 lines short" catch fast. Answers in the notes spine.</p>
-      <p><b>THEN</b> - reconvene, then <b>BREAK, 8 min</b> (back ~11:16). &rarr; slide 7</p>
+      <p><b>THEN</b> - reconvene, then <b>BREAK, 8 min</b> (back ~11:16). &rarr; slide 8</p>
     </aside>
   </section>
 
-  <!-- 7 · LOOPS -->
+  <!-- 8 · LOOPS -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <span class="tag">Automation · Episodes 5–6</span>
@@ -402,11 +433,11 @@ ls</pre>
         <li>Loop-trace exercise (<code>ls *.pdb</code> vs <code>ls $f</code> inside a loop) - <b>cut this if behind</b>.</li>
         <li>Scripts: <code>nano sorted.sh</code> = <code># comment</code> + <code>wc -l *.pdb | sort -n</code>, run with <code>bash sorted.sh</code>. Then change <code>*.pdb</code> to <code>"$@"</code> so the caller picks the files. Skip the <code>$1</code>/<code>$2</code> aside if short on time.</li>
       </ul>
-      <p><b>THEN</b> &rarr; slide 8, recap + feedback.</p>
+      <p><b>THEN</b> &rarr; slide 9, recap + feedback.</p>
     </aside>
   </section>
 
-  <!-- 8 · RECAP -->
+  <!-- 9 · RECAP -->
   <section data-background-color="#ffffff">
     <div class="content-mid">
       <div class="slide-head"><h2>Recap</h2></div>
