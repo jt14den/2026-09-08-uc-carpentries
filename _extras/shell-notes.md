@@ -180,12 +180,21 @@ Show **slide 6 (tree)** ~1 min, then terminal. Be in `~/Desktop/shell-lesson-dat
 
 ### 6 · Navigation exercise — 9:44 → 9:51 · Episode 2 · them
 
-Prompts in the pad. ~7 min.
+Prompts (C1, C2) are in the pad. ~7 min. Tab completion first, then C1 as a chat/pad
+poll, C2 if there's time.
 
 - **Tab completion** — `ls nor`+Tab → finishes `north-pacific-gyre/`; `ls north-pacific-gyre/goo`+Tab Tab → the two `.sh` files
-- **Q1** from `/Users/you/data`, which reach home: `cd .` / `cd ~` / `cd ../..` / `cd` / `cd ..`?
-  → **`cd ~`, `cd`, `cd ..`** reach `/Users/you`. `cd .` stays. `cd ../..` → `/Users`.
-- **Q2** reach `exercise-data/alkanes` relative, leave, return absolute
+- **C1 · Absolute vs Relative Paths** — from `/Users/nelle/data`, which commands reach
+  `/Users/nelle`? `cd .` / `cd /` / `cd /home/nelle` / `cd ../..` / `cd ~` / `cd home` /
+  `cd ~/data/..` / `cd` / `cd ..`
+  → **`cd ~` (5), `cd ~/data/..` (7), `cd` (8), `cd ..` (9)**. `cd .` stays put · `cd /` →
+  root · `cd /home/nelle` wrong path (it's `/Users/nelle`) · `cd ../..` → `/Users` ·
+  `cd home` would need a `home/` dir here.
+- **C2 · Listing in Reverse Chronological Order** — `ls -t` sorts by time of last change,
+  `ls -r` reverses; combine as `ls -t -r` (add `-l` to see dates) — which file shows last?
+  → **`-rt` puts the most recently changed file last** — handy for spotting your latest
+  edit or a fresh output file.
+- **Q2 (if extra time)** reach `exercise-data/alkanes` relative, leave, return absolute
   → `cd exercise-data/alkanes` · `cd ~/Desktop/shell-lesson-data/exercise-data/alkanes`
 
 **CHECKPOINT ~9:51 — reconvene in `shell-lesson-data`, then BREAK 8 min (back 10:00).**
@@ -229,6 +238,10 @@ Be in `exercise-data/writing` (`cd ~/Desktop/shell-lesson-data/exercise-data/wri
   - `rm thesis` → **error, is a directory**
   - `rm -r thesis thesis_backup ../project` — this is how people lose a project. `ls` first.
 - **`mv`/`cp` overwrite silently** — `-i` to prompt
+- **C3 · Renaming Files** (pad, ~1 min) — fix `statstics.txt` → `statistics.txt`:
+  `cp statstics.txt statistics.txt` / `mv statstics.txt statistics.txt` / `mv statstics.txt .` / `cp statstics.txt .`
+  → **`mv statstics.txt statistics.txt`.** The `cp` version leaves the misspelled file
+  behind; `mv … .` and `cp … .` give no new name (can't have two identical names).
 
 **CUT IF BEHIND:** skip the `cp` directory-error demo; do `rm` on a file only, describe `rm -r`.
 
@@ -241,8 +254,11 @@ Be in `exercise-data/writing` (`cd ~/Desktop/shell-lesson-data/exercise-data/wri
 - **`?` = exactly one** — `ls ?ethane.pdb` (→ methane) · `ls ???ane.pdb`
 - **The shell expands it before `ls` runs** — `ls` never sees the `*`
 - **No match = error** — `ls *.pdf`
-- **Mini-exercise (~3 min)** — which lists only `ethane.pdb` + `methane.pdb`?
-  `*t*ane.pdb` / `*t?ne.*` / `*t??ne.pdb` / `ethane.*` → **`*t??ne.pdb`**
+- **C4 · List filenames matching a pattern** (pad, ~3 min) — in `alkanes`, which `ls`
+  prints exactly `ethane.pdb  methane.pdb`?
+  `ls *t*ane.pdb` / `ls *t?ne.*` / `ls *t??ne.pdb` / `ls ethane.*`
+  → **`ls *t??ne.pdb`** (3). `*t*ane.pdb` also catches octane + pentane · `*t?ne.*` gets
+  octane/pentane but nothing ending `thane.pdb` · `ethane.*` is ethane only.
 
 **CHECKPOINT ~10:38 — everyone in `alkanes`. HANDOFF to Instructor 2.**
 Behind? Skip the mini-exercise, hand off after `ls *.pdf`.
