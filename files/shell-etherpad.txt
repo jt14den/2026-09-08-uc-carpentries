@@ -50,14 +50,21 @@ TODAY  (Episodes 1-6)
 -------------------------------------------------------------------
 Challenges are in the flow, where we hit them.  Each is short and timed --
 an instructor calls time and shows the answer.  Put your answer under your name.
+[SLIDE n] marks when the instructor puts a diagram on screen -- deck is 10 slides:
+https://www.tim-dennis.com/2026-09-08-uc-carpentries/slides/shell/
 
 =================================================================
 PART 1  (Ep 1-3)
 =================================================================
 
 1.  Open your shell.  Why the shell: do one thing to 400 files (Nelle's 1520 files)
+       [SLIDE 2]  "Open a shell"  (Mac Spotlight / Windows Git Bash)
+       [SLIDE 3]  "Get to the prompt"
+       [SLIDE 4]  "Why the command line?"
+       [SLIDE 5]  "Why type when you can click?"
 
 2.  Navigating: pwd, ls and its options, man / --help
+       [SLIDE 6]  "The filesystem is a tree"
 
 3.  Moving around: cd, .. , cd alone, cd - , absolute vs relative paths, ~
 
@@ -85,6 +92,7 @@ PART 1  (Ep 1-3)
     *** break ***
 
 4.  Command shape: command / option / argument
+       [SLIDE 7]  "The shape of a command"
 
 5.  Making things: nano (a text file), mkdir
 
@@ -123,16 +131,19 @@ PART 2  (Ep 4-6)
 9.  sort / sort -n , head , tail
 
 10. The pipe |  --  build:  wc -l *.pdb | sort -n | head -n 1
+       [SLIDE 8]  "Redirect, and the pipe"
     -- exercise: find the 3 shortest files ; cut | sort | uniq
 
     *** break ***
 
 11. Loops:  for ... in ... ; do ... ; done   (creatures/*.dat)
+       [SLIDE 9]  "Loops: do it to the whole list"
     -- echo in front = a safe "dry run"
     -- exercise: trace a loop
 
 12. Shell scripts: save a pipeline as sorted.sh , run with  bash sorted.sh
     -- make it reusable with  "$@"
+       [SLIDE 10]  "Recap"  (keypoints)
 
 
 -------------------------------------------------------------------
