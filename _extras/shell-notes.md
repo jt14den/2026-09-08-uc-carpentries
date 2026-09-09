@@ -90,30 +90,32 @@ Official time for Ep 1–6 is ~225 min; you have ~164 (180 minus two breaks). So
 close to full time (it's where people actually learn to navigate), Ep 3 loses its
 exercises, Ep 5–6 are cut hard. Cut points are marked **CUT IF BEHIND**.
 
-| # | Segment | Clock | Ep | Drive |
-|---|---|---|---|---|
-| 1 | Open a shell + get to the prompt | 8:55–9:10 | 1 | you + all |
-| 2–3 | Why the shell (2 slides) | 9:10–9:16 | 1 | discuss |
-| 4 | Navigating: pwd / ls / options | 9:16–9:30 | 2 | you |
-| 5 | Navigating: cd / paths | 9:30–9:44 | 2 | you |
-| 6 | Navigation exercise | 9:44–9:51 | 2 | them |
-| — | **BREAK** | 9:51–10:00 | | |
-| 7 | Shape of a command (recap) | 10:00–10:03 | 2 | slide |
-| 8 | Creating: mkdir / nano | 10:03–10:15 | 3 | you |
-| 9 | mv / cp / rm | 10:15–10:32 | 3 | you |
-| 10 | Wildcards + mini-exercise | 10:32–10:38 | 3 | you + them |
-| — | **HANDOFF to Instructor 2** | ~10:38 | | |
-| 11 | wc + redirect | 10:38–10:48 | 4 | you |
-| 12 | sort / head / tail / >> | 10:48–10:55 | 4 | you |
-| 13 | The pipe | 10:55–11:02 | 4 | you |
-| 14 | Pipeline exercise + Nelle | 11:02–11:10 | 4 | them |
-| — | **BREAK** | 11:10–11:18 | | |
-| 15 | Loops: the idea | 11:18–11:24 | 5 | you |
-| 16 | A real loop | 11:24–11:32 | 5 | you |
-| 17 | Dry run + backup loop | 11:32–11:40 | 5 | you |
-| 18 | Loop-trace exercise | 11:40–11:45 | 5 | them — **CUT IF BEHIND** |
-| 19 | Scripts | 11:45–11:57 | 6 | you |
-| 20 | Recap | 11:57–12:00 | 6 | slide |
+Slide column = what's on screen for that segment; blank = terminal only.
+
+| # | Segment | Slide | Clock | Ep | Drive |
+|---|---|---|---|---|---|
+| 1 | Open a shell + get to the prompt | 2, 3 | 8:55–9:10 | 1 | you + all |
+| 2–3 | Why the shell | 4, 5 | 9:10–9:16 | 1 | discuss |
+| 4 | Navigating: pwd / ls / options | 6 (tree) | 9:16–9:30 | 2 | you |
+| 5 | Navigating: cd / paths | — | 9:30–9:44 | 2 | you |
+| 6 | Navigation exercise (C1, C2) | — | 9:44–9:51 | 2 | them |
+| — | **BREAK** | | 9:51–10:00 | | |
+| 7 | Shape of a command (recap) | 7 | 10:00–10:03 | 2 | slide |
+| 8 | Creating: mkdir / nano | — | 10:03–10:15 | 3 | you |
+| 9 | mv / cp / rm (C3) | — | 10:15–10:32 | 3 | you |
+| 10 | Wildcards + C4 | — | 10:32–10:38 | 3 | you + them |
+| — | **HANDOFF to Instructor 2** | | ~10:38 | | |
+| 11 | wc + redirect | — | 10:38–10:48 | 4 | you |
+| 12 | sort / head / tail / >> | — | 10:48–10:55 | 4 | you |
+| 13 | The pipe | 8 (pipe) | 10:55–11:02 | 4 | you |
+| 14 | Pipeline exercise + Nelle | — | 11:02–11:10 | 4 | them |
+| — | **BREAK** | | 11:10–11:18 | | |
+| 15 | Loops: the idea | 9 (loop) | 11:18–11:24 | 5 | you |
+| 16 | A real loop | — | 11:24–11:32 | 5 | you |
+| 17 | Dry run + backup loop | — | 11:32–11:40 | 5 | you |
+| 18 | Loop-trace exercise | — | 11:40–11:45 | 5 | them — **CUT IF BEHIND** |
+| 19 | Scripts | — | 11:45–11:57 | 6 | you |
+| 20 | Recap | 10 | 11:57–12:00 | 6 | slide |
 
 ---
 
@@ -121,9 +123,14 @@ exercises, Ep 5–6 are cut hard. Cut points are marked **CUT IF BEHIND**.
 
 The riskiest ten minutes. Screen-share your terminal.
 
+**`[SLIDE 2]` "Open a shell"** — leave it up while everyone opens a terminal (Mac: Spotlight → "terminal"; Windows: Git Bash).
+
 - **The `$` is the prompt** — ready for input. Ignore anything before it. Don't type the `$`.
 - **Who am I** — `whoami`
 - **Where am I** — `pwd` (prints your home, an absolute path)
+
+**`[SLIDE 3]` "Get to the prompt"** — switch to it for the move-to-the-data steps.
+
 - **Move to the data** — `cd ~/Desktop/shell-lesson-data` then `ls`
   - room should see **`exercise-data/`** and **`north-pacific-gyre/`**
 - **Reading feedback** — blank line = worked · `command not found` = typo · `No such file or directory` = wrong path
@@ -135,12 +142,16 @@ data link, or breakout. Unzipped to Downloads → `cd ~/Downloads/shell-lesson-d
 
 ### 2 · Why the command line? — 9:10 → 9:13 · slide 4 · discuss
 
+**`[SLIDE 4]` "Why the command line?"** — up for this segment.
+
 - **So much runs on it** — installing software, servers, containers, HPC job scripts
 - **Your commands are the record** — re-runnable pipeline = a methods section a GUI never writes
 - **AI agents act by running shell commands** — checking their work is the same skill
 - your own example if you have one · ~3 min
 
 ### 3 · Why type when you can click? — 9:13 → 9:16 · slide 5 · discuss
+
+**`[SLIDE 5]` "Why type when you can click?"** — up for this segment.
 
 - **GUI**: fine for one file · **CLI**: write it once, run on 1 or 10,000
 - **Nelle** — back from a survey with **1520 files**, one program each, ~12h of clicking. Today's six episodes automate that. Check in with her each episode.
@@ -150,7 +161,7 @@ data link, or breakout. Unzipped to Downloads → `cd ~/Downloads/shell-lesson-d
 
 ### 4 · Navigating: pwd / ls / options — 9:16 → 9:30 · Episode 2
 
-Show **slide 6 (tree)** ~1 min, then terminal. Be in `~/Desktop/shell-lesson-data`.
+**`[SLIDE 6]` "The filesystem is a tree"** — up ~1 min, then switch to the terminal. Be in `~/Desktop/shell-lesson-data`.
 
 - **Where am I** — `pwd`. Use it any time you're unsure.
 - **What's here** — `ls`, then `ls -F` → `/` marks a **directory**; `-F` is an **option**
@@ -204,7 +215,7 @@ If you're past 9:55: shorten the break to 5, skip the `cd -` demo next time.
 
 ### 7 · Shape of a command — 10:00 → 10:03 · slide 7 · recap
 
-Show **slide 7**. `ls` = **command**, `-F` = **option**, `/` = **argument**. Spaces separate them.
+**`[SLIDE 7]` "The shape of a command"** — up for this recap. `ls` = **command**, `-F` = **option**, `/` = **argument**. Spaces separate them.
 Miss the space (`ls-F`) → shell hunts for a command called `ls-F`.
 Re-anchor: **everyone `pwd`, should be in `shell-lesson-data`.**
 
@@ -288,7 +299,7 @@ Re-anchor: **`pwd`, should be `exercise-data/alkanes`.**
 
 ### 13 · The pipe — 10:55 → 11:02 · slide 8 · Episode 4
 
-Show **slide 8**. Build one stage at a time.
+**`[SLIDE 8]` "Redirect, and the pipe"** — up, then build one stage at a time in the terminal.
 
 - **`|` = left output straight into right, no temp file**
   - `sort -n lengths.txt | head -n 1`
@@ -314,7 +325,7 @@ Past 11:14? Cut segment 18 now; note it.
 
 ### 15 · Loops: the idea — 11:18 → 11:24 · slide 9 · Episode 5
 
-Show **slide 9**. Read aloud: **for** each thing **in** the list, **do** these commands, **done**.
+**`[SLIDE 9]` "Loops: do it to the whole list"** — up. Read aloud: **for** each thing **in** the list, **do** these commands, **done**.
 
 - **loop variable** holds the current item; `$thing` reads its value
 - prompt changes to `>` while it waits for `done` — **not broken**
@@ -405,7 +416,7 @@ Be in `~/Desktop/shell-lesson-data/exercise-data/alkanes`.
 
 ### 20 · Recap — 11:57 → 12:00 · slide 10
 
-Show **slide 10** — two columns are the Ep 2–6 keypoints, point don't read. Vocabulary table
+**`[SLIDE 10]` "Recap"** — up. Two columns are the Ep 2–6 keypoints, point don't read. Vocabulary table
 is further down this page. Feedback link in the Etherpad. **Episode 7 (`grep`/`find`) is at
 the bottom of this page** for anyone who wants it. Finishing early is fine.
 
